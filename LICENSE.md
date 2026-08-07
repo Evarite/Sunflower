@@ -105,5 +105,5 @@ ANY RELEASE DOWNLOADED FROM IT.
 ## 9\. Contact
 
 Requests for permission should be sent to:
-\[EMAIL ADDRESS OR CONTACT LINK]
+\forestingel@gmail.com
 
