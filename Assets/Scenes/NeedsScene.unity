@@ -1432,6 +1432,7 @@ GameObject:
   - component: {fileID: 1077100209}
   - component: {fileID: 1077100210}
   - component: {fileID: 1077100211}
+  - component: {fileID: 1077100212}
   m_Layer: 5
   m_Name: Minerals
   m_TagString: Untagged
@@ -1524,6 +1525,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
+  _need: {fileID: 686756375}
+--- !u!114 &1077100212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077100208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885296c225a247644b977f2a906d4464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.SliderUI.ColorGradient
+  _fillArea: {fileID: 1576278249}
+  _lackColor: {r: 1, g: 0, b: 0, a: 1}
+  _normalColor: {r: 0.36078432, g: 0.9607844, b: 0.21568629, a: 1}
   _need: {fileID: 686756375}
 --- !u!1 &1118929160
 GameObject:
@@ -2125,9 +2142,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407607661}
-  - component: {fileID: 1407607662}
-  - component: {fileID: 1407607663}
   - component: {fileID: 1407607664}
+  - component: {fileID: 1407607663}
+  - component: {fileID: 1407607662}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -2165,10 +2182,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debug.TimerDebugUtility
-  _offset: 0
-  _step: 0.05
-  _need: {fileID: 502881487}
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
+  _offset: 4
+  _step: -0.05
+  _need: {fileID: 1941137151}
 --- !u!114 &1407607663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,10 +2197,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debug.TimerDebugUtility
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
   _offset: 2
   _step: 0.05
-  _need: {fileID: 1941137151}
+  _need: {fileID: 502881487}
 --- !u!114 &1407607664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2195,8 +2212,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debug.TimerDebugUtility
-  _offset: 4
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
+  _offset: 0
   _step: 0.05
   _need: {fileID: 686756375}
 --- !u!1 &1481387826
@@ -2348,6 +2365,7 @@ GameObject:
   - component: {fileID: 1538314428}
   - component: {fileID: 1538314429}
   - component: {fileID: 1538314430}
+  - component: {fileID: 1538314431}
   m_Layer: 5
   m_Name: Light
   m_TagString: Untagged
@@ -2440,6 +2458,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
+  _need: {fileID: 502881487}
+--- !u!114 &1538314431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538314427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885296c225a247644b977f2a906d4464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.SliderUI.ColorGradient
+  _fillArea: {fileID: 1118929162}
+  _lackColor: {r: 1, g: 0, b: 0, a: 1}
+  _normalColor: {r: 0.9607844, g: 0.8431373, b: 0.21568629, a: 1}
   _need: {fileID: 502881487}
 --- !u!1 &1576278247
 GameObject:
@@ -2563,6 +2597,7 @@ GameObject:
   - component: {fileID: 1607723211}
   - component: {fileID: 1607723212}
   - component: {fileID: 1607723213}
+  - component: {fileID: 1607723214}
   m_Layer: 5
   m_Name: Water
   m_TagString: Untagged
@@ -2639,7 +2674,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.502
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2655,6 +2690,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
+  _need: {fileID: 1941137151}
+--- !u!114 &1607723214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607723210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885296c225a247644b977f2a906d4464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.SliderUI.ColorGradient
+  _fillArea: {fileID: 1278152635}
+  _lackColor: {r: 1, g: 0, b: 0, a: 1}
+  _normalColor: {r: 0.23137255, g: 1, b: 0.94509804, a: 1}
   _need: {fileID: 1941137151}
 --- !u!1 &1807050318
 GameObject:

@@ -27,6 +27,9 @@ namespace Sunflower.Needs
             }
         }
 
+        public float LackMaxValue { get => _lackMaxValue; set => _lackMaxValue = value; }
+        public float OptimalMinValue { get => _optimalMinValue; set => _optimalMinValue = value; }
+
         public event System.Action<Need, float> OnValueChanged;
         public event System.Action<Need> OnNeedEmpty;
     }
