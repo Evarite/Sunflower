@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace Sunflower.SkillTree
 {
+    [RequireComponent(typeof(SkillNode))]
     [AddComponentMenu("Sunflower/Skill Tree/Skill Purchase")]
     public class SkillPurchase : MonoBehaviour
     {
@@ -19,7 +20,11 @@ namespace Sunflower.SkillTree
         [SerializeField] private AudioClip _purchaseSuccessfull;
         [SerializeField] private AudioClip _purchaseDenied;
 
+        private SkillNode _skillNode;
+
         private int _cost;
+
+        private void Awake() => _skillNode = GetComponent<SkillNode>();
 
         private void Start() => _cost = int.Parse(_costText.text);
 
@@ -34,6 +39,8 @@ namespace Sunflower.SkillTree
                 AudioManager.Instance.PlaySound(_purchaseSuccessfull);
 
                 EvoPointsCounter.Value -= _cost;
+
+                PlayerStateManager.Instance.OwnedSkills.Add(_skillNode.Data.Id);
             }
             else
                 AudioManager.Instance.PlaySound(_purchaseDenied);

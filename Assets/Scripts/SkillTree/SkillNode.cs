@@ -13,6 +13,8 @@ namespace Sunflower.SkillTree
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private TextMeshProUGUI _cost;
 
+        public SkillNodeData Data { get => _data; set => _data = value; }
+
         private void Awake() => Refresh();
 
         private void OnValidate() => Refresh();
