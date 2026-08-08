@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Sunflower.Seeds
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
+    [AddComponentMenu("Sunflower/Seeds/Seeds UI")]
     public class SeedsUI : MonoBehaviour
     {
         TextMeshProUGUI _text;

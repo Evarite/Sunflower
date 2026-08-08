@@ -15,6 +15,8 @@ namespace Sunflower.Seeds
                     _data = new SeedsCounterData();
 
                 _data.Value = value;
+
+                OnValueChanged?.Invoke(value);
             }
         }
 
