@@ -26,6 +26,7 @@ namespace Sunflower.SkillTree
 
         [Header("Unlocks")]
         [SerializeField] private List<SkillNode> _unlockedSkills;
+        [SerializeField] private LineDrawer _lineDrawer;
 
         private SkillNode _skillNode;
 
@@ -58,7 +59,10 @@ namespace Sunflower.SkillTree
         private void SwitchState()
         {
             foreach (var skill in _unlockedSkills)
+            {
                 skill.gameObject.SetActive(true);
+                _lineDrawer.DrawLine(transform, skill.transform);
+            }
 
             _purchaseButton.gameObject.SetActive(false);
 

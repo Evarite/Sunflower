@@ -14,6 +14,8 @@ namespace Sunflower.SkillTree
 
         [SerializeField] private GameObject _detectionZone;
 
+        private void Awake() => _description.SetActive(false);
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             _description.SetActive(true);
