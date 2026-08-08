@@ -256,17 +256,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &205882949 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4680746399612223736, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-  m_PrefabInstance: {fileID: 8289698299664309246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &293352608
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,17 +335,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &720924080 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1615732324171284855, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-  m_PrefabInstance: {fileID: 8289698299664309246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &938762556
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,52 +547,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007393833}
   m_CullTransparentMesh: 1
---- !u!1 &1141821082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 341845334827032509, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-  m_PrefabInstance: {fileID: 8289698299664309246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1141821083 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8229948165167889043, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
   m_PrefabInstance: {fileID: 8289698299664309246}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1141821087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141821082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf956516038bd994a98b82029d750ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.SkillNode
-  _data:
-    _name: "\u041D\u043E\u0432\u044B\u0439 \u043D\u0430\u0432\u044B\u043A"
-    _description: "\u0425\u043E\u0440\u043E\u0448\u0438\u0439 \u043D\u0430\u0432\u044B\u043A"
-    _cost: 10
-  _name: {fileID: 720924080}
-  _description: {fileID: 205882949}
-  _cost: {fileID: 2107506206}
---- !u!114 &1141821088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141821082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc9ca1f3f850f94f90a1c8f69cb2c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.SkillPurchase
-  _purchaseButton: {fileID: 1945042221}
-  _costText: {fileID: 2107506206}
-  _audioSource: {fileID: 1970530624}
-  _purchaseSuccessfull: {fileID: 8300000, guid: 4da6f1fb01b5f074eadc2fc037b2e196, type: 3}
-  _purchaseDenied: {fileID: 8300000, guid: 2acda6c2282502d41847cc0ff689b968, type: 3}
 --- !u!1 &1213515273
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1213515274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,12 +576,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213515273}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a74a2dabc57bd046be47fddaaf05e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.EvoPointsIncrease
-  _value: -30
+  _value: 1
 --- !u!4 &1213515275
 Transform:
   m_ObjectHideFlags: 0
@@ -802,17 +739,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1945042221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2025345529175816180, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-  m_PrefabInstance: {fileID: 8289698299664309246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1970530623
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1970530625}
   - component: {fileID: 1970530624}
+  - component: {fileID: 1970530626}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -942,6 +869,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1970530626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970530623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec8e6260144dd74c8177089ece8b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Managers.AudioManager
 --- !u!1 &1985734568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,17 +1031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069e014ea55acc440b35593b9133f2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.EvolutionPoints.EvoPointsUI
---- !u!114 &2107506206 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-  m_PrefabInstance: {fileID: 8289698299664309246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &8289698299664309246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1115,37 +1043,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill Node
       objectReference: {fileID: 0}
-    - target: {fileID: 4048203617469431501, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_Color.b
-      value: 0
+    - target: {fileID: 659158362881317967, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120.26
       objectReference: {fileID: 0}
-    - target: {fileID: 4048203617469431501, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_Color.g
-      value: 0.109228484
+    - target: {fileID: 659158362881317967, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10.129999
       objectReference: {fileID: 0}
-    - target: {fileID: 4048203617469431501, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3132075
+    - target: {fileID: 1615732324171284855, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_text
+      value: "\u041F\u0435\u0440\u0432\u044B\u0439 \u043D\u0430\u0432\u044B\u043A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213426248452179166, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: _data._name
+      value: "\u041F\u0435\u0440\u0432\u044B\u0439 \u043D\u0430\u0432\u044B\u043A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213426248452179166, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: _data._description
+      value: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E \u0443\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442
+        \u043F\u043E\u0442\u0440\u0435\u0431\u043B\u0435\u043D\u0438\u0435 \u0432\u0441\u0435\u0445
+        \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432 \u043D\u0430 20%."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680746399612223736, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_text
+      value: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E \u0443\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442
+        \u043F\u043E\u0442\u0440\u0435\u0431\u043B\u0435\u043D\u0438\u0435 \u0432\u0441\u0435\u0445
+        \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432 \u043D\u0430 20%."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680746399612223736, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680746399612223736, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680746399612223736, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5476202958183833916, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      propertyPath: m_text
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8229948165167889043, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_Pivot.x
@@ -1230,13 +1174,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 341845334827032509, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1141821087}
-    - targetCorrespondingSourceObject: {fileID: 341845334827032509, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1141821088}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
