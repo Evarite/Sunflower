@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace Sunflower.Needs
 {
     [RequireComponent(typeof(Slider))]
+    [AddComponentMenu("Sunflower/Needs/Need Slider UI")]
     public class NeedUI : MonoBehaviour
     {
         [SerializeField] private Need _need;

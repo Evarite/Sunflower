@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Sunflower.Needs
 {
+    [AddComponentMenu("Sunflower/Needs/Need")]
     public class Need : MonoBehaviour
     {
-        private float _value = 0f;
+        [SerializeField] private float _value = 0f;
 
         public float Value
         {
