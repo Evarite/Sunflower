@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8229948165167889043}
   - component: {fileID: 9162735425554787261}
   - component: {fileID: 348766433218613778}
+  - component: {fileID: 4213426248452179166}
+  - component: {fileID: 2346538492820017914}
   m_Layer: 5
   m_Name: Skill Node
   m_TagString: Untagged
@@ -104,6 +106,42 @@ MonoBehaviour:
   _idleColliderSize: {x: 1.2, y: 1.2}
   _activeColliderSize: {x: 2, y: 2}
   _detectionZone: {fileID: 1881070268981833420}
+--- !u!114 &4213426248452179166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341845334827032509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf956516038bd994a98b82029d750ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.SkillNode
+  _data:
+    _name: "\u041D\u043E\u0432\u044B\u0439 \u043D\u0430\u0432\u044B\u043A"
+    _description: "\u0425\u043E\u0440\u043E\u0448\u0438\u0439 \u043D\u0430\u0432\u044B\u043A"
+    _cost: 10
+  _name: {fileID: 1615732324171284855}
+  _description: {fileID: 4680746399612223736}
+  _cost: {fileID: 6708117256665304973}
+--- !u!114 &2346538492820017914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341845334827032509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc9ca1f3f850f94f90a1c8f69cb2c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.SkillPurchase
+  _purchaseButton: {fileID: 2025345529175816180}
+  _costText: {fileID: 6708117256665304973}
+  _audioSource: {fileID: 0}
+  _purchaseSuccessfull: {fileID: 8300000, guid: 4da6f1fb01b5f074eadc2fc037b2e196, type: 3}
+  _purchaseDenied: {fileID: 8300000, guid: 2acda6c2282502d41847cc0ff689b968, type: 3}
 --- !u!1 &368412485649476063
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.73284394, b: 0.54905653, a: 1}
+  m_Color: {r: 0.3132075, g: 0.109228484, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -926,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5321545042140412101
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1240,8 +1278,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

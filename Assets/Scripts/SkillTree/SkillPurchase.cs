@@ -1,3 +1,4 @@
+using Sunflower.Managers;
 using Sunflower.SkillTree.EvolutionPoints;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,6 @@ namespace Sunflower.SkillTree
         [SerializeField] private TextMeshProUGUI _costText;
 
         [Header("Audio")]
-        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _purchaseSuccessfull;
         [SerializeField] private AudioClip _purchaseDenied;
 
@@ -29,14 +29,14 @@ namespace Sunflower.SkillTree
 
         private void ButtonPressed()
         {
-            Debug.Log($"{EvoPointsCounter.Value}\t{_cost}");
-
             if (EvoPointsCounter.Value >= _cost)
             {
-                _audioSource.PlayOneShot(_purchaseSuccessfull);
+                AudioManager.Instance.PlaySound(_purchaseSuccessfull);
+
+                EvoPointsCounter.Value -= _cost;
             }
             else
-                _audioSource.PlayOneShot(_purchaseDenied);
+                AudioManager.Instance.PlaySound(_purchaseDenied);
         }
     }
 }
