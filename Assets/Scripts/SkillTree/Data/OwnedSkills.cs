@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sunflower.SkillTree.Data
 {
     [System.Serializable]
     public class OwnedSkills
     {
-        private List<SkillNodeData> _skills = new();
+        [SerializeField] private List<SkillId> _skills = new();
 
-        public List<SkillNodeData> Skills { get => _skills; set => _skills = value; }
+        public List<SkillId> Skills { get => _skills; }
     }
 }
