@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Sunflower.Needs.Timer
 {
     [RequireComponent(typeof(EmptyNeedsController))]
+    [AddComponentMenu("Sunflower/Needs/Timer/Empty Lose Timer")]
     public class EmptyLoseTimer : MonoBehaviour
     {
         [Header("Lose Time")]
@@ -17,6 +18,8 @@ namespace Sunflower.Needs.Timer
         private float _time;
         private Coroutine _timerCoroutine;
 
+        public event System.Action OnTimerStarted;
+        public event System.Action OnTimerEnded;
         public event System.Action<int> OnTimerUpdated;
 
         private void Awake() => _controller = GetComponent<EmptyNeedsController>();
@@ -51,9 +54,12 @@ namespace Sunflower.Needs.Timer
                     break;
 
                 if (_time <= displayedTime)
-                    OnTimerUpdated?.Invoke(displayedTime - 1);
-
-                displayedTime = (int)_time;
+                {
+                    displayedTime = (int)_time;
+                    OnTimerUpdated?.Invoke(displayedTime);
+                }
+                else
+                    displayedTime = (int)_time;
 
                 yield return null;
             }
@@ -67,15 +73,21 @@ namespace Sunflower.Needs.Timer
             if (_controller.EmptyNeeds.Count > 1)
                 _time /= _additiveDivisor;
             else
+            {
                 _timerCoroutine = StartCoroutine(Timer());
+                OnTimerStarted?.Invoke();
+            }
         }
 
         private void EmptyRemoved()
         {
             if (_controller.EmptyNeeds.Count > 0)
                 _time *= _additiveDivisor;
-            else
+            else if (_timerCoroutine != null)
+            {
                 StopCoroutine(_timerCoroutine);
+                OnTimerEnded?.Invoke();
+            }
         }
     }
 }

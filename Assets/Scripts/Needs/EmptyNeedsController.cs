@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Sunflower.Needs
 {
+    [AddComponentMenu("Sunflower/Needs/Empty Need Controller")]
     public class EmptyNeedsController : MonoBehaviour
     {
         [Header("Needs")]
@@ -44,7 +45,7 @@ namespace Sunflower.Needs
 
         private void OnValueChanged(Need sender, float value)
         {
-            if (_needs.Contains(sender) && value != 0f)
+            if (_emptyNeeds.Contains(sender) && value != 0f)
             {
                 _emptyNeeds.Remove(sender);
                 OnEmptyRemoved?.Invoke();
