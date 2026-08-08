@@ -6,8 +6,8 @@ namespace Sunflower.SkillTree.Data
     [System.Serializable]
     public class OwnedSkills
     {
-        [SerializeField] private List<SkillId> _skills = new();
+        [SerializeField] private List<SkillId> _purchasedSkills = new();
 
-        public List<SkillId> Skills { get => _skills; }
+        public List<SkillId> PurchasedSkills { get => _purchasedSkills; }
     }
 }

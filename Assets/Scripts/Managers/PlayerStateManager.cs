@@ -11,7 +11,7 @@ namespace Sunflower.Managers
 
         [SerializeField] private OwnedSkills _ownedSkills = new();
 
-        public List<SkillId> OwnedSkills { get => _ownedSkills.Skills; }
+        public List<SkillId> OwnedSkills { get => _ownedSkills.PurchasedSkills; }
 
         private void Awake()
         {

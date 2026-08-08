@@ -32,6 +32,16 @@ namespace Sunflower.SkillTree
 
         private int _cost;
 
+        public SkillNode SkillNode
+        {
+            get
+            {
+                if (_skillNode == null)
+                    _skillNode = GetComponent<SkillNode>();
+                return _skillNode;
+            }
+        }
+
         private void Awake() => _skillNode = GetComponent<SkillNode>();
 
         private void Start() => _cost = int.Parse(_costText.text);
@@ -56,7 +66,7 @@ namespace Sunflower.SkillTree
                 AudioManager.Instance.PlaySound(_purchaseDenied);
         }
 
-        private void SwitchState()
+        public void SwitchState()
         {
             foreach (var skill in _unlockedSkills)
             {
@@ -64,6 +74,11 @@ namespace Sunflower.SkillTree
                 _lineDrawer.DrawLine(transform, skill.transform);
             }
 
+            SetFinishedUIActive();
+        }
+
+        private void SetFinishedUIActive()
+        {
             _purchaseButton.gameObject.SetActive(false);
 
             foreach (var obj in _finishedUI)
