@@ -2184,7 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
   _offset: 4
-  _step: -0.05
+  _step: 0.05
   _need: {fileID: 1941137151}
 --- !u!114 &1407607663
 MonoBehaviour:
@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 2
+  _offset: 3
   _step: 0.05
   _need: {fileID: 502881487}
 --- !u!114 &1407607664
@@ -2213,7 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 0
+  _offset: 2
   _step: 0.05
   _need: {fileID: 686756375}
 --- !u!1 &1481387826
