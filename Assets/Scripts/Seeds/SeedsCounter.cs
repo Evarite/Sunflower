@@ -1,17 +1,23 @@
-[System.Serializable]
-public class SeedsCounter
+namespace Sunflower.Seeds
 {
-    private int _value = 0;
-
-    public int Value
+    public static class SeedsCounter
     {
-        get => _value;
-        set
-        {
-            _value = value;
-            OnValueChanged?.Invoke(value);
-        }
-    }
+        private static SeedsCounterData _data;
 
-    public event System.Action<int> OnValueChanged;
+        public static event System.Action<int> OnValueChanged;
+
+        public static int Value
+        {
+            get => _data?.Value ?? 0;
+            set
+            {
+                if (_data == null)
+                    _data = new SeedsCounterData();
+
+                _data.Value = value;
+            }
+        }
+
+        public static void Initialize(SeedsCounterData data) => _data = data;
+    }
 }
