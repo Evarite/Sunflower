@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Sunflower.Seeds
+namespace Sunflower.SkillTree.EvolutionPoints
 {
     [System.Serializable]
-    public class SeedsCounterData
+    public class EvoPointsCounterData
     {
         [SerializeField] private int _value = 0;
 
