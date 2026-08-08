@@ -1,16 +1,19 @@
+using TMPro;
 using UnityEngine;
 
-public class SeedsUI : MonoBehaviour
+namespace Sunflower.Seeds
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public class SeedsUI : MonoBehaviour
     {
-        
-    }
+        TextMeshProUGUI _text;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake() => _text = GetComponent<TextMeshProUGUI>();
+
+        private void OnEnable() => SeedsCounter.OnValueChanged += OnValueChanged;
+
+        private void OnDisable() => SeedsCounter.OnValueChanged -= OnValueChanged;
+
+        private void OnValueChanged(int value) => _text.text = value.ToString();
     }
 }

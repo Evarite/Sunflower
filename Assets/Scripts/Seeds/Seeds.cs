@@ -1,7 +1,20 @@
-[System.Serializable]
-public class Seeds
+namespace Sunflower.Seeds
 {
-    private float _value = 0f;
+    [System.Serializable]
+    public class SeedsCounter
+    {
+        private int _value = 0;
 
-    public float Value { get => _value; set => _value = value; }
+        public int Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                OnValueChanged?.Invoke(value);
+            }
+        }
+
+        public static event System.Action<int> OnValueChanged;
+    }
 }
