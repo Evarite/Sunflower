@@ -5,9 +5,15 @@ namespace Sunflower.Needs
 {
     public class EmptyNeedsController : MonoBehaviour
     {
+        [Header("Needs")]
         [SerializeField] private List<Need> _needs = new();
 
         private List<Need> _emptyNeeds = new();
+
+        public IReadOnlyList<Need> EmptyNeeds { get => _emptyNeeds; }
+
+        public event System.Action OnEmptyAdded;
+        public event System.Action OnEmptyRemoved;
 
         private void OnEnable()
         {
@@ -30,13 +36,19 @@ namespace Sunflower.Needs
         private void OnEmpty(Need sender)
         {
             if (!_emptyNeeds.Contains(sender))
+            {
                 _emptyNeeds.Add(sender);
+                OnEmptyAdded?.Invoke();
+            }
         }
 
         private void OnValueChanged(Need sender, float value)
         {
             if (_needs.Contains(sender) && value != 0f)
+            {
                 _emptyNeeds.Remove(sender);
+                OnEmptyRemoved?.Invoke();
+            }
         }
     }
 }
