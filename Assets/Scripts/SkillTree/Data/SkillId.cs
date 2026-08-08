@@ -6,9 +6,7 @@
         WaterSkill,
         LightSkill,
         MineralsSkill,
-        PrunerBaseSkill,
-        ActivePrunerSkill,
-        RestartPrunerSkill,
+        PrunerSkill,
         GlobalHealthSkill,
         AttackHealthSkill
     }
