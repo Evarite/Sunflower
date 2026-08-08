@@ -5,7 +5,7 @@ namespace Sunflower.Seeds
     [System.Serializable]
     public class SeedsCounterData
     {
-        [SerializeField] private int _value;
+        [SerializeField] private int _value = 0;
 
         public int Value
         {
