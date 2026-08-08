@@ -1,5 +1,6 @@
 using Sunflower.Managers;
 using Sunflower.SkillTree.EvolutionPoints;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,9 @@ namespace Sunflower.SkillTree
     [AddComponentMenu("Sunflower/Skill Tree/Skill Purchase")]
     public class SkillPurchase : MonoBehaviour
     {
+        [Header("Finished Elements")]
+        [SerializeField] private List<GameObject> _finishedUI;
+
         [Header("Button")]
         [SerializeField] private Button _purchaseButton;
 
@@ -19,6 +23,9 @@ namespace Sunflower.SkillTree
         [Header("Audio")]
         [SerializeField] private AudioClip _purchaseSuccessfull;
         [SerializeField] private AudioClip _purchaseDenied;
+
+        [Header("Unlocks")]
+        [SerializeField] private List<SkillNode> _unlockedSkills;
 
         private SkillNode _skillNode;
 
@@ -41,9 +48,22 @@ namespace Sunflower.SkillTree
                 EvoPointsCounter.Value -= _cost;
 
                 PlayerStateManager.Instance.OwnedSkills.Add(_skillNode.Data.Id);
+
+                SwitchState();
             }
             else
                 AudioManager.Instance.PlaySound(_purchaseDenied);
+        }
+
+        private void SwitchState()
+        {
+            foreach (var skill in _unlockedSkills)
+                skill.gameObject.SetActive(true);
+
+            _purchaseButton.gameObject.SetActive(false);
+
+            foreach (var obj in _finishedUI)
+                obj.SetActive(true);
         }
     }
 }
