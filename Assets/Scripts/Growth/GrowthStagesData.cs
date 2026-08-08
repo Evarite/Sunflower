@@ -10,10 +10,10 @@ namespace Sunflower.Growth
         public class GrowthStage
         {
             [SerializeField] private Sprite _sprite;
-            [SerializeField] private float height;
+            [SerializeField] private float _maxHeight;
 
             public Sprite Sprite { get => _sprite; set => _sprite = value; }
-            public float Height { get => height; set => height = value; }
+            public float MaxHeight { get => _maxHeight; set => _maxHeight = value; }
         }
 
         [SerializeField] private List<GrowthStage> _growthStages = new();

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrowthStagesData
   _growthStages:
   - _sprite: {fileID: 5027946569022094460, guid: 9285d6cfdc1f63b45aedf4ea05b863ee, type: 3}
-    height: 0
+    _maxHeight: 1.2
+  - _sprite: {fileID: 5027946569022094460, guid: d1decdd7f3612b94bbc5982541b7a9ca, type: 3}
+    _maxHeight: 4
