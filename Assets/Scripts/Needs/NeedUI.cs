@@ -17,6 +17,6 @@ namespace Sunflower.Needs
 
         private void OnDisable() => _need.OnValueChanged -= OnValueChanged;
 
-        private void OnValueChanged(float value) => _slider.value = value;
+        private void OnValueChanged(Need sender, float value) => _slider.value = value;
     }
 }
