@@ -1,3 +1,4 @@
+using Sunflower.Modules;
 using UnityEngine;
 
 namespace Sunflower.ModuleSlot
