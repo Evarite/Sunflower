@@ -1,4 +1,5 @@
 using Sunflower.Growth;
+using Sunflower.Loading;
 using Sunflower.Managers;
 using Sunflower.SkillTree.EvolutionPoints;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace Sunflower.Restart
             PlayerStateManager.Instance.PointsEarned = points;
 
             EvoPointsCounter.Value += points;
+
+            LoadingScreen.LoadScene("SkillTree");
         }
     }
 }

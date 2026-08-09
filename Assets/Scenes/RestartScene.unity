@@ -1510,6 +1510,7 @@ GameObject:
   - component: {fileID: 1121325725}
   - component: {fileID: 1121325724}
   - component: {fileID: 1121325723}
+  - component: {fileID: 1121325726}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -1619,6 +1620,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121325721}
   m_CullTransparentMesh: 1
+--- !u!114 &1121325726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121325721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc489bed22834dd42a9df4e0a47ddf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Restart.RestartButton
+  _sunflowerGrowth: {fileID: 943639400}
 --- !u!1001 &1122980027
 PrefabInstance:
   m_ObjectHideFlags: 0

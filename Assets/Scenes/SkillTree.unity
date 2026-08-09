@@ -1185,6 +1185,10 @@ PrefabInstance:
         \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044E \u0441\u0432\u0435\u0442\u0430
         \u043D\u0430 15%."
       objectReference: {fileID: 0}
+    - target: {fileID: 5476202958183833916, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_text
       value: 10
@@ -1459,7 +1463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476202958183833916, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708117256665304973, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_text
@@ -2284,6 +2288,10 @@ PrefabInstance:
       value: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E \u0443\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442
         \u043F\u043E\u0442\u0440\u0435\u0431\u043B\u0435\u043D\u0438\u0435 \u0432\u0441\u0435\u0445
         \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432 \u043D\u0430 20%."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476202958183833916, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8229948165167889043, guid: 1853cdaddc4fd1d4697c91370c626c94, type: 3}
       propertyPath: m_Pivot.x
