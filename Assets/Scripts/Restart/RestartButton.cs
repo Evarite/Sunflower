@@ -1,6 +1,7 @@
 using Sunflower.Growth;
 using Sunflower.Loading;
 using Sunflower.Managers;
+using Sunflower.Seeds;
 using Sunflower.SkillTree.EvolutionPoints;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,8 +25,8 @@ namespace Sunflower.Restart
         {
             int points = CalculateEvoPoints.Calculate(_sunflowerGrowth.Height);
             PlayerStateManager.Instance.PointsEarned = points;
-            Debug.Log("Points Earned: " + PlayerStateManager.Instance.PointsEarned);
 
+            SeedsCounter.Value = points;
             EvoPointsCounter.Value += PlayerStateManager.Instance.PointsEarned;
 
             LoadingScreen.LoadScene("SkillTree");
