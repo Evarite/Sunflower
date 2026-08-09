@@ -31,11 +31,7 @@ namespace Sunflower.Seeds
             StopAllCoroutines();
         }
 
-        private void StopSeedsUpdate()
-        {
-            gameObject.SetActive(false);
-            //To Do: добавить включение по ивенту в рестарте
-        }
+        private void StopSeedsUpdate() => gameObject.SetActive(false);
 
 
         private IEnumerator UpdateSeedsValue()
