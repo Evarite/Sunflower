@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.Event
@@ -17,7 +17,7 @@ namespace Sunflower.Event
             public float remainingTime;
         }
 
-        private readonly List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+        private List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
 
         private void Update()
         {

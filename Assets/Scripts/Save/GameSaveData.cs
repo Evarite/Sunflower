@@ -7,5 +7,6 @@ namespace Sunflower.SaveSystem.Data
     {
         [SerializeField] private SunflowerSaveData _sunflowerSaveData;
         [SerializeField] private WealthSaveData _wealthSaveData;
+        [SerializeField] private EventsSaveData _eventsSaveData;
     }
 }

@@ -4,9 +4,14 @@ namespace Sunflower.SaveSystem
 {
     public class SaveManager : MonoBehaviour
     {
-        //events, modules
+        //modules
 
         public void Save()
+        {
+
+        }
+
+        public void Load()
         {
 
         }
