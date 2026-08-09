@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
 using Sunflower.Modifiers;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sunflower.Event
 {
@@ -10,7 +10,7 @@ namespace Sunflower.Event
         [Header("Название ивента")]
         public string eventName;
 
-        [Header("Сколько длиться ивент (секунд)")]
+        [Header("Сколько длится ивент (секунд)")]
         public float duration = 10f;
 
         [SerializeField]
