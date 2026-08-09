@@ -9,18 +9,47 @@ namespace Sunflower.SaveSystem
     {
         [SerializeField] private GameEventSystem _gameEventSystem;
 
-        public EventsSaveData Save()
+        public EventsSaveData GetSaveData()
         {
-            var activeEvents = _gameEventSystem.ActiveEvents;
             var eventsSaveData = new EventsSaveData();
 
-            foreach (var gameEvent in activeEvents)
+            foreach (var gameEvent in _gameEventSystem.ActiveEvents)
             {
-                var eventData = new EventData(gameEvent.Data.eventName, gameEvent.RemainingTime);
+                var eventData = new EventData(
+                    gameEvent.Data.EventId,
+                    gameEvent.RemainingTime
+                );
+
                 eventsSaveData.Events.Add(eventData);
             }
 
             return eventsSaveData;
+        }
+
+        public void ApplySaveData(EventsSaveData data)
+        {
+            if (data == null)
+                return;
+
+            foreach (var eventData in data.Events)
+            {
+                GameEventDefinition definition =
+                    _gameEventSystem.GetEventDefinition(eventData.EventId);
+
+                if (definition == null)
+                {
+                    Debug.LogWarning(
+                        $"Could not find GameEventDefinition with ID '{eventData.EventId}'."
+                    );
+
+                    continue;
+                }
+
+                _gameEventSystem.RestoreEvent(
+                    definition,
+                    eventData.RemainingTime
+                );
+            }
         }
     }
 }

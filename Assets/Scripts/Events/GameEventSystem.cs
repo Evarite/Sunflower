@@ -7,6 +7,7 @@ namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
+        [SerializeField] private List<GameEventDefinition> _eventDefinitions = new();
 
         public event System.Action<GameEventDefinition> EventStarted;
         public event System.Action<GameEventDefinition> EventEnded;
@@ -82,6 +83,27 @@ namespace Sunflower.Event
             multiplier = Mathf.Max(0f, multiplier);
 
             return (baseValue + additive) * multiplier;
+        }
+
+        public GameEventDefinition GetEventDefinition(string eventId)
+        {
+            return _eventDefinitions.Find(
+                x => x.EventId == eventId
+            );
+        }
+
+        public void RestoreEvent(GameEventDefinition data, float remainingTime)
+        {
+            if (data == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = data,
+                RemainingTime = remainingTime
+            });
+
+            EventStarted?.Invoke(data);
         }
     }
 }

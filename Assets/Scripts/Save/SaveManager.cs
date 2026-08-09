@@ -1,6 +1,4 @@
 using Sunflower.SaveSystem.Data;
-using Sunflower.Seeds;
-using Sunflower.SkillTree.EvolutionPoints;
 using System;
 using System.IO;
 using UnityEngine;
@@ -10,34 +8,70 @@ namespace Sunflower.SaveSystem
     [AddComponentMenu("Sunflower/Save/Save Manager")]
     public class SaveManager : MonoBehaviour
     {
-        //modules
+        public static SaveManager Instance { get; private set; }
+
         [Header("Save Path")]
         [Tooltip("Путь сохранения в документах")]
-        [SerializeField] private string _savePath;
-
-        [Header("Save Handlers")]
-        [SerializeField] private SunflowerSave _sunflowerSave;
-        [SerializeField] private EventsSave _eventsSave;
+        [SerializeField] private string _savePath = "Sunflower/save.json";
 
         private string SavePath =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), _savePath);
+            Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                _savePath
+            );
 
-        public void Save()
+        public GameSaveData Data { get; private set; }
+
+        public bool HasLoadedGame { get; private set; }
+
+        private void Awake()
         {
-            var data = new GameSaveData
-                (
-                _sunflowerSave.Save(),
-                new WealthSaveData(SeedsCounter.Value, EvoPointsCounter.Value),
-                _eventsSave.Save()
-                );
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(SavePath, json);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        public void Load()
+        public void LoadGame()
         {
+            if (HasLoadedGame)
+                return;
 
+            if (!File.Exists(SavePath))
+            {
+                Data = new GameSaveData(
+                    new SunflowerSaveData(0f, new()),
+                    new WealthSaveData(0, 0),
+                    new EventsSaveData()
+                );
+
+                HasLoadedGame = true;
+                return;
+            }
+
+            string json = File.ReadAllText(SavePath);
+
+            Data = JsonUtility.FromJson<GameSaveData>(json);
+
+            HasLoadedGame = true;
+        }
+
+        public void SaveGame(GameSaveData data)
+        {
+            HasLoadedGame = false;
+
+            string json = JsonUtility.ToJson(data, true);
+
+            string directory = Path.GetDirectoryName(SavePath);
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            File.WriteAllText(SavePath, json);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sunflower.SaveSystem
+namespace Sunflower.SaveSystem.Data
 {
     [System.Serializable]
     public class SunflowerSaveData
@@ -9,10 +9,10 @@ namespace Sunflower.SaveSystem
         [SerializeField] private float _height;
         [SerializeField] private List<float> _needsValues;
 
-        public SunflowerSaveData(float Height, List<float> NeedsValues)
+        public SunflowerSaveData(float height, List<float> needsValues)
         {
-            _height = Height;
-            _needsValues = NeedsValues;
+            _height = height;
+            _needsValues = needsValues;
         }
 
         public float Height => _height;

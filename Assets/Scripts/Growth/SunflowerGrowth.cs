@@ -13,7 +13,7 @@ namespace Sunflower.Growth
         private Vector3 _startPos;
         private Vector3 _startScale;
 
-        public float Height { get => _height; }
+        public float Height { get => _height; set => _height = value; }
 
         private void Awake()
         {
