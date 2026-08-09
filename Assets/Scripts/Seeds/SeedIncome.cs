@@ -1,12 +1,12 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace Sunflower.Seeds
 {
-    
-    public class SeedsIncome: MonoBehaviour
+
+    public class SeedsIncome : MonoBehaviour
     {
-        
+
         [SerializeField]
         private float _timeInterval = 2;
         [SerializeField]
@@ -15,7 +15,8 @@ namespace Sunflower.Seeds
 
         private WaitForSeconds _seedsInterval;
 
-        private void Awake() {
+        private void Awake()
+        {
             _seedsInterval = new WaitForSeconds(_timeInterval);
         }
 
@@ -30,19 +31,16 @@ namespace Sunflower.Seeds
             StopAllCoroutines();
         }
 
-        private void StopSeedsUpdate()
-        {
-            gameObject.SetActive(false);
-            //To Do: добавить включение по ивенту в рестарте
-        }
+        private void StopSeedsUpdate() => gameObject.SetActive(false);
 
-        
+
         private IEnumerator UpdateSeedsValue()
         {
-            
+            yield return _seedsInterval;
+
             while (true)
             {
-                SeedsCounter.Value += (int)( _seedsVelocity * _timeInterval);
+                SeedsCounter.Value += (int)(_seedsVelocity * _timeInterval);
                 yield return _seedsInterval;
             }
         }

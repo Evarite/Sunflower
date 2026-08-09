@@ -37,8 +37,6 @@ namespace Sunflower.Managers.Spawn
 
                 yield return new WaitUntil(() => _data.SunflowerGrowth.Height >= targetHeight);
 
-                Debug.Log("Something worked");
-
                 int count = Random.Range(_data.MinSpawnCount, _data.MaxSpawnCount);
 
                 for (int i = 0; i < count; i++)
