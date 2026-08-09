@@ -27,6 +27,9 @@ namespace Sunflower.SaveSystem
 
         public void ApplySaveData(SunflowerSaveData data)
         {
+            if (data == null)
+                return;
+
             _growth.Height = data.Height;
 
             for (int i = 0; i < _needs.Count && i < data.NeedsValues.Count; i++)

@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 
 namespace Sunflower.SaveSystem
 {
+    [AddComponentMenu("Sunflower/Save/Exit To Menu")]
     public class ExitToMenuHandler : MonoBehaviour
     {
         [Header("Save Data")]
-        [SerializeField] private SaveManager _saveManager;
         [SerializeField] private SunflowerSave _sunflowerSave;
         [SerializeField] private EventsSave _eventsSave;
 
@@ -22,11 +22,13 @@ namespace Sunflower.SaveSystem
         private void OnEnable()
         {
             _exit.Player.ExitToMenu.performed += ExitToMenu;
+            _exit.Player.Enable();
         }
 
         private void OnDisable()
         {
             _exit.Player.ExitToMenu.performed -= ExitToMenu;
+            _exit.Player.Disable();
         }
 
         private void ExitToMenu(InputAction.CallbackContext callbackContext)
@@ -40,7 +42,7 @@ namespace Sunflower.SaveSystem
                 _eventsSave.GetSaveData()
             );
 
-            _saveManager.SaveGame(data);
+            SaveManager.Instance.SaveGame(data);
 
             LoadingScreen.LoadScene("Menu");
         }

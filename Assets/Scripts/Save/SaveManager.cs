@@ -20,9 +20,20 @@ namespace Sunflower.SaveSystem
                 _savePath
             );
 
-        public GameSaveData Data { get; private set; }
+        private GameSaveData _data;
 
-        public bool HasLoadedGame { get; private set; }
+        public GameSaveData Data
+        {
+            get
+            {
+                var val = HasLoadedGame ? null : _data;
+                HasLoadedGame = true;
+                return val;
+            }
+            private set => _data = value;
+        }
+
+        public bool HasLoadedGame { get; private set; } = false;
 
         private void Awake()
         {
@@ -49,15 +60,12 @@ namespace Sunflower.SaveSystem
                     new EventsSaveData()
                 );
 
-                HasLoadedGame = true;
                 return;
             }
 
             string json = File.ReadAllText(SavePath);
 
             Data = JsonUtility.FromJson<GameSaveData>(json);
-
-            HasLoadedGame = true;
         }
 
         public void SaveGame(GameSaveData data)

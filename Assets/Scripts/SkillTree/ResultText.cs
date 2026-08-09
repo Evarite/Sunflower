@@ -1,5 +1,4 @@
 using Sunflower.Managers;
-using Sunflower.SkillTree.EvolutionPoints;
 using TMPro;
 using UnityEngine;
 
@@ -17,8 +16,6 @@ namespace Sunflower.SkillTree
             _text = GetComponent<TextMeshProUGUI>();
             _text.text = $"+{PlayerStateManager.Instance.PointsEarned.ToString()}";
             Destroy(gameObject, _activeTime);
-
-            Debug.Log(EvoPointsCounter.Value);
         }
     }
 }
