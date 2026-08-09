@@ -19,6 +19,7 @@ namespace Sunflower.Enemies
 
         public event Action<Enemy> OnDied;
         public event Action<Enemy> OnDespawned;
+        public event Action<Enemy> OnProvoked;
         public event Action<ITargetable> OnAttackPerformed;
 
         private float _attackTimer;
@@ -152,7 +153,7 @@ namespace Sunflower.Enemies
                 return;
 
             Hp -= damage;
-            IsProvoked = true;
+            Provoke();
 
             if (IsDead)
                 Die();
@@ -168,6 +169,15 @@ namespace Sunflower.Enemies
         {
             OnDespawned?.Invoke(this);
             Destroy(gameObject);
+        }
+
+        private void Provoke()
+        {
+            if (IsDead || IsProvoked)
+                return;
+
+            IsProvoked = true;
+            OnProvoked?.Invoke(this);
         }
 
         private void OnDrawGizmosSelected()
