@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sunflower.Enemies
 {
-    [CreateAssetMenu(fileName = "Enemy", menuName = "Sunflower/Enemy")]
+    [CreateAssetMenu(fileName = "Enemy", menuName = "Sunflower/Enemies/Enemy")]
     public class EnemyData : ScriptableObject
     {
         public string enemyName = "Enemy";
@@ -15,7 +15,7 @@ namespace Sunflower.Enemies
         public float attackRange = 1f;
         public float moveSpeed = 1f;
 
-        public EnemyBehaviorType behavior = EnemyBehaviorType.Aggressive;
+        public virtual EnemyBehaviorType Behavior => EnemyBehaviorType.Aggressive;
 
         [Tooltip("Слой, на котором лежат цели")]
         public LayerMask targetMask = ~0;

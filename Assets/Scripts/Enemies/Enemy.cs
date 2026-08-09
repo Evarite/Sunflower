@@ -50,11 +50,13 @@ namespace Sunflower.Enemies
 
         private void UpdateDespawn()
         {
-            if (_data.behavior != EnemyBehaviorType.Passive)
+            if (_data.Behavior != EnemyBehaviorType.Passive)
                 return;
 
             if (IsProvoked)
                 return;
+
+ 
 
             _despawnTimer -= Time.deltaTime;
 
@@ -96,7 +98,7 @@ namespace Sunflower.Enemies
 
         private bool CanAct()
         {
-            return _data.behavior == EnemyBehaviorType.Aggressive || IsProvoked;
+            return _data.Behavior == EnemyBehaviorType.Aggressive || IsProvoked;
         }
 
 
@@ -120,6 +122,8 @@ namespace Sunflower.Enemies
 
             _currentTarget.ReceiveAttack(_data.damage, this);
             OnAttackPerformed?.Invoke(_currentTarget);
+
+            AfterAttack(_currentTarget);
         }
 
         private ITargetable FindBestTarget()
@@ -159,11 +163,14 @@ namespace Sunflower.Enemies
                 Die();
         }
 
-        private void Die()
+        protected void Die()
         {
             OnDied?.Invoke(this);
             Destroy(gameObject);
         }
+
+        protected virtual void AfterAttack(ITargetable target) { }
+
 
         private void Despawn()
         {
