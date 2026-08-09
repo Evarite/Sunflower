@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Sunflower.ModuleSlot
 {
-    [System.Serializable]
-    public class Slot
+    public class Slot : MonoBehaviour
     {
         [SerializeField] private SlotType _slotType;
         [SerializeField] private float _minHeight;

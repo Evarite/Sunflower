@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Sunflower.Growth;
-using UnityEngine;
 using Sunflower.ModuleSlot;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sunflower.Modules
 {
@@ -24,8 +24,8 @@ namespace Sunflower.Modules
 
         private void Update()
         {
-            float currentHeight = _sunflowerGrowth.Height;
-            int currentHundred = Mathf.FloorToInt(currentHeight / 100f);
+            int currentHeight = (int)_sunflowerGrowth.Height;
+            int currentHundred = currentHeight / 100;
 
             if (currentHundred > _lastProcessedHundred)
             {
@@ -48,21 +48,6 @@ namespace Sunflower.Modules
                 if (!slot.IsOccupied && currentHeight >= slot.MaxHeight)
                     slot.IsOccupied = true;
             }
-        }
-
-        //ѕытаетс€ установить модуль в указанный слот. —писание валюты происходит до вызова
-        public bool TryInstallModule(ModuleData data, Slot targetSlot)
-        {
-            if (targetSlot.IsOccupied || targetSlot.InstalledModule != null)
-                return false;
-            if (targetSlot.SlotType != data.AllowedSlot)
-                return false;
-
-            GameObject modObj = Instantiate(data.Prefab, transform);
-            Module module = modObj.GetComponent<Module>();
-            module.Initialize(data, targetSlot);
-            targetSlot.InstalledModule = module;
-            return true;
         }
     }
 }
