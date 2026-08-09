@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class Module : MonoBehaviour
 {
     public ModuleData Data { get; private set; }
-    public Slot MySlot { get; private set; }
+    public Slot Slot { get; private set; }
     public float CurrentHealth { get; protected set; }
 
     public void Initialize(ModuleData data, Slot slot)
     {
         Data = data;
-        MySlot = slot;
+        Slot = slot;
         CurrentHealth = data.MaxHealth;
         OnPlaced();
     }
@@ -20,7 +20,7 @@ public abstract class Module : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (MySlot.SlotType != SlotType.Stem)
+        if (Slot.SlotType != SlotType.Stem)
             return;
 
         CurrentHealth -= damage;
@@ -30,7 +30,7 @@ public abstract class Module : MonoBehaviour
 
     protected virtual void Die()
     {
-        MySlot.InstalledModule = null;
+        Slot.InstalledModule = null;
         Destroy(gameObject);
     }
 

@@ -45,15 +45,15 @@ namespace Sunflower.Modules
             // Фиксация пройденных по высоте слотов
             foreach (var slot in _allSlots)
             {
-                if (!slot.IsLocked && currentHeight >= slot.MaxHeight)
-                    slot.IsLocked = true;
+                if (!slot.IsOccupied && currentHeight >= slot.MaxHeight)
+                    slot.IsOccupied = true;
             }
         }
 
         //Пытается установить модуль в указанный слот. Списание валюты происходит до вызова
         public bool TryInstallModule(ModuleData data, Slot targetSlot)
         {
-            if (targetSlot.IsLocked || targetSlot.InstalledModule != null)
+            if (targetSlot.IsOccupied || targetSlot.InstalledModule != null)
                 return false;
             if (targetSlot.SlotType != data.AllowedSlot)
                 return false;

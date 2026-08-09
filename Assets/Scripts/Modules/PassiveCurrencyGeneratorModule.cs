@@ -15,9 +15,9 @@ namespace Sunflower.Modules
         public override float GetHeightMultiplier()
         {
             // Чем выше, тем больше семян (пример линейной зависимости)
-            if (MySlot == null)
+            if (Slot == null)
                 return 1f; // fallback, если модуль не установлен через слот
-            return 1f + MySlot.MinHeight * 0.001f;
+            return 1f + Slot.MinHeight * 0.001f;
         }
 
         private void Update()
