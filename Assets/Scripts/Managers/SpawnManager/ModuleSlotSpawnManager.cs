@@ -22,7 +22,7 @@ namespace Sunflower.Managers.Spawn
         private void Awake()
         {
             _minSpawnValue = -_data.SpawnDistanceMagnitude;
-            _minSpawnValue = _data.SpawnDistanceMagnitude;
+            _maxSpawnValue = _data.SpawnDistanceMagnitude;
         }
 
         private void OnEnable() => StartCoroutine(SpawnSlots());
