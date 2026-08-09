@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrowthStagesData
   _growthStages:
   - _sprite: {fileID: -2324673053554535070, guid: 85842220c1a3430478ba0afd74121c56, type: 3}
-    _maxHeight: 2
-  - _sprite: {fileID: 8811767462193501137, guid: 232baeedecc94c84f9fec00f3f2a93d4, type: 3}
     _maxHeight: 4
-  - _sprite: {fileID: 5623765443412753196, guid: ea6b3b18240f74e42843934320f013cc, type: 3}
-    _maxHeight: 6
-  - _sprite: {fileID: -7322996488400378020, guid: 7faeb24739fb29343b62090705ba152a, type: 3}
+  - _sprite: {fileID: 8811767462193501137, guid: 232baeedecc94c84f9fec00f3f2a93d4, type: 3}
     _maxHeight: 8
+  - _sprite: {fileID: 5903883357162327921, guid: bfb966e2bf384cd42a1617401c7e1289, type: 3}
+    _maxHeight: 15
+  - _sprite: {fileID: -7322996488400378020, guid: 7faeb24739fb29343b62090705ba152a, type: 3}
+    _maxHeight: 23
   - _sprite: {fileID: 3269257153379339717, guid: 42e0cb12a9c2e2a40898b23d3770ed48, type: 3}
-    _maxHeight: 10
+    _maxHeight: 28
   - _sprite: {fileID: -3269374940887413877, guid: 416c2e779df17d445925ec2d8eb69d04, type: 3}
-    _maxHeight: 12
+    _maxHeight: 35
   - _sprite: {fileID: 1942686214408838241, guid: e12ac333255de944eb83b69466c49bab, type: 3}
-    _maxHeight: 14
+    _maxHeight: 45
   - _sprite: {fileID: 4826542999669830028, guid: f02bdeda0ccbe8d45930a68f0e515955, type: 3}
-    _maxHeight: 16
+    _maxHeight: 55
   - _sprite: {fileID: -5056363087897396418, guid: 8c2d8e9fc73d6604198319ec97347c8f, type: 3}
-    _maxHeight: 18
+    _maxHeight: 80
