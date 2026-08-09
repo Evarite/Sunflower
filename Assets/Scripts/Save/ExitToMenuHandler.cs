@@ -1,5 +1,6 @@
 ﻿using Sunflower.Input;
 using Sunflower.Loading;
+using Sunflower.Managers;
 using Sunflower.Managers.Spawn;
 using Sunflower.SaveSystem.Data;
 using Sunflower.Seeds;
@@ -42,7 +43,8 @@ namespace Sunflower.SaveSystem
                     EvoPointsCounter.Value
                 ),
                 _eventsSave.GetSaveData(),
-                _slotManager.GetSaveData()
+                _slotManager.GetSaveData(),
+                PlayerStateManager.Instance.OwnedSkills
             );
 
             SaveManager.Instance.SaveGame(data);

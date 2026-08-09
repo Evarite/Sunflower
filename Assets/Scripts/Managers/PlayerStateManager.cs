@@ -28,5 +28,7 @@ namespace Sunflower.Managers
 
             DontDestroyOnLoad(gameObject);
         }
+
+        public void InitializeSkills(List<SkillId> skills) => _ownedSkills.Initialize(skills);
     }
 }

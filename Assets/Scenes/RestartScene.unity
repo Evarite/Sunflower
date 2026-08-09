@@ -198,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SaveSystem.ExitToMenuHandler
   _sunflowerSave: {fileID: 36098}
   _eventsSave: {fileID: 36097}
+  _slotManager: {fileID: 1603027800}
 --- !u!114 &36100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SaveSystem.GameSaveLoader
   _sunflowerSave: {fileID: 36098}
   _eventsSave: {fileID: 36097}
+  _slotManager: {fileID: 1603027800}
 --- !u!1 &27960119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603027799}
   - component: {fileID: 1603027800}
+  - component: {fileID: 1603027801}
   m_Layer: 0
   m_Name: Module Spawn Manager
   m_TagString: Untagged
@@ -2591,6 +2594,19 @@ MonoBehaviour:
     _spawnInterval: 3
     _spawnDistanceMagnitude: 2
     _envSlotX: -7
+  _slotsManager: {fileID: 1603027801}
+--- !u!114 &1603027801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603027798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12aeee080e4e30e4a920b5f28aa8cbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.ModuleSlot.SlotsManager
 --- !u!1 &1773737448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,6 +2919,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664272163023882750, guid: 215f9c45f1651bf4fb699ef05120a6b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540956831095692194, guid: 215f9c45f1651bf4fb699ef05120a6b6, type: 3}
+      propertyPath: _ownedSkills._purchasedSkills.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

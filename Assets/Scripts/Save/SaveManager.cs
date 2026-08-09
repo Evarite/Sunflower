@@ -1,5 +1,7 @@
 using Sunflower.SaveSystem.Data;
+using Sunflower.SkillTree.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -49,7 +51,8 @@ namespace Sunflower.SaveSystem
                     new SunflowerSaveData(0f, new()),
                     new WealthSaveData(0, 0),
                     new EventsSaveData(),
-                    new ModuleSaveData()
+                    new ModuleSaveData(),
+                    new List<SkillId>()
                 );
 
                 return;

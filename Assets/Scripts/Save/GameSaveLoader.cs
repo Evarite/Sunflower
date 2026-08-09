@@ -1,4 +1,5 @@
-﻿using Sunflower.Managers.Spawn;
+﻿using Sunflower.Managers;
+using Sunflower.Managers.Spawn;
 using Sunflower.SaveSystem.Data;
 using Sunflower.Seeds;
 using Sunflower.SkillTree.EvolutionPoints;
@@ -35,6 +36,8 @@ namespace Sunflower.SaveSystem
             SeedsCounter.Value = data.WealthSaveData.Seeds;
 
             EvoPointsCounter.Value = data.WealthSaveData.EvoPoints;
+
+            PlayerStateManager.Instance.InitializeSkills(data.OwnedSkills);
 
             SaveManager.Instance.HasLoadedGame = true;
         }
