@@ -7,18 +7,15 @@ namespace Sunflower.SaveSystem
     public class SunflowerSaveData
     {
         [SerializeField] private float _height;
-        [SerializeField] private float _growthSpeed;
         [SerializeField] private List<float> _needsValues;
 
-        public SunflowerSaveData(float Height, float GrowthSpeed, List<float> NeedsValues)
+        public SunflowerSaveData(float Height, List<float> NeedsValues)
         {
             _height = Height;
-            _growthSpeed = GrowthSpeed;
             _needsValues = NeedsValues;
         }
 
         public float Height => _height;
-        public float GrowthSpeed => _growthSpeed;
         public List<float> NeedsValues => _needsValues;
     }
 }
