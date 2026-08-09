@@ -1,23 +1,29 @@
-using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
+        [SerializeField] private List<GameEventDefinition> _eventDefinitions = new();
 
         public event System.Action<GameEventDefinition> EventStarted;
         public event System.Action<GameEventDefinition> EventEnded;
 
-        private class ActiveGameEvent
+        public class ActiveGameEvent
         {
-            public GameEventDefinition Data;
-            public float remainingTime;
+            private GameEventDefinition _data;
+            private float _remainingTime;
+
+            public GameEventDefinition Data { get => _data; set => _data = value; }
+            public float RemainingTime { get => _remainingTime; set => _remainingTime = value; }
         }
 
-        private readonly List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+        private List<ActiveGameEvent> _activeEvents = new();
+
+        public List<ActiveGameEvent> ActiveEvents { get => _activeEvents; set => _activeEvents = value; }
 
         private void Update()
         {
@@ -28,9 +34,9 @@ namespace Sunflower.Event
                 if (activeEvent.Data.duration <= 0f)
                     continue;
 
-                activeEvent.remainingTime -= Time.deltaTime;
+                activeEvent.RemainingTime -= Time.deltaTime;
 
-                if (activeEvent.remainingTime <= 0f)
+                if (activeEvent.RemainingTime <= 0f)
                 {
                     GameEventDefinition Data = activeEvent.Data;
 
@@ -49,7 +55,7 @@ namespace Sunflower.Event
             _activeEvents.Add(new ActiveGameEvent
             {
                 Data = Data,
-                remainingTime = Data.duration
+                RemainingTime = Data.duration
             });
 
             EventStarted?.Invoke(Data);
@@ -77,6 +83,27 @@ namespace Sunflower.Event
             multiplier = Mathf.Max(0f, multiplier);
 
             return (baseValue + additive) * multiplier;
+        }
+
+        public GameEventDefinition GetEventDefinition(string eventId)
+        {
+            return _eventDefinitions.Find(
+                x => x.EventId == eventId
+            );
+        }
+
+        public void RestoreEvent(GameEventDefinition data, float remainingTime)
+        {
+            if (data == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = data,
+                RemainingTime = remainingTime
+            });
+
+            EventStarted?.Invoke(data);
         }
     }
 }

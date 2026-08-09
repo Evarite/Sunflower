@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "ExitToMenu",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "96725ce0-951d-4ae9-b601-f664c48369ee",
+            "actions": [
+                {
+                    "name": "ExitToMenu",
+                    "type": "Button",
+                    "id": "78193d9d-9a96-4171-97b1-dbac2736e4b6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e05a6b47-738a-4b0b-a2ef-20fbab323693",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitToMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
