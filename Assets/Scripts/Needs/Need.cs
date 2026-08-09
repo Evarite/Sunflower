@@ -12,6 +12,10 @@ namespace Sunflower.Needs
         [Tooltip("Минимальное значение оптимальной зоны ресурса")]
         [SerializeField] private float _optimalMinValue = 0.7f;
 
+        [SerializeField] private NeedId _id;
+        public NeedId Id { get => _id; set => _id = value; }
+
+
         private void Awake() => OnValueChanged?.Invoke(this, _value);
 
         public float Value
@@ -29,6 +33,7 @@ namespace Sunflower.Needs
 
         public float LackMaxValue { get => _lackMaxValue; set => _lackMaxValue = value; }
         public float OptimalMinValue { get => _optimalMinValue; set => _optimalMinValue = value; }
+        
 
         public event System.Action<Need, float> OnValueChanged;
         public event System.Action<Need> OnNeedEmpty;
