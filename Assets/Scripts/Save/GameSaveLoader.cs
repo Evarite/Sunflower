@@ -35,6 +35,8 @@ namespace Sunflower.SaveSystem
             SeedsCounter.Value = data.WealthSaveData.Seeds;
 
             EvoPointsCounter.Value = data.WealthSaveData.EvoPoints;
+
+            SaveManager.Instance.HasLoadedGame = true;
         }
     }
 }

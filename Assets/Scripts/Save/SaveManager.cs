@@ -22,18 +22,9 @@ namespace Sunflower.SaveSystem
 
         private GameSaveData _data;
 
-        public GameSaveData Data
-        {
-            get
-            {
-                var val = HasLoadedGame ? null : _data;
-                HasLoadedGame = true;
-                return val;
-            }
-            private set => _data = value;
-        }
+        public GameSaveData Data { get => _data; private set => _data = value; }
 
-        public bool HasLoadedGame { get; private set; } = false;
+        public bool HasLoadedGame { get; set; } = false;
 
         private void Awake()
         {
