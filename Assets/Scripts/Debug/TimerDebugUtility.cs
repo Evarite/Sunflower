@@ -19,7 +19,7 @@ namespace Sunflower.Debugging
 
             while (true)
             {
-                _need.Value -= _step;
+                _need.CurrentValue -= _step;
                 yield return null;
             }
         }

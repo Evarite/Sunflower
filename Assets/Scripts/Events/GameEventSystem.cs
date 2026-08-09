@@ -67,7 +67,7 @@ namespace Sunflower.Event
                     if (modifier.need != need)
                         continue;
 
-                    if (modifier.type == ModifierType.Add)
+                    if (modifier.type == ModifierType.AddValue)
                         additive += modifier.value;
                     else
                         multiplier *= modifier.value;

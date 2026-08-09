@@ -9,9 +9,9 @@ namespace Sunflower.Modules
         [SerializeField] protected Slot _slot;
         [SerializeField] protected float _currentHealth;
 
-        public ModuleData Data { get => _data; }
-        public Slot Slot { get => _slot; }
-        public float CurrentHealth { get => _currentHealth; }
+        public ModuleData Data => _data;
+        public Slot Slot=> _slot;
+        public float CurrentHealth => _currentHealth;
 
         protected virtual void Awake() => _currentHealth = _data.MaxHealth;
 
@@ -23,6 +23,14 @@ namespace Sunflower.Modules
                 Die();
         }
 
-        protected virtual void Die() => Destroy(gameObject);
+        protected virtual void Die()
+        {
+            if (_data.DeadPrefab != null)
+            {
+                Instantiate(_data.DeadPrefab, transform.position, transform.rotation);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

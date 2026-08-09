@@ -55,9 +55,7 @@ namespace Sunflower.Enemies
 
             if (IsProvoked)
                 return;
-
- 
-
+            
             _despawnTimer -= Time.deltaTime;
 
             if (_despawnTimer <= 0f)

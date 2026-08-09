@@ -736,6 +736,7 @@ MonoBehaviour:
   _value: 0.5
   _lackMaxValue: 0.3
   _optimalMinValue: 0.7
+  _id: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   _value: 0.5
   _lackMaxValue: 0.3
   _optimalMinValue: 0.7
+  _id: 0
 --- !u!1 &907072901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1423,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040004465}
   m_CullTransparentMesh: 1
+--- !u!1 &1068739495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068739498}
+  - component: {fileID: 1068739497}
+  - component: {fileID: 1068739496}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1068739496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068739495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab6d1f69291d6a48bc8d4f12c6595db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.EventDebugUtility
+  gameEventDefinition: {fileID: 0}
+  _gameEventSystem: {fileID: 1068739497}
+--- !u!114 &1068739497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068739495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7011ed0dc1c144e86e8be56e791804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Event.GameEventSystem
+--- !u!4 &1068739498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068739495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.40331, y: 1.14008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1077100208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,9 +2249,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407607661}
-  - component: {fileID: 1407607664}
-  - component: {fileID: 1407607663}
-  - component: {fileID: 1407607662}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -2217,51 +2275,6 @@ Transform:
   - {fileID: 1253559214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1407607662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407607660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 4
-  _step: 0.05
-  _need: {fileID: 1941137151}
---- !u!114 &1407607663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407607660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 3
-  _step: 0.05
-  _need: {fileID: 502881487}
---- !u!114 &1407607664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407607660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 2
-  _step: 0.05
-  _need: {fileID: 686756375}
 --- !u!1 &1481387826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,7 +2735,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Managers.Spawn.SlotManager
   _data:
     _sunflowerGrowth: {fileID: 943639400}
-    _mainCamera: {fileID: 519420031}
     _slotPrefab: {fileID: 7648511938519981945, guid: bb0087c57d4917a4883d39eb12801ce6, type: 3}
     _envSlotPrefab: {fileID: 2194800945767569835, guid: 6b13864a9c6b51547b7486a7f0408a71, type: 3}
     _minSpawnCount: 1
@@ -3089,6 +3101,7 @@ MonoBehaviour:
   _value: 0.5
   _lackMaxValue: 0.3
   _optimalMinValue: 0.7
+  _id: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3103,3 +3116,4 @@ SceneRoots:
   - {fileID: 1379067819}
   - {fileID: 1547441448}
   - {fileID: 1603027799}
+  - {fileID: 1068739498}
