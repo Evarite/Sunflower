@@ -4,7 +4,7 @@ using Sunflower.Modifiers;
 
 namespace Sunflower.Event
 {
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Game/Game Event")]
+    [CreateAssetMenu(fileName = "GameEvent", menuName = "Sunflower/Game Event")]
     public class GameEventDefinition : ScriptableObject
     {
         [Header("Название ивента")]

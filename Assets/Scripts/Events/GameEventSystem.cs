@@ -13,7 +13,7 @@ namespace Sunflower.Event
 
         private class ActiveGameEvent
         {
-            public GameEventDefinition definition;
+            public GameEventDefinition Data;
             public float remainingTime;
         }
 
@@ -25,34 +25,34 @@ namespace Sunflower.Event
             {
                 ActiveGameEvent activeEvent = _activeEvents[i];
 
-                if (activeEvent.definition.duration <= 0f)
+                if (activeEvent.Data.duration <= 0f)
                     continue;
 
                 activeEvent.remainingTime -= Time.deltaTime;
 
                 if (activeEvent.remainingTime <= 0f)
                 {
-                    GameEventDefinition definition = activeEvent.definition;
+                    GameEventDefinition Data = activeEvent.Data;
 
                     _activeEvents.RemoveAt(i);
 
-                    EventEnded?.Invoke(definition);
+                    EventEnded?.Invoke(Data);
                 }
             }
         }
 
-        public void StartEvent(GameEventDefinition definition)
+        public void StartEvent(GameEventDefinition Data)
         {
-            if (definition == null)
+            if (Data == null)
                 return;
 
             _activeEvents.Add(new ActiveGameEvent
             {
-                definition = definition,
-                remainingTime = definition.duration
+                Data = Data,
+                remainingTime = Data.duration
             });
 
-            EventStarted?.Invoke(definition);
+            EventStarted?.Invoke(Data);
         }
 
         public float ApplyModifiers(NeedId need, float baseValue)
@@ -62,7 +62,7 @@ namespace Sunflower.Event
 
             foreach (ActiveGameEvent activeEvent in _activeEvents)
             {
-                foreach (StatModifier modifier in activeEvent.definition.modifiers)
+                foreach (StatModifier modifier in activeEvent.Data.modifiers)
                 {
                     if (modifier.need != need)
                         continue;
