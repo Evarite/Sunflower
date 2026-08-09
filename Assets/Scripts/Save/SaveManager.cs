@@ -57,7 +57,8 @@ namespace Sunflower.SaveSystem
                 Data = new GameSaveData(
                     new SunflowerSaveData(0f, new()),
                     new WealthSaveData(0, 0),
-                    new EventsSaveData()
+                    new EventsSaveData(),
+                    new ModuleSaveData()
                 );
 
                 return;

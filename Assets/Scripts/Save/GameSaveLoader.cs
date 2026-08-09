@@ -1,4 +1,5 @@
-﻿using Sunflower.SaveSystem.Data;
+﻿using Sunflower.Managers.Spawn;
+using Sunflower.SaveSystem.Data;
 using Sunflower.Seeds;
 using Sunflower.SkillTree.EvolutionPoints;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Sunflower.SaveSystem
     {
         [SerializeField] private SunflowerSave _sunflowerSave;
         [SerializeField] private EventsSave _eventsSave;
+        [SerializeField] private ModuleSlotSpawnManager _slotManager;
 
         private void Start()
         {
@@ -27,6 +29,8 @@ namespace Sunflower.SaveSystem
             _sunflowerSave.ApplySaveData(data.SunflowerSaveData);
 
             _eventsSave.ApplySaveData(data.EventsSaveData);
+
+            _slotManager.Load(SaveManager.Instance.Data.ModuleSaveData);
 
             SeedsCounter.Value = data.WealthSaveData.Seeds;
 

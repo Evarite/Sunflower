@@ -1,5 +1,6 @@
 ﻿using Sunflower.Input;
 using Sunflower.Loading;
+using Sunflower.Managers.Spawn;
 using Sunflower.SaveSystem.Data;
 using Sunflower.Seeds;
 using Sunflower.SkillTree.EvolutionPoints;
@@ -14,6 +15,7 @@ namespace Sunflower.SaveSystem
         [Header("Save Data")]
         [SerializeField] private SunflowerSave _sunflowerSave;
         [SerializeField] private EventsSave _eventsSave;
+        [SerializeField] private ModuleSlotSpawnManager _slotManager;
 
         private ExitToMenu _exit;
 
@@ -39,7 +41,8 @@ namespace Sunflower.SaveSystem
                     SeedsCounter.Value,
                     EvoPointsCounter.Value
                 ),
-                _eventsSave.GetSaveData()
+                _eventsSave.GetSaveData(),
+                _slotManager.GetSaveData()
             );
 
             SaveManager.Instance.SaveGame(data);
