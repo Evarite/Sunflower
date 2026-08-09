@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: b1ea4c802d45d704e96278ed4ad2906a
+  - enabled: 1
+    path: Assets/Scenes/SkillTree.unity
+    guid: 6456316892dd22b4290da3a8178877f4
+  - enabled: 1
+    path: Assets/Scenes/RestartScene.unity
+    guid: 3321dd0b449e28648a90e2aab1014db0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

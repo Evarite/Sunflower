@@ -24,8 +24,9 @@ namespace Sunflower.Restart
         {
             int points = CalculateEvoPoints.Calculate(_sunflowerGrowth.Height);
             PlayerStateManager.Instance.PointsEarned = points;
+            Debug.Log("Points Earned: " + PlayerStateManager.Instance.PointsEarned);
 
-            EvoPointsCounter.Value += points;
+            EvoPointsCounter.Value += PlayerStateManager.Instance.PointsEarned;
 
             LoadingScreen.LoadScene("SkillTree");
         }

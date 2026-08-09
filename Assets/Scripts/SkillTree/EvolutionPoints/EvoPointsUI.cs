@@ -9,7 +9,12 @@ namespace Sunflower.SkillTree.EvolutionPoints
     {
         TextMeshProUGUI _text;
 
-        private void Awake() => _text = GetComponent<TextMeshProUGUI>();
+        private void Awake()
+        {
+            _text = GetComponent<TextMeshProUGUI>();
+
+            OnValueChanged(EvoPointsCounter.Value);
+        }
 
         private void OnEnable() => EvoPointsCounter.OnValueChanged += OnValueChanged;
 
