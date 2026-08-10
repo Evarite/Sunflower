@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Sunflower.Growth
 {
-    [CreateAssetMenu(fileName = "Growth Stages Data", menuName = "Sunflower/Growth Stages Data")]
+    [CreateAssetMenu(fileName = "Growth Stages Data",
+        menuName = "Sunflower/Growth/Growth Stages Data")]
     public class GrowthStagesData : ScriptableObject
     {
         [System.Serializable]

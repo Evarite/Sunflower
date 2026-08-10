@@ -13,6 +13,8 @@ namespace Sunflower.SaveSystem.Data
         [SerializeField] private EventsSaveData _eventsSaveData;
         [SerializeField] private ModuleSaveData _moduleSaveData;
         [SerializeField] private List<SkillId> _ownedSkills;
+        [SerializeField] private float _cameraSize;
+        [SerializeField] private int _currentRun;
 
         public SunflowerSaveData SunflowerSaveData => _sunflowerSaveData;
 
@@ -24,18 +26,26 @@ namespace Sunflower.SaveSystem.Data
 
         public List<SkillId> OwnedSkills => _ownedSkills;
 
+        public float CameraSize => _cameraSize;
+
+        public int CurrentRun => _currentRun;
+
         public GameSaveData(
             SunflowerSaveData sunflowerSaveData,
             WealthSaveData wealthSaveData,
             EventsSaveData eventsSaveData,
             ModuleSaveData moduleSaveData,
-            List<SkillId> ownedSkills)
+            List<SkillId> ownedSkills,
+            float cameraSize,
+            int currentRun)
         {
             _sunflowerSaveData = sunflowerSaveData;
             _wealthSaveData = wealthSaveData;
             _eventsSaveData = eventsSaveData;
             _moduleSaveData = moduleSaveData;
             _ownedSkills = ownedSkills;
+            _cameraSize = cameraSize;
+            _currentRun = currentRun;
         }
     }
 }

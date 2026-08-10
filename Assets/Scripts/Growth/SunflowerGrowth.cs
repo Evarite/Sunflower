@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sunflower.Growth
 {
@@ -8,12 +9,19 @@ namespace Sunflower.Growth
         [SerializeField] private float _growthSpeed = 1f;
         [SerializeField] private float _scaleRatio = 0.1f;
 
+        [SerializeField] private StopOnEnemy _stop;
+
+        private List<float> _modifiers = new();
+
         private float _height = 0f;
 
         private Vector3 _startPos;
         private Vector3 _startScale;
 
         public float Height { get => _height; set => _height = value; }
+        public List<float> Modifiers => _modifiers;
+
+        public float Speed { get; private set; }
 
         private void Awake()
         {
@@ -23,7 +31,19 @@ namespace Sunflower.Growth
 
         private void Update()
         {
-            _height += _growthSpeed * Time.deltaTime;
+            if (_stop.HasEnemiesInView())
+            {
+                Speed = 0;
+                return;
+            }
+
+            float modifier = 1f;
+            foreach (var mod in Modifiers)
+                modifier *= mod;
+
+            Speed = _growthSpeed * modifier;
+
+            _height += Speed * Time.deltaTime;
             transform.position = _startPos + new Vector3(0, _height, 0);
             transform.localScale =
                 _startScale + new Vector3(_height * _scaleRatio, _height * _scaleRatio, 0);

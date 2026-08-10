@@ -113,6 +113,9 @@ namespace Sunflower.Enemies
 
         protected virtual void TryAttack()
         {
+
+            
+
             _attackTimer -= Time.deltaTime;
 
             if (_attackTimer > 0f)

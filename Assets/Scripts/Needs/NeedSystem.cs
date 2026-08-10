@@ -19,6 +19,7 @@ namespace Sunflower.Needs
             Instance = this;
         }
 
+
         [SerializeField] private List<Need> needs;
         public IReadOnlyList<Need> Needs => needs;
 
@@ -41,15 +42,17 @@ namespace Sunflower.Needs
         public void ApplyModifier(ModifierData modifier, UnityEngine.Object source = null)
         {
             
+            
             if (modifier == null)
                 return;
 
 
             
 
-            // Если need == null, применяем ко всем потребностям.
+            // Г…Г±Г«ГЁ need == null, ГЇГ°ГЁГ¬ГҐГ­ГїГҐГ¬ ГЄГ® ГўГ±ГҐГ¬ ГЇГ®ГІГ°ГҐГЎГ­Г®Г±ГІГїГ¬.
             if (modifier.need == null)
             {
+                
                 
                 for (int i = 0; i < needs.Count; i++)
                 {
