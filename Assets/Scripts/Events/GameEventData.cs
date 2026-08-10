@@ -5,20 +5,21 @@ using UnityEngine;
 namespace Sunflower.Event
 {
     [CreateAssetMenu(fileName = "GameEvent", menuName = "Sunflower/Game Event")]
-    public class GameEventDefinition : ScriptableObject
+    public class GameEventData : ScriptableObject
     {
         [Header("ID")]
         [SerializeField] private string _eventId;
 
-        [Header("Название ивента")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
         public string eventName;
 
-        [Header("Сколько длится ивент (секунд)")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)")]
         public float duration = 10f;
 
         [SerializeField]
-        [Header("Список модификаторов к ресурсам")]
-        public List<StatModifier> modifiers = new();
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
+        public List<ModifierData> modifiers = new List<ModifierData>();
+  
 
         public string EventId => _eventId;
     }

@@ -13,7 +13,7 @@ namespace Sunflower.ModuleSlot
         public float MinHeight => _minHeight;
         public float MaxHeight => _maxHeight;
         public bool IsOccupied { get; set; }
-        public Module InstalledModule { get; set; }
+        public ModuleRuntime InstalledModule { get; set; }
 
         public void Initialize(float minHeight, float maxHeight)
         {

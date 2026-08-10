@@ -11,7 +11,7 @@ namespace Sunflower.Debugging
     public class EventDebugUtility : MonoBehaviour
     {
         [SerializeField]
-        private GameEventDefinition gameEventDefinition = null;
+        private GameEventData gameEventDefinition = null;
 
         [SerializeField]
         private GameEventSystem _gameEventSystem = null;

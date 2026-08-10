@@ -1,41 +1,252 @@
+using System;
+using System.Collections.Generic;
+using Sunflower.Modifiers;
 using UnityEngine;
 
 namespace Sunflower.Needs
 {
-    [AddComponentMenu("Sunflower/Needs/Need")]
-    public class Need : MonoBehaviour
+    public class Need: MonoBehaviour
     {
-        [SerializeField] private float _value = 0f;
+        [SerializeField] private NeedData needData;
 
-        [Tooltip("РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Р·РѕРЅС‹ РЅРµРґРѕСЃС‚Р°С‚РєР° СЂРµСЃСѓСЂСЃР°")]
-        [SerializeField] private float _lackMaxValue = 0.3f;
-        [Tooltip("РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїС‚РёРјР°Р»СЊРЅРѕР№ Р·РѕРЅС‹ СЂРµСЃСѓСЂСЃР°")]
-        [SerializeField] private float _optimalMinValue = 0.7f;
-
-        [SerializeField] private NeedId _id;
-        public NeedId Id { get => _id; set => _id = value; }
+        [Tooltip("Начальное значение в процентах от максимального")]
+        [SerializeField, Range(0f, 1f)] private float startNormalized = 1f;
 
 
-        private void Awake() => OnValueChanged?.Invoke(this, _value);
+        private List<ActiveModifier> _modifiers;
+        private float _currentValue;
+        private float _maxValue;
 
-        public float Value
+        public event Action<float> OnMaxValueChanged;
+        public event Action<Need, float> OnValueChanged;
+        public event Action<Need> OnNeedEmpty;
+
+        public NeedData NeedData => needData;
+        public float CurrentValue
         {
-            get => _value;
+            get
+            {
+                return _currentValue;
+            }
             set
             {
-                _value = Mathf.Clamp01(value);
-                OnValueChanged?.Invoke(this, _value);
+                float clamped = Mathf.Clamp(value, 0, MaxValue);
+                if (Mathf.Approximately(clamped, _currentValue)) return;
 
-                if (_value == 0f)
+                bool wasEmpty = Mathf.Approximately(_currentValue, 0f);
+                _currentValue = clamped;
+                OnValueChanged?.Invoke(this, _currentValue);
+
+                if (!wasEmpty && Mathf.Approximately(_currentValue, 0f))
                     OnNeedEmpty?.Invoke(this);
             }
         }
 
-        public float LackMaxValue { get => _lackMaxValue; set => _lackMaxValue = value; }
-        public float OptimalMinValue { get => _optimalMinValue; set => _optimalMinValue = value; }
-        
+        public float MaxValue
+        {
+            get => _maxValue;
+            set
+            {
+                if (value < 0f || Mathf.Approximately(_maxValue, value)) 
+                    return;
 
-        public event System.Action<Need, float> OnValueChanged;
-        public event System.Action<Need> OnNeedEmpty;
+                _maxValue = value;
+                OnMaxValueChanged?.Invoke(_maxValue);
+
+                CurrentValue = _currentValue;
+            }
+        }
+
+        public float BaseFillRate => needData != null ? needData.baseFillRate : 0f;
+        public float BaseCapacity => needData != null ? needData.baseCapacity : 0f;
+        public float FillRate { get; private set; }
+
+        private void Awake()
+        {
+            _modifiers = new List<ActiveModifier>();
+
+            _maxValue = needData.baseCapacity;
+            CurrentValue = _maxValue * startNormalized;
+
+            
+            RecalculateStats();
+        }
+
+        private void Start()
+        {
+            OnMaxValueChanged?.Invoke(_maxValue);
+            OnValueChanged?.Invoke(this,_maxValue);
+        }
+
+        private void Update()
+        {
+            if (needData == null)
+                return;
+
+            if (UpdateModifierDurations(Time.deltaTime))
+                RecalculateStats();
+
+            AddValue(FillRate * Time.deltaTime);
+        }
+
+
+        public void AddValue(float amount)
+        {
+            float newValue = Mathf.Clamp(CurrentValue + amount, 0f, MaxValue);
+
+            if (Mathf.Approximately(newValue, CurrentValue))
+                return;
+
+
+            CurrentValue = newValue;
+        }
+        public void AddCapacity(float amount)
+        {
+            MaxValue += amount;
+        }
+
+        public void ApplyModifier(ModifierData modifier)
+        {
+            if (modifier == null)
+                return;
+
+            ApplyModifier(modifier, modifier.source);
+        }
+
+        public void ApplyModifier(ModifierData modifier, UnityEngine.Object source)
+        {
+            if (modifier == null || !IsTargetNeed(modifier.need))
+                return;
+
+            switch (modifier.type)
+            {
+                case ModifierType.AddValue:
+                    AddValue(modifier.value);
+                    break;
+                case ModifierType.AddCapacity:
+                    AddCapacity(modifier.value);
+                    break;
+
+                case ModifierType.AddFillRate:
+                case ModifierType.MultiplyFillRate:
+                    AddModifier(modifier, source);
+                    RecalculateStats();
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        nameof(modifier),
+                        $"Unknown modifier type: {modifier.type}"
+                    );
+            }
+        }
+
+        public void RemoveModifiersBySource(UnityEngine.Object source)
+        {
+            if (source == null)
+                return;
+
+            int removed = _modifiers.RemoveAll(m => m.source == source);
+
+            if (removed <= 0)
+                return;
+
+            RecalculateStats();
+        }
+
+        public void ClearModifiers()
+        {
+            if (_modifiers.Count == 0)
+                return;
+
+            _modifiers.Clear();
+            RecalculateStats();
+        }
+
+        private bool IsTargetNeed(NeedData target)
+        {
+            // Если target == null, можно считать модификатор глобальным
+            // и применять его ко всем потребностям.
+            return target == null || target == needData;
+        }
+
+        private void AddModifier(ModifierData modifier, UnityEngine.Object source)
+        {
+            if (source != null)
+            {
+                _modifiers.RemoveAll(m => m.source == source && m.type == modifier.type);
+            }
+
+            _modifiers.Add(new ActiveModifier
+            {
+                type = modifier.type,
+                value = modifier.value,
+                duration = modifier.duration,
+                source = source
+            });
+        }
+
+        private bool UpdateModifierDurations(float deltaTime)
+        {
+            bool changed = false;
+
+            for (int i = _modifiers.Count - 1; i >= 0; i--)
+            {
+                ActiveModifier modifier = _modifiers[i];
+
+                if (!ReferenceEquals(modifier.source, null) && modifier.source == null)
+                {
+                    _modifiers.RemoveAt(i);
+                    changed = true;
+                    continue;
+                }
+
+                // <= 0 считаем бесконечным модификатором.
+                if (modifier.duration <= 0f)
+                {
+                    continue;
+                }
+
+                modifier.duration -= deltaTime;
+
+                if (modifier.duration <= 0f)
+                {
+                    _modifiers.RemoveAt(i);
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        private void RecalculateStats()
+        {
+            float additive = 0f;
+            float multiplicative = 1f;
+            float addCapacity = 0f;
+
+            foreach (ActiveModifier modifier in _modifiers)
+            {
+                switch (modifier.type)
+                {
+                    case ModifierType.AddCapacity:
+                        addCapacity += modifier.value;
+                        break;
+
+                    case ModifierType.AddFillRate:
+                        additive += modifier.value;
+                        break;
+
+                    case ModifierType.MultiplyFillRate:
+                        multiplicative *= modifier.value;
+                        break;
+                }
+            }
+
+            FillRate = (BaseFillRate + additive) * multiplicative;
+            MaxValue = BaseCapacity + addCapacity;
+        }
+
+    
     }
 }

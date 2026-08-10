@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd0b4bd21007eb47a9d1c16b131bc9d, type: 3}
   m_Name: HailEvent
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Event.GameEventDefinition
-  eventName: 
+  eventName: "\u0413\u0440\u0430\u0434"
   duration: 10
   modifiers:
   - need: 0
