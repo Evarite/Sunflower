@@ -884,9 +884,9 @@ GameObject:
   m_Component:
   - component: {fileID: 529664827}
   - component: {fileID: 529664826}
-  - component: {fileID: 529664828}
+  - component: {fileID: 529664829}
   m_Layer: 0
-  m_Name: Bamblebee
+  m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -967,7 +967,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &529664828
+--- !u!114 &529664829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -976,10 +976,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 529664825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a1ed7c5a372a749bdcda97a8f252e9, type: 3}
+  m_Script: {fileID: 11500000, guid: e4afd74006dffd8469ae842e70f79ffa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.Enemy
-  _data: {fileID: 11400000, guid: e5cca195969a19b4094f1c611b8379f8, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.BeeEnemy
+  _data: {fileID: 11400000, guid: 4b8e1169dc739eb49a52f791ac41de52, type: 2}
 --- !u!1 &575136047
 GameObject:
   m_ObjectHideFlags: 0

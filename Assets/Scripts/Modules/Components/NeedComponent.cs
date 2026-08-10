@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Sunflower.Modules
 {
     [AddComponentMenu("Sunflower/Module Components/Needs")]
-    public class NeedComponent : MonoBehaviour
+    public class NeedComponent: MonoBehaviour
     {
 
         [SerializeField] private NeedSystem _needSystem;
@@ -16,7 +16,7 @@ namespace Sunflower.Modules
 
             if (_needSystem == null)
                 return;
-
+            
             _needSystem.ApplyModifier(modifier, moduleRuntime);
         }
 

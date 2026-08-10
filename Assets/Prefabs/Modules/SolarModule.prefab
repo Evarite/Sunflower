@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6857149776332583259}
   - component: {fileID: 410385819494065045}
+  - component: {fileID: 7753988363139481172}
   - component: {fileID: 8329045685149233799}
   - component: {fileID: 6009759459568136709}
-  - component: {fileID: 4326644812195446135}
   m_Layer: 0
   m_Name: SolarModule
   m_TagString: Untagged
@@ -52,6 +52,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.NeedComponent
   _needSystem: {fileID: 0}
+--- !u!114 &7753988363139481172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144471118700144199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a047e7478431a24790feb1309417578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleRuntime
+  _data: {fileID: 11400000, guid: afd66f10c0b44d443ba9851487717589, type: 2}
 --- !u!222 &8329045685149233799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -120,16 +133,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &4326644812195446135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144471118700144199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4f25ad02916a341b2b934211017aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleRuntime
-  _data: {fileID: 11400000, guid: ec2a979c1f8541b489df7a465da44bd6, type: 2}

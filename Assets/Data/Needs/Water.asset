@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d119abd1c37887498e2bfe4c2419e68, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedData
-  displayName: Need
+  displayName: Water
   baseCapacity: 100
-  baseFillRate: 1
+  baseFillRate: 10

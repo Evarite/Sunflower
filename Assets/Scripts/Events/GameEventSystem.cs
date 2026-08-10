@@ -1,30 +1,26 @@
-using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
-        [SerializeField] private List<GameEventData> _eventDatas = new();
-
         [SerializeField] private NeedSystem _targetNeedSystem;
 
         public event System.Action<GameEventData> OnEventStarted;
         public event System.Action<GameEventData> OnEventEnded;
 
-        private class ActiveGameEvent
+        public class ActiveGameEvent
         {
-            private GameEventData _data;
-            private float _remainingTime;
-
-            public GameEventData Data { get => _data; set => _data = value; }
-            public float RemainingTime { get => _remainingTime; set => _remainingTime = value; }
+            public GameEventData Data;
+            public float remainingTime;
         }
 
-        private List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+        private List<ActiveGameEvent> _activeEvents = new();
+
+        public List<ActiveGameEvent> ActiveEvents { get => _activeEvents; set => _activeEvents = value; }
 
         public void StartEvent(GameEventData eventData)
         {
@@ -34,12 +30,12 @@ namespace Sunflower.Event
             _activeEvents.Add(new ActiveGameEvent
             {
                 Data = eventData,
-                RemainingTime = eventData.duration
+                remainingTime = eventData.duration
             });
 
             foreach (ModifierData modifierData in eventData.modifiers)
             {
-                _targetNeedSystem.ApplyModifier(modifierData, this);
+                _targetNeedSystem.ApplyModifier(modifierData,this);
             }
             OnEventStarted?.Invoke(eventData);
         }
@@ -66,35 +62,9 @@ namespace Sunflower.Event
             }
         }
 
-        
-
-        public float ApplyModifiers(NeedData need, float baseValue)
-        {
-            float additive = 0f;
-            float multiplier = 1f;
-
-            foreach (ActiveGameEvent activeEvent in _activeEvents)
-            {
-                foreach (ModifierData modifier in activeEvent.Data.modifiers)
-                {
-                    if (modifier.need != need)
-                        continue;
-
-                    if (modifier.type == ModifierType.AddValue)
-                        additive += modifier.value;
-                    else
-                        multiplier *= modifier.value;
-                }
-            }
-
-            multiplier = Mathf.Max(0f, multiplier);
-
-            return (baseValue + additive) * multiplier;
-        }
-
         public GameEventData GetEventData(string eventId)
         {
-            return _eventDatas.Find(
+            return _eventDefinitions.Find(
                 x => x.EventId == eventId
             );
         }
@@ -110,7 +80,7 @@ namespace Sunflower.Event
                 RemainingTime = remainingTime
             });
 
-            OnEventStarted?.Invoke(data);
+            EventStarted?.Invoke(data);
         }
     }
 }

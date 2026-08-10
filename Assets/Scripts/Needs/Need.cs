@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Sunflower.Needs
 {
-    public class Need : MonoBehaviour
+    public class Need: MonoBehaviour
     {
         [SerializeField] private NeedData needData;
 
-        [Tooltip("ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð¿Ñ€Ð¾Ñ†ÐµÐ½Ñ‚Ð°Ñ… Ð¾Ñ‚ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾")]
+        [Tooltip("Íà÷àëüíîå çíà÷åíèå â ïðîöåíòàõ îò ìàêñèìàëüíîãî")]
         [SerializeField, Range(0f, 1f)] private float startNormalized = 1f;
 
 
@@ -47,7 +47,7 @@ namespace Sunflower.Needs
             get => _maxValue;
             set
             {
-                if (value < 0f || Mathf.Approximately(_maxValue, value))
+                if (value < 0f || Mathf.Approximately(_maxValue, value)) 
                     return;
 
                 _maxValue = value;
@@ -68,14 +68,14 @@ namespace Sunflower.Needs
             _maxValue = needData.baseCapacity;
             CurrentValue = _maxValue * startNormalized;
 
-
+            
             RecalculateStats();
         }
 
         private void Start()
         {
             OnMaxValueChanged?.Invoke(_maxValue);
-            OnValueChanged?.Invoke(this, _maxValue);
+            OnValueChanged?.Invoke(this,_maxValue);
         }
 
         private void Update()
@@ -165,8 +165,8 @@ namespace Sunflower.Needs
 
         private bool IsTargetNeed(NeedData target)
         {
-            // Ð•ÑÐ»Ð¸ target == null, Ð¼Ð¾Ð¶Ð½Ð¾ ÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ‹Ð¼
-            // Ð¸ Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÑÑ‚ÑŒ ÐµÐ³Ð¾ ÐºÐ¾ Ð²ÑÐµÐ¼ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð½Ð¾ÑÑ‚ÑÐ¼.
+            // Åñëè target == null, ìîæíî ñ÷èòàòü ìîäèôèêàòîð ãëîáàëüíûì
+            // è ïðèìåíÿòü åãî êî âñåì ïîòðåáíîñòÿì.
             return target == null || target == needData;
         }
 
@@ -201,7 +201,7 @@ namespace Sunflower.Needs
                     continue;
                 }
 
-                // <= 0 ÑÑ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ð±ÐµÑÐºÐ¾Ð½ÐµÑ‡Ð½Ñ‹Ð¼ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ð¾Ð¼.
+                // <= 0 ñ÷èòàåì áåñêîíå÷íûì ìîäèôèêàòîðîì.
                 if (modifier.duration <= 0f)
                 {
                     continue;
@@ -247,6 +247,6 @@ namespace Sunflower.Needs
             MaxValue = BaseCapacity + addCapacity;
         }
 
-
+    
     }
 }

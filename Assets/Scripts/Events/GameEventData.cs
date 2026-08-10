@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
 using Sunflower.Modifiers;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sunflower.Event
 {
@@ -10,17 +10,17 @@ namespace Sunflower.Event
         [Header("ID")]
         [SerializeField] private string _eventId;
 
-        [Header("Название ивента")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
         public string eventName;
 
-        [Header("Сколько длиться ивент (секунд)")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)")]
         public float duration = 10f;
 
         [SerializeField]
-        [Header("Список модификаторов к ресурсам")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
         public List<ModifierData> modifiers = new List<ModifierData>();
+  
 
         public string EventId => _eventId;
     }
 }
-

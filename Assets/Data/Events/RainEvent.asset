@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd0b4bd21007eb47a9d1c16b131bc9d, type: 3}
   m_Name: RainEvent
   m_EditorClassIdentifier: Assembly-CSharp::GameEventDefinition
-  eventName: Rain
+  eventName: "\u0414\u043E\u0436\u0434\u044C"
   duration: 30
   modifiers:
   - need: 0

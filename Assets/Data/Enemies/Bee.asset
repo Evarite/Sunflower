@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Bee
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.PassiveEnemyData
   enemyName: Bee
-  maxHp: 10
-  damage: 10
+  maxHp: 20
+  damage: 100
   attackInterval: 1
-  detectionRadius: 12
+  detectionRadius: 120
   attackRange: 1
   moveSpeed: 1
   targetMask:
