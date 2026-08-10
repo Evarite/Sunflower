@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Light2
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedData
   displayName: Need
-  baseCapacity: 100
+  baseCapacity: 1000
   baseFillRate: 1

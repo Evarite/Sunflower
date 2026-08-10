@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edfe765fc41a73344b7b71aafac78e57, type: 3}
-  m_Name: SolarModule
+  m_Name: MineralsCapacityModule
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleData
-  _moduleName: Solar Modul
+  _moduleName: Minerals Capacity Module
   _allowedSlot: 0
-  _cost: 100
-  _maxHealth: 100
+  _cost: 200
+  _maxHealth: 200
   _alivePrefab: {fileID: 0}
   _deadPrefab: {fileID: 0}
   activeModifiers:
-  - {fileID: 11400000, guid: 81b397df1b268e54e9fa39d62906bd75, type: 2}
-  - {fileID: 11400000, guid: ef7194383fc04be428b32eb579a01d39, type: 2}
-  - {fileID: 11400000, guid: 61dff56c61b2f564b9663787956c35d2, type: 2}
+  - {fileID: 11400000, guid: dd9a75a05c6aeeb4a84972f69f549f58, type: 2}
