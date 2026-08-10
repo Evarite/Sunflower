@@ -7,6 +7,8 @@ namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
+        private List<GameEventData> _eventDefinitions = new();
+        
         [SerializeField] private NeedSystem _targetNeedSystem;
 
         public event System.Action<GameEventData> OnEventStarted;
@@ -14,8 +16,11 @@ namespace Sunflower.Event
 
         public class ActiveGameEvent
         {
-            public GameEventData Data;
-            public float remainingTime;
+            private GameEventData _data;
+            private float _remainingTime;
+
+            public GameEventData Data { get => _data; set => _data = value; }
+            public float RemainingTime { get => _remainingTime; set => _remainingTime = value; }
         }
 
         private List<ActiveGameEvent> _activeEvents = new();
@@ -30,7 +35,7 @@ namespace Sunflower.Event
             _activeEvents.Add(new ActiveGameEvent
             {
                 Data = eventData,
-                remainingTime = eventData.duration
+                RemainingTime = eventData.duration
             });
 
             foreach (ModifierData modifierData in eventData.modifiers)
@@ -80,7 +85,7 @@ namespace Sunflower.Event
                 RemainingTime = remainingTime
             });
 
-            EventStarted?.Invoke(data);
+            OnEventStarted?.Invoke(data);
         }
     }
 }
