@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Sunflower.ModuleSlot
 {
+    [RequireComponent(typeof(Slot))]
     public class SlotInteraction : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
@@ -18,25 +19,17 @@ namespace Sunflower.ModuleSlot
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_slot == null)
-                return;
-
-            ModuleShopUI.Instance?.OnSlotPointerEnter();
+            if (_slot.IsAvailable())
+                ModuleShopUI.Instance?.SetPointerOverSlot(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (_slot == null)
-                return;
-
-            ModuleShopUI.Instance?.OnSlotPointerExit();
+            ModuleShopUI.Instance?.SetPointerOverSlot(false);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_slot == null)
-                return;
-
             if (!_slot.IsAvailable())
                 return;
 

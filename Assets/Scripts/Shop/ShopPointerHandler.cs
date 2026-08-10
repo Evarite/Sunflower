@@ -9,12 +9,12 @@ namespace Sunflower.Shop
     {
         public void OnPointerEnter(PointerEventData eventData)
         {
-            ModuleShopUI.Instance?.OnShopPointerEnter();
+            ModuleShopUI.Instance?.SetPointerOverShop(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            ModuleShopUI.Instance?.OnShopPointerExit();
+            ModuleShopUI.Instance?.SetPointerOverShop(false);
         }
     }
 }

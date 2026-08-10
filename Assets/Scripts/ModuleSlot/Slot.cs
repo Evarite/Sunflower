@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Sunflower.ModuleSlot
 {
+    [AddComponentMenu("Sunflower/Module Slot/Slot")]
     public class Slot : MonoBehaviour
     {
         [SerializeField] private SlotType _slotType;
@@ -28,21 +29,66 @@ namespace Sunflower.ModuleSlot
             return InstalledModule == null;
         }
 
-        public void Install(ModuleRuntime module)
+        public bool CanInstall(ModuleData moduleData)
         {
-            if (module == null)
-                return;
+            if (moduleData == null)
+                return false;
 
             if (IsOccupied)
-                return;
+                return false;
 
-            InstalledModule = module;
+            if (moduleData.AllowedSlot != _slotType)
+                return false;
+
+            if (moduleData.AlivePrefab == null)
+                return false;
+
+            return true;
+        }
+
+        public bool TryInstall(ModuleData moduleData)
+        {
+            if (!CanInstall(moduleData))
+                return false;
+
+            GameObject moduleObject = Instantiate(
+                moduleData.AlivePrefab,
+                transform.position,
+                Quaternion.identity,
+                transform
+            );
+
+            ModuleRuntime moduleRuntime =
+                moduleObject.GetComponent<ModuleRuntime>();
+
+            if (moduleRuntime == null)
+            {
+                Debug.LogError(
+                    $"Module prefab '{moduleData.AlivePrefab.name}' " +
+                    $"does not contain a {nameof(ModuleRuntime)} component.",
+                    moduleObject
+                );
+
+                Destroy(moduleObject);
+                return false;
+            }
+
+            moduleRuntime.Data = moduleData;
+            InstalledModule = moduleRuntime;
+
+            return true;
         }
 
         public ModuleRuntime RemoveModule()
         {
+            if (InstalledModule == null)
+                return null;
+
             ModuleRuntime module = InstalledModule;
             InstalledModule = null;
+
+            Destroy(module.gameObject);
+
             return module;
         }
     }

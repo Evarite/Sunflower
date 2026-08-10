@@ -4,19 +4,27 @@ using UnityEngine.UI;
 
 namespace Sunflower.Shop
 {
+    [AddComponentMenu("Sunflower/Shop/Module Shop Item")]
     public class ModuleShopItemUI : MonoBehaviour
     {
         [SerializeField] private ModuleData _moduleData;
         [SerializeField] private Button _button;
 
+        public ModuleData ModuleData => _moduleData;
+
         private void Awake()
         {
-            _button.onClick.AddListener(OnClicked);
+            if (_button == null)
+                _button = GetComponent<Button>();
+
+            if (_button != null)
+                _button.onClick.AddListener(OnClicked);
         }
 
         private void OnDestroy()
         {
-            _button.onClick.RemoveListener(OnClicked);
+            if (_button != null)
+                _button.onClick.RemoveListener(OnClicked);
         }
 
         private void OnClicked()

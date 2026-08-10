@@ -1,5 +1,4 @@
-﻿using Sunflower.SaveSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.ModuleSlot
@@ -7,64 +6,65 @@ namespace Sunflower.ModuleSlot
     [AddComponentMenu("Sunflower/Module Slot/Slots Manager")]
     public class SlotsManager : MonoBehaviour
     {
-        private readonly List<GameObject> _slots = new();
+        private readonly List<Slot> _slots = new();
 
-        public IReadOnlyList<GameObject> AllSlots => _slots;
+        public IReadOnlyList<Slot> AllSlots => _slots;
 
-        public void AddSlot(GameObject slot)
+        public void AddSlot(Slot slot)
         {
-            if (slot != null)
-                _slots.Add(slot);
+            if (slot == null)
+                return;
+
+            if (_slots.Contains(slot))
+                return;
+
+            _slots.Add(slot);
         }
 
-        public void RemoveSlot(GameObject slot)
+        public void RemoveSlot(Slot slot)
         {
+            if (slot == null)
+                return;
+
             _slots.Remove(slot);
         }
 
-        public ModuleSaveData GetSaveData(float currentHeight)
+        public Slot GetAvailableSlot(SlotType slotType)
         {
-            List<Vector3> positions = new(_slots.Count);
-
-            foreach (GameObject slot in _slots)
+            foreach (Slot slot in _slots)
             {
-                if (slot != null)
-                    positions.Add(slot.transform.position);
+                if (slot == null)
+                    continue;
+
+                if (slot.SlotType != slotType)
+                    continue;
+
+                if (slot.IsAvailable())
+                    return slot;
             }
 
-            return new ModuleSaveData(
-                positions,
-                currentHeight
-            );
+            return null;
         }
 
-        public void Load(
-            ModuleSaveData data,
-            GameObject slotPrefab)
+        public IReadOnlyList<Slot> GetSlots(SlotType slotType)
         {
-            if (data == null)
-                return;
+            List<Slot> result = new();
 
-            Clear();
-
-            foreach (Vector3 position in data.SlotPositions)
+            foreach (Slot slot in _slots)
             {
-                GameObject slot = Instantiate(
-                    slotPrefab,
-                    position,
-                    Quaternion.identity
-                );
-
-                _slots.Add(slot);
+                if (slot != null && slot.SlotType == slotType)
+                    result.Add(slot);
             }
+
+            return result;
         }
 
-        private void Clear()
+        public void Clear()
         {
-            foreach (GameObject slot in _slots)
+            foreach (Slot slot in _slots)
             {
                 if (slot != null)
-                    Destroy(slot);
+                    Destroy(slot.gameObject);
             }
 
             _slots.Clear();

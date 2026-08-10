@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Sunflower.Shop
 {
+    [AddComponentMenu("Sunflower/Shop/Module Shop UI")]
     public class ModuleShopUI : MonoBehaviour
     {
         public static ModuleShopUI Instance { get; private set; }
@@ -15,15 +16,33 @@ namespace Sunflower.Shop
         private bool _pointerOverSlot;
         private bool _pointerOverShop;
 
+        public Slot TargetSlot => _targetSlot;
+
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             Instance = this;
-            _shopPanel.SetActive(false);
+
+            Close();
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
         }
 
         public void Open(Slot slot)
         {
-            if (slot == null || !slot.IsAvailable())
+            if (slot == null)
+                return;
+
+            if (!slot.IsAvailable())
                 return;
 
             _targetSlot = slot;
@@ -31,10 +50,9 @@ namespace Sunflower.Shop
             _pointerOverSlot = true;
             _pointerOverShop = false;
 
-            _shopPanel.SetActive(true);
+            PositionShop(slot);
 
-            // Position the shop however you want.
-            _shopPanel.transform.position = slot.transform.position;
+            _shopPanel.SetActive(true);
         }
 
         public void Close()
@@ -44,78 +62,61 @@ namespace Sunflower.Shop
             _pointerOverSlot = false;
             _pointerOverShop = false;
 
-            _shopPanel.SetActive(false);
+            if (_shopPanel != null)
+                _shopPanel.SetActive(false);
         }
 
-        public bool TryInstall(ModuleData data)
+        public bool TryInstall(ModuleData moduleData)
         {
             if (_targetSlot == null)
                 return false;
 
-            if (!_targetSlot.IsAvailable())
+            if (moduleData == null)
                 return false;
 
-            if (data == null)
+            bool installed = _targetSlot.TryInstall(moduleData);
+
+            if (!installed)
                 return false;
-
-            if (_targetSlot.SlotType != data.AllowedSlot)
-                return false;
-
-            GameObject prefab = data.AlivePrefab;
-
-            if (prefab == null)
-                return false;
-
-            GameObject moduleObject = Instantiate(
-                prefab,
-                _targetSlot.transform.position,
-                Quaternion.identity,
-                _targetSlot.transform
-            );
-
-            ModuleRuntime runtime = moduleObject.GetComponent<ModuleRuntime>();
-
-            if (runtime == null)
-            {
-                Destroy(moduleObject);
-                return false;
-            }
-
-            runtime.Data = data;
-
-            _targetSlot.Install(runtime);
 
             Close();
 
             return true;
         }
 
-        public void OnSlotPointerEnter()
+        public void SetPointerOverSlot(bool value)
         {
-            _pointerOverSlot = true;
+            _pointerOverSlot = value;
+
+            if (!value)
+                TryClose();
         }
 
-        public void OnSlotPointerExit()
+        public void SetPointerOverShop(bool value)
         {
-            _pointerOverSlot = false;
-            TryClose();
-        }
+            _pointerOverShop = value;
 
-        public void OnShopPointerEnter()
-        {
-            _pointerOverShop = true;
-        }
-
-        public void OnShopPointerExit()
-        {
-            _pointerOverShop = false;
-            TryClose();
+            if (!value)
+                TryClose();
         }
 
         private void TryClose()
         {
-            if (!_pointerOverSlot && !_pointerOverShop)
-                Close();
+            if (_pointerOverSlot)
+                return;
+
+            if (_pointerOverShop)
+                return;
+
+            Close();
+        }
+
+        private void PositionShop(Slot slot)
+        {
+            if (_shopPanel == null)
+                return;
+
+            _shopPanel.transform.position = slot.transform.position;
         }
     }
 }
