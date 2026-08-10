@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Sunflower.Modifiers;
 using UnityEngine;
 
 namespace Sunflower.Enemies
@@ -8,6 +10,6 @@ namespace Sunflower.Enemies
         bool IsAlive { get; }
         Transform TargetTransform { get; }
 
-        void ReceiveAttack(float damage, Enemy attacker);
+        void ReceiveAttack(ModifierData damageModifier, Enemy attacker);
     }
 }

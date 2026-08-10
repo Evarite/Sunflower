@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Sunflower.Modifiers;
 using UnityEngine;
 
 namespace Sunflower.Enemies
@@ -22,12 +24,14 @@ namespace Sunflower.Enemies
             Hp = _maxHp;
         }
 
-        public void ReceiveAttack(float damage, Enemy attacker)
+        public void ReceiveAttack(ModifierData damageModifier, Enemy attacker)
         {
             if (!IsAlive)
                 return;
+            if (damageModifier == null)
+                return;
 
-            Hp -= damage;
+            Hp += damageModifier.value;
 
             if (Hp <= 0f)
             {

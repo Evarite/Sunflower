@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Sunflower.Enemies;
+using Sunflower.Modifiers;
 using UnityEngine;
 
 namespace Sunflower.Enemies
@@ -9,7 +11,8 @@ namespace Sunflower.Enemies
         public string enemyName = "Enemy";
 
         public float maxHp = 10f;
-        public float damage = 1f;
+        //public float damage = 1f;
+        public ModifierData damageModifier;
         public float attackInterval = 1f;
         public float detectionRadius = 3f;
         public float attackRange = 1f;

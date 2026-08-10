@@ -12,7 +12,6 @@ namespace Sunflower.Enemies
         protected override void AfterAttack(ITargetable target)
         {
             base.AfterAttack(target);
-
             Die();
         }
     }
