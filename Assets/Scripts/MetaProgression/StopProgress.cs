@@ -23,7 +23,7 @@ namespace Sunflower.MetaProgression
         private IEnumerator Barrier()
         {
             yield return new WaitUntil(() =>
-            _growth.Height <= _barriers.MaxHeights[PlayerStateManager.Instance.CurrentRun]);
+            _growth.Height >= _barriers.MaxHeights[PlayerStateManager.Instance.CurrentRun]);
 
             _growth.Modifiers.Add(0);
 

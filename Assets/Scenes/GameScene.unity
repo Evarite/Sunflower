@@ -7246,7 +7246,7 @@ MonoBehaviour:
   _barriers: {fileID: 11400000, guid: 5734e066cf5f93749930595760b1515e, type: 2}
   _growth: {fileID: 943639400}
   _stopInfoScreen: {fileID: 1230227911}
-  _winScreen: {fileID: 0}
+  _winScreen: {fileID: 102900000, guid: 2bec77d61c9480b45bfc2e19ec79ffe6, type: 3}
 --- !u!1 &966073908
 GameObject:
   m_ObjectHideFlags: 0
@@ -9543,7 +9543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1230227912
 RectTransform:
   m_ObjectHideFlags: 0
