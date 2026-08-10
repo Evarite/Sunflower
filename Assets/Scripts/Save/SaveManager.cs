@@ -52,7 +52,8 @@ namespace Sunflower.SaveSystem
                     new WealthSaveData(0, 0),
                     new EventsSaveData(),
                     new ModuleSaveData(),
-                    new List<SkillId>()
+                    new List<SkillId>(),
+                    5f
                 );
 
                 return;

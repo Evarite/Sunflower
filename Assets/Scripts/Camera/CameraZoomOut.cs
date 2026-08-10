@@ -15,5 +15,9 @@ namespace Sunflower.CameraSystem
 
         private void LateUpdate() => _camera.orthographicSize +=
             _sunflowerGrowth.Speed * _ratio * Time.deltaTime;
+
+        public float Save() => _camera.orthographicSize;
+
+        public void Load(float value) => _camera.orthographicSize = value;
     }
 }
