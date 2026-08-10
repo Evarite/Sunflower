@@ -9,6 +9,8 @@ namespace Sunflower.SkillTree.Skills
 
         public SkillId Id { get => _id; protected set => _id = value; }
 
+        private void Start() => Ability();
+
         protected abstract void Ability();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Sunflower.Shop;
+using Sunflower.SkillTree.Skills;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,10 +18,28 @@ namespace Sunflower.ModuleSlot
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                HandleRightClick();
+            }
+            else
+                HandleLeftClick();
+        }
+
+        private void HandleLeftClick()
+        {
             if (!_slot.IsAvailable())
                 return;
 
             ModuleShopUI.Instance?.Open(_slot);
+        }
+
+        private void HandleRightClick()
+        {
+            if (_slot.IsAvailable())
+                return;
+
+            PrunerSkill.Instance.PruneSkill(_slot);
         }
     }
 }
