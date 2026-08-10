@@ -1,6 +1,7 @@
 ﻿using Sunflower.Modules;
 using Sunflower.ModuleSlot;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Sunflower.Shop
 {
@@ -9,14 +10,33 @@ namespace Sunflower.Shop
     {
         public static ModuleShopUI Instance { get; private set; }
 
-        [SerializeField] private GameObject _shopPanel;
+        [Header("Shop Panels")]
+        [SerializeField] private GameObject _stemShopPanel;
+        [SerializeField] private GameObject _environmentShopPanel;
 
         private Slot _targetSlot;
 
-        private bool _pointerOverSlot;
-        private bool _pointerOverShop;
-
         public Slot TargetSlot => _targetSlot;
+
+        private GameObject ActiveShopPanel
+        {
+            get
+            {
+                if (_stemShopPanel != null &&
+                    _stemShopPanel.activeSelf)
+                {
+                    return _stemShopPanel;
+                }
+
+                if (_environmentShopPanel != null &&
+                    _environmentShopPanel.activeSelf)
+                {
+                    return _environmentShopPanel;
+                }
+
+                return null;
+            }
+        }
 
         private void Awake()
         {
@@ -37,6 +57,22 @@ namespace Sunflower.Shop
                 Instance = null;
         }
 
+        private void Update()
+        {
+            if (_targetSlot == null)
+                return;
+
+            GameObject activePanel = ActiveShopPanel;
+
+            if (activePanel == null)
+                return;
+
+            if (IsPointerOverSlot() || IsPointerOverShop())
+                return;
+
+            Close();
+        }
+
         public void Open(Slot slot)
         {
             if (slot == null)
@@ -47,23 +83,20 @@ namespace Sunflower.Shop
 
             _targetSlot = slot;
 
-            _pointerOverSlot = true;
-            _pointerOverShop = false;
+            OpenShopForSlot(slot);
 
-            PositionShop(slot);
-
-            _shopPanel.SetActive(true);
+            PositionShop();
         }
 
         public void Close()
         {
             _targetSlot = null;
 
-            _pointerOverSlot = false;
-            _pointerOverShop = false;
+            if (_stemShopPanel != null)
+                _stemShopPanel.SetActive(false);
 
-            if (_shopPanel != null)
-                _shopPanel.SetActive(false);
+            if (_environmentShopPanel != null)
+                _environmentShopPanel.SetActive(false);
         }
 
         public bool TryInstall(ModuleData moduleData)
@@ -74,7 +107,8 @@ namespace Sunflower.Shop
             if (moduleData == null)
                 return false;
 
-            bool installed = _targetSlot.TryInstall(moduleData);
+            bool installed =
+                _targetSlot.TryInstall(moduleData);
 
             if (!installed)
                 return false;
@@ -84,39 +118,140 @@ namespace Sunflower.Shop
             return true;
         }
 
-        public void SetPointerOverSlot(bool value)
+        private void OpenShopForSlot(Slot slot)
         {
-            _pointerOverSlot = value;
+            if (_stemShopPanel != null)
+                _stemShopPanel.SetActive(false);
 
-            if (!value)
-                TryClose();
+            if (_environmentShopPanel != null)
+                _environmentShopPanel.SetActive(false);
+
+            switch (slot.SlotType)
+            {
+                case SlotType.Stem:
+
+                    if (_stemShopPanel != null)
+                        _stemShopPanel.SetActive(true);
+
+                    break;
+
+                case SlotType.Environment:
+
+                    if (_environmentShopPanel != null)
+                        _environmentShopPanel.SetActive(true);
+
+                    break;
+            }
         }
 
-        public void SetPointerOverShop(bool value)
+        private void PositionShop()
         {
-            _pointerOverShop = value;
+            GameObject activePanel = ActiveShopPanel;
 
-            if (!value)
-                TryClose();
+            if (activePanel == null)
+                return;
+
+            if (_targetSlot == null)
+                return;
+
+            RectTransform panel =
+                activePanel.GetComponent<RectTransform>();
+
+            if (panel == null)
+                return;
+
+            Canvas canvas =
+                activePanel.GetComponentInParent<Canvas>();
+
+            if (canvas == null)
+                return;
+
+            Camera camera = Camera.main;
+
+            if (camera == null)
+                return;
+
+            Vector2 screenPosition =
+                camera.WorldToScreenPoint(
+                    _targetSlot.transform.position
+                );
+
+            RectTransform canvasRect =
+                canvas.GetComponent<RectTransform>();
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRect,
+                screenPosition,
+                canvas.renderMode ==
+                RenderMode.ScreenSpaceOverlay
+                    ? null
+                    : canvas.worldCamera,
+                out Vector2 localPosition
+            );
+
+            panel.localPosition = localPosition;
         }
 
-        private void TryClose()
+        private bool IsPointerOverSlot()
         {
-            if (_pointerOverSlot)
-                return;
+            if (_targetSlot == null)
+                return false;
 
-            if (_pointerOverShop)
-                return;
+            if (Mouse.current == null)
+                return false;
 
-            Close();
+            Camera camera = Camera.main;
+
+            if (camera == null)
+                return false;
+
+            Vector2 mousePosition =
+                camera.ScreenToWorldPoint(
+                    Mouse.current.position.ReadValue()
+                );
+
+            Collider2D collider =
+                _targetSlot.GetComponent<Collider2D>();
+
+            if (collider == null)
+                return false;
+
+            return collider.OverlapPoint(mousePosition);
         }
 
-        private void PositionShop(Slot slot)
+        private bool IsPointerOverShop()
         {
-            if (_shopPanel == null)
-                return;
+            GameObject activePanel = ActiveShopPanel;
 
-            _shopPanel.transform.position = slot.transform.position;
+            if (activePanel == null)
+                return false;
+
+            if (Mouse.current == null)
+                return false;
+
+            RectTransform panel =
+                activePanel.GetComponent<RectTransform>();
+
+            if (panel == null)
+                return false;
+
+            Canvas canvas =
+                activePanel.GetComponentInParent<Canvas>();
+
+            if (canvas == null)
+                return false;
+
+            Camera camera =
+                canvas.renderMode ==
+                RenderMode.ScreenSpaceOverlay
+                    ? null
+                    : canvas.worldCamera;
+
+            return RectTransformUtility.RectangleContainsScreenPoint(
+                panel,
+                Mouse.current.position.ReadValue(),
+                camera
+            );
         }
     }
 }

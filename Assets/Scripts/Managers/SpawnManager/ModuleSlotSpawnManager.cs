@@ -58,7 +58,7 @@ namespace Sunflower.Managers.Spawn
                 for (int i = 0; i < count; i++)
                 {
                     SpawnSlot(
-                        GetRandomSpawnPosition()
+                        GetRandomSpawnPosition(), SlotType.Stem
                     );
                 }
 
@@ -71,7 +71,7 @@ namespace Sunflower.Managers.Spawn
                         new Vector2(
                             _data.EnvSlotX,
                             _currentHeight
-                        )
+                        ), SlotType.Environment
                     );
                 }
 
@@ -105,10 +105,10 @@ namespace Sunflower.Managers.Spawn
             return position;
         }
 
-        private void SpawnSlot(Vector3 position)
+        private void SpawnSlot(Vector3 position, SlotType type)
         {
             GameObject slotObject = Instantiate(
-                _data.SlotPrefab,
+                type == SlotType.Stem ? _data.SlotPrefab : _data.EnvSlotPrefab,
                 position,
                 Quaternion.identity,
                 _slotsManager.transform
