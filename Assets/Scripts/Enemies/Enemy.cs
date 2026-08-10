@@ -111,6 +111,9 @@ namespace Sunflower.Enemies
 
         private void TryAttack()
         {
+
+            
+
             _attackTimer -= Time.deltaTime;
 
             if (_attackTimer > 0f)
@@ -118,7 +121,7 @@ namespace Sunflower.Enemies
 
             _attackTimer = _data.attackInterval;
 
-            _currentTarget.ReceiveAttack(_data.damage, this);
+            _currentTarget.ReceiveAttack(_data.damageModifier, this);
             OnAttackPerformed?.Invoke(_currentTarget);
 
             AfterAttack(_currentTarget);

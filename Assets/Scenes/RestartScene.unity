@@ -874,13 +874,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 502881485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+  needData: {fileID: 11400000, guid: 7328722df99ac1a488990eb20c9e1288, type: 2}
+  startNormalized: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,13 +1274,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 686756373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+  needData: {fileID: 11400000, guid: 3b210832679c6b34a8fbc38606359bcf, type: 2}
+  startNormalized: 0.5
 --- !u!1 &764033744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7011ed0dc1c144e86e8be56e791804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Event.GameEventSystem
-  _eventDefinitions: []
+  _targetNeedSystem: {fileID: 0}
 --- !u!4 &852987351
 Transform:
   m_ObjectHideFlags: 0
@@ -2285,6 +2281,7 @@ GameObject:
   - component: {fileID: 1407607664}
   - component: {fileID: 1407607663}
   - component: {fileID: 1407607662}
+  - component: {fileID: 1407607665}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -2356,6 +2353,22 @@ MonoBehaviour:
   _offset: 2
   _step: 0.05
   _need: {fileID: 686756375}
+--- !u!114 &1407607665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407607660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee144de1f6388e64a8912b7c37cd0ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedSystem
+  needs:
+  - {fileID: 1941137151}
+  - {fileID: 502881487}
+  - {fileID: 686756375}
 --- !u!1 &1481387826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,13 +2750,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1941137149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+  needData: {fileID: 11400000, guid: d0881e2ec89a8104ca9f20992b76c9e4, type: 2}
+  startNormalized: 0.5
 --- !u!1001 &1955174320
 PrefabInstance:
   m_ObjectHideFlags: 0

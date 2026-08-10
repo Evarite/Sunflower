@@ -699,6 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502881486}
   - component: {fileID: 502881487}
+  - component: {fileID: 502881488}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -733,10 +734,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+--- !u!114 &502881488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502881485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
+  needData: {fileID: 11400000, guid: 7328722df99ac1a488990eb20c9e1288, type: 2}
+  startNormalized: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 686756374}
   - component: {fileID: 686756375}
+  - component: {fileID: 686756376}
   m_Layer: 0
   m_Name: Minerals
   m_TagString: Untagged
@@ -1135,10 +1147,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+--- !u!114 &686756376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686756373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
+  needData: {fileID: 11400000, guid: 3b210832679c6b34a8fbc38606359bcf, type: 2}
+  startNormalized: 0.5
 --- !u!1 &907072901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
-  _need: {fileID: 686756375}
+  _need: {fileID: 686756376}
 --- !u!114 &1077100212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,7 +1565,7 @@ MonoBehaviour:
   _fillArea: {fileID: 1576278249}
   _lackColor: {r: 1, g: 0, b: 0, a: 1}
   _normalColor: {r: 0.36078432, g: 0.9607844, b: 0.21568629, a: 1}
-  _need: {fileID: 686756375}
+  _need: {fileID: 686756376}
 --- !u!1 &1118929160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,9 +1911,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.EmptyNeedsController
   _needs:
-  - {fileID: 502881487}
-  - {fileID: 686756375}
-  - {fileID: 1941137151}
+  - {fileID: 502881488}
+  - {fileID: 686756376}
+  - {fileID: 1941137152}
 --- !u!114 &1253559217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407607661}
+  - component: {fileID: 1407607662}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -2170,6 +2193,22 @@ Transform:
   - {fileID: 1253559214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407607662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407607660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee144de1f6388e64a8912b7c37cd0ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedSystem
+  needs:
+  - {fileID: 1941137152}
+  - {fileID: 502881488}
+  - {fileID: 686756376}
 --- !u!1 &1481387826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,7 +2451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
-  _need: {fileID: 502881487}
+  _need: {fileID: 502881488}
 --- !u!114 &1538314431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,7 +2467,7 @@ MonoBehaviour:
   _fillArea: {fileID: 1118929162}
   _lackColor: {r: 1, g: 0, b: 0, a: 1}
   _normalColor: {r: 0.9607844, g: 0.8431373, b: 0.21568629, a: 1}
-  _need: {fileID: 502881487}
+  _need: {fileID: 502881488}
 --- !u!1 &1576278247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287e3f9719528644a04de85eb91332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.NeedUI
-  _need: {fileID: 1941137151}
+  _need: {fileID: 1941137152}
 --- !u!114 &1607723214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2660,7 +2699,7 @@ MonoBehaviour:
   _fillArea: {fileID: 1278152635}
   _lackColor: {r: 1, g: 0, b: 0, a: 1}
   _normalColor: {r: 0.23137255, g: 1, b: 0.94509804, a: 1}
-  _need: {fileID: 1941137151}
+  _need: {fileID: 1941137152}
 --- !u!1 &1716765759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2712,7 @@ GameObject:
   - component: {fileID: 1716765761}
   - component: {fileID: 1716765760}
   - component: {fileID: 1716765763}
+  - component: {fileID: 1716765764}
   m_Layer: 0
   m_Name: Stem
   m_TagString: Untagged
@@ -2693,11 +2733,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.StemTarget
   _priority: 1
-  _resourceDamage: 0.05
+  _resourceDamageMultiplier: 10
   _needs:
-  - {fileID: 1941137151}
-  - {fileID: 502881487}
-  - {fileID: 686756375}
+  - {fileID: 1941137152}
+  - {fileID: 502881488}
+  - {fileID: 686756376}
 --- !u!212 &1716765761
 SpriteRenderer:
   serializedVersion: 3
@@ -2819,6 +2859,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1716765764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716765759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d41b177edf83674e932bd9603a794c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.NeedComponent
+  _needSystem: {fileID: 0}
 --- !u!1 &1807050318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3172,6 +3225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941137150}
   - component: {fileID: 1941137151}
+  - component: {fileID: 1941137152}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -3206,10 +3260,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383b1a19e7f924d46b447c679ffec467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
-  _value: 0.5
-  _lackMaxValue: 0.3
-  _optimalMinValue: 0.7
-  _id: 0
+--- !u!114 &1941137152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941137149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9ee457563d68849af46ac2cc7eecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Needs.Need
+  needData: {fileID: 11400000, guid: d0881e2ec89a8104ca9f20992b76c9e4, type: 2}
+  startNormalized: 0.5
 --- !u!1001 &8686742070006893899
 PrefabInstance:
   m_ObjectHideFlags: 0
