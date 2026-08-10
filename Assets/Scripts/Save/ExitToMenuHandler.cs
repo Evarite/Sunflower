@@ -47,7 +47,8 @@ namespace Sunflower.SaveSystem
                 _eventsSave.GetSaveData(),
                 _slotManager.GetSaveData(),
                 PlayerStateManager.Instance.OwnedSkills,
-                _zoom.Save()
+                _zoom.Save(),
+                PlayerStateManager.Instance.CurrentRun
             );
 
             SaveManager.Instance.SaveGame(data);

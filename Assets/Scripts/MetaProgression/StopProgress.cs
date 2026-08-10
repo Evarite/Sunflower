@@ -14,7 +14,11 @@ namespace Sunflower.MetaProgression
         [SerializeField] private GameObject _stopInfoScreen;
         [SerializeField] private SceneAsset _winScreen;
 
-        private void Awake() => StartCoroutine(Barrier());
+        private void Awake()
+        {
+            StartCoroutine(Barrier());
+            _stopInfoScreen.SetActive(false);
+        }
 
         private IEnumerator Barrier()
         {
@@ -26,7 +30,10 @@ namespace Sunflower.MetaProgression
             if (PlayerStateManager.Instance.CurrentRun == _barriers.MaxHeights.Count - 1)
                 LoadingScreen.LoadScene(_winScreen.name);
             else
+            {
                 PlayerStateManager.Instance.CanIncreaseRun = true;
+                _stopInfoScreen.SetActive(true);
+            }
         }
     }
 }

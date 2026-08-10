@@ -40,5 +40,7 @@ namespace Sunflower.Managers
         }
 
         public void InitializeSkills(List<SkillId> skills) => _ownedSkills.Initialize(skills);
+
+        public void InitializeRunNumber(int num) => _currentRun = num;
     }
 }

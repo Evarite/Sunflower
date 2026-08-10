@@ -53,7 +53,8 @@ namespace Sunflower.SaveSystem
                     new EventsSaveData(),
                     new ModuleSaveData(),
                     new List<SkillId>(),
-                    5f
+                    5f,
+                    0
                 );
 
                 return;
