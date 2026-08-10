@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sunflower.SaveSystem;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.ModuleSlot
@@ -29,34 +30,55 @@ namespace Sunflower.ModuleSlot
             _slots.Remove(slot);
         }
 
-        public Slot GetAvailableSlot(SlotType slotType)
+        public ModuleSaveData GetSaveData(float currentHeight)
         {
+            List<Vector3> positions = new(_slots.Count);
+
             foreach (Slot slot in _slots)
             {
-                if (slot == null)
-                    continue;
-
-                if (slot.SlotType != slotType)
-                    continue;
-
-                if (slot.IsAvailable())
-                    return slot;
+                if (slot != null)
+                    positions.Add(slot.transform.position);
             }
 
-            return null;
+            return new ModuleSaveData(
+                positions,
+                currentHeight
+            );
         }
 
-        public IReadOnlyList<Slot> GetSlots(SlotType slotType)
+        public void Load(
+            ModuleSaveData data,
+            GameObject slotPrefab)
         {
-            List<Slot> result = new();
+            if (data == null)
+                return;
 
-            foreach (Slot slot in _slots)
+            Clear();
+
+            foreach (Vector3 position in data.SlotPositions)
             {
-                if (slot != null && slot.SlotType == slotType)
-                    result.Add(slot);
-            }
+                GameObject slotObject = Instantiate(
+                    slotPrefab,
+                    position,
+                    Quaternion.identity,
+                    transform
+                );
 
-            return result;
+                Slot slot = slotObject.GetComponent<Slot>();
+
+                if (slot == null)
+                {
+                    Debug.LogError(
+                        $"Slot prefab '{slotPrefab.name}' does not contain a {nameof(Slot)} component.",
+                        slotObject
+                    );
+
+                    Destroy(slotObject);
+                    continue;
+                }
+
+                AddSlot(slot);
+            }
         }
 
         public void Clear()

@@ -52,7 +52,8 @@ namespace Sunflower.Managers.Spawn
 
                 for (int i = 0; i < count; i++)
                 {
-                    Vector3 spawnPosition = GetRandomSpawnPosition();
+                    Vector3 spawnPosition =
+                        GetRandomSpawnPosition();
 
                     SpawnSlot(spawnPosition);
                 }
@@ -99,18 +100,34 @@ namespace Sunflower.Managers.Spawn
 
         private void SpawnSlot(Vector3 position)
         {
-            GameObject slot = Instantiate(
+            GameObject slotObject = Instantiate(
                 _data.SlotPrefab,
                 position,
-                Quaternion.identity
+                Quaternion.identity,
+                _slotsManager.transform
             );
+
+            Slot slot = slotObject.GetComponent<Slot>();
+
+            if (slot == null)
+            {
+                Debug.LogError(
+                    $"Slot prefab '{_data.SlotPrefab.name}' does not contain a {nameof(Slot)} component.",
+                    slotObject
+                );
+
+                Destroy(slotObject);
+                return;
+            }
 
             _slotsManager.AddSlot(slot);
         }
 
         public ModuleSaveData GetSaveData()
         {
-            return _slotsManager.GetSaveData(_currentHeight);
+            return _slotsManager.GetSaveData(
+                _currentHeight
+            );
         }
 
         public void Load(ModuleSaveData data)
