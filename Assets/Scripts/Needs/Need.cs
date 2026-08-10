@@ -125,9 +125,7 @@ namespace Sunflower.Needs
                     AddValue(modifier.value);
                     break;
                 case ModifierType.AddCapacity:
-                    AddCapacity(modifier.value);
-                    break;
-
+                case ModifierType.MultiplyCapacity:
                 case ModifierType.AddFillRate:
                 case ModifierType.MultiplyFillRate:
                     AddModifier(modifier, source);
@@ -225,6 +223,7 @@ namespace Sunflower.Needs
             float additive = 0f;
             float multiplicative = 1f;
             float addCapacity = 0f;
+            float multCapacity = 1f;
 
             foreach (ActiveModifier modifier in _modifiers)
             {
@@ -232,6 +231,9 @@ namespace Sunflower.Needs
                 {
                     case ModifierType.AddCapacity:
                         addCapacity += modifier.value;
+                        break;
+                    case ModifierType.MultiplyCapacity:
+                        multCapacity *= modifier.value;
                         break;
 
                     case ModifierType.AddFillRate:
@@ -245,7 +247,8 @@ namespace Sunflower.Needs
             }
 
             FillRate = (BaseFillRate + additive) * multiplicative;
-            MaxValue = BaseCapacity + addCapacity;
+            Debug.Log(multCapacity);
+            MaxValue = (BaseCapacity + addCapacity)*multCapacity;
         }
 
     

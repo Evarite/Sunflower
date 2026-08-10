@@ -7,7 +7,7 @@ namespace Sunflower.Enemies
     public class Enemy : MonoBehaviour
     {
         [SerializeField]
-        private EnemyData _data;
+        protected EnemyData _data;
 
         public EnemyData Data => _data;
 
@@ -22,11 +22,13 @@ namespace Sunflower.Enemies
         public event Action<Enemy> OnProvoked;
         public event Action<ITargetable> OnAttackPerformed;
 
-        private float _attackTimer;
+        protected float _attackTimer;
         private float _despawnTimer;
         private float _retargetTimer;
-        private ITargetable _currentTarget;
+        protected ITargetable _currentTarget;
         private const float RetargetInterval = 0.2f;
+
+        protected void PerformeAttack(ITargetable target) => OnAttackPerformed?.Invoke(target);
 
         private void Awake()
         {
@@ -109,11 +111,8 @@ namespace Sunflower.Enemies
             );
         }
 
-        private void TryAttack()
+        protected virtual void TryAttack()
         {
-
-            
-
             _attackTimer -= Time.deltaTime;
 
             if (_attackTimer > 0f)

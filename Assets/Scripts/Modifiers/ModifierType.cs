@@ -5,6 +5,7 @@ namespace Sunflower.Modifiers
         AddValue,
         AddFillRate,
         MultiplyFillRate,
-        AddCapacity
+        AddCapacity,
+        MultiplyCapacity
     }
 }
