@@ -1,4 +1,5 @@
 ﻿using Sunflower.Modules;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ namespace Sunflower.Shop
     {
         [SerializeField] private ModuleData _moduleData;
         [SerializeField] private Button _button;
+        [SerializeField] private TextMeshProUGUI _costText;
+        [SerializeField] private int _cost;
 
         public ModuleData ModuleData => _moduleData;
 
@@ -19,6 +22,8 @@ namespace Sunflower.Shop
 
             if (_button != null)
                 _button.onClick.AddListener(OnClicked);
+
+            _costText.text = _cost.ToString();
         }
 
         private void OnDestroy()
@@ -32,7 +37,7 @@ namespace Sunflower.Shop
             if (ModuleShopUI.Instance == null)
                 return;
 
-            ModuleShopUI.Instance.TryInstall(_moduleData);
+            ModuleShopUI.Instance.TryInstall(_moduleData, _cost);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Sunflower.Modules;
 using Sunflower.ModuleSlot;
+using Sunflower.Seeds;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -99,8 +100,11 @@ namespace Sunflower.Shop
                 _environmentShopPanel.SetActive(false);
         }
 
-        public bool TryInstall(ModuleData moduleData)
+        public bool TryInstall(ModuleData moduleData, int cost)
         {
+            if (SeedsCounter.Value < cost)
+                return false;
+
             if (_targetSlot == null)
                 return false;
 
@@ -114,6 +118,8 @@ namespace Sunflower.Shop
                 return false;
 
             Close();
+
+            SeedsCounter.Value -= cost;
 
             return true;
         }
