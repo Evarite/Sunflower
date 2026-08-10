@@ -1,4 +1,5 @@
 using Sunflower.Modifiers;
+using Sunflower.Needs;
 using UnityEngine;
 
 namespace Sunflower.Modules
@@ -9,17 +10,10 @@ namespace Sunflower.Modules
     {
         [SerializeField] protected ModuleData _data;
 
-        protected NeedComponent _needComponent;
-
         public ModuleData Data
         {
             get => _data;
             set => _data = value;
-        }
-
-        protected virtual void Awake()
-        {
-            _needComponent = GetComponentInParent<NeedComponent>();
         }
 
         protected virtual void Start()
@@ -29,7 +23,7 @@ namespace Sunflower.Modules
 
         protected void ApplyActiveModifiers()
         {
-            if (_data == null || _needComponent == null)
+            if (_data == null || NeedSystem.Instance == null)
                 return;
 
             if (_data.ActiveModifiers == null)
@@ -38,14 +32,14 @@ namespace Sunflower.Modules
             foreach (ModifierData modifier in _data.ActiveModifiers)
             {
                 if (modifier != null)
-                    _needComponent.ApplyModifier(modifier, this);
+                    NeedSystem.Instance.ApplyModifier(modifier, this);
             }
         }
 
         protected void RemoveModuleModifiers()
         {
-            if (_needComponent != null)
-                _needComponent.RemoveModifiersBySource(this);
+            if (NeedSystem.Instance != null)
+                NeedSystem.Instance.RemoveModifiersBySource(this);
         }
 
         protected virtual void OnDestroy()

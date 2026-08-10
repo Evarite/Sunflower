@@ -5678,9 +5678,6 @@ GameObject:
   m_Component:
   - component: {fileID: 744718082}
   - component: {fileID: 744718081}
-  - component: {fileID: 744718083}
-  - component: {fileID: 744718084}
-  - component: {fileID: 744718085}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -5723,51 +5720,6 @@ Transform:
   - {fileID: 398701289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &744718083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744718080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 0
-  _step: 1
-  _need: {fileID: 2064235101}
---- !u!114 &744718084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744718080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 0
-  _step: 1
-  _need: {fileID: 544166555}
---- !u!114 &744718085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744718080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
-  _offset: 0
-  _step: 1
-  _need: {fileID: 553884161}
 --- !u!1 &764033744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5801,6 +5753,7 @@ Transform:
   - {fileID: 1603027799}
   - {fileID: 852987351}
   - {fileID: 36096}
+  - {fileID: 1893575939}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787856180
@@ -13755,6 +13708,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1893575938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1893575939}
+  - component: {fileID: 1893575940}
+  m_Layer: 0
+  m_Name: Enemies Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1893575939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893575938}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 764033745}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1893575940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893575938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83962fe539cfa0845a6149b5015d4f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Enemies.EnemiesSpawnManager
+  _growth: {fileID: 943639400}
+  _enemies:
+    _collection:
+    - _value: {fileID: 6722148804365895954, guid: dee428f97b8c8404090e046ec69733a6, type: 3}
+      _probability: 20
+    - _value: {fileID: 7005481627475043410, guid: d119a1cf5dcb62d4fad9f509d8a080d1, type: 3}
+      _probability: 0
+    - _value: {fileID: 6060953728082126174, guid: 46c4394f83e6be5468f2f36aaca5c984, type: 3}
+      _probability: 0
+    _emptyProbability: 50000
+  _spawnDistance: 10
 --- !u!1 &1915438451
 GameObject:
   m_ObjectHideFlags: 0

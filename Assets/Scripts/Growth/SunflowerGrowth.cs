@@ -32,7 +32,10 @@ namespace Sunflower.Growth
         private void Update()
         {
             if (_stop.HasEnemiesInView())
+            {
+                Speed = 0;
                 return;
+            }
 
             float modifier = 1f;
             foreach (var mod in Modifiers)

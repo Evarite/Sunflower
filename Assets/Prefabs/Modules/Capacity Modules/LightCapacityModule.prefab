@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7646057146602699135}
   - component: {fileID: 804523494367369736}
   - component: {fileID: 1130110391822612770}
+  - component: {fileID: -2579813716189590187}
+  - component: {fileID: 5981634312438789437}
   m_Layer: 0
   m_Name: LightCapacityModule
   m_TagString: Untagged
@@ -106,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d41b177edf83674e932bd9603a794c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.NeedComponent
-  _needSystem: {fileID: 0}
 --- !u!114 &1130110391822612770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +121,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleRuntime
   _data: {fileID: 11400000, guid: b69255b819230da4a8e61524d8e600a9, type: 2}
+--- !u!61 &-2579813716189590187
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139876184035061252}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.99, y: 5.86}
+    newSize: {x: 4.99, y: 5.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.99, y: 5.86}
+  m_EdgeRadius: 0
+--- !u!114 &5981634312438789437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139876184035061252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66de6d522c640f429cc84396f270fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.ModuleTarget
+  _priority: 10
+  _maxHp: 10
