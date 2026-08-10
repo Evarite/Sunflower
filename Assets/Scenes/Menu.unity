@@ -983,7 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716f64b092b7c024da7b0766b78f36df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SaveSystem.EnterGame
-  _scene: {fileID: 102900000, guid: 3321dd0b449e28648a90e2aab1014db0, type: 3}
+  _scene: {fileID: 102900000, guid: f424f11451dfa5b45a6f8da317f3de85, type: 3}
 --- !u!1 &1349651536
 GameObject:
   m_ObjectHideFlags: 0

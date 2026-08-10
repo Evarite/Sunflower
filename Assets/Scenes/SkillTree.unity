@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e550027fc0897fe49a61d4c3f8763b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.GameStartButton
-  _targetScene: {fileID: 102900000, guid: 3321dd0b449e28648a90e2aab1014db0, type: 3}
+  _targetScene: {fileID: 102900000, guid: f424f11451dfa5b45a6f8da317f3de85, type: 3}
 --- !u!114 &540311200
 MonoBehaviour:
   m_ObjectHideFlags: 0
