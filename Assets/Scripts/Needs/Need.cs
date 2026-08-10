@@ -10,7 +10,7 @@ namespace Sunflower.Needs
         [SerializeField] private NeedData needData;
 
         [Tooltip("Начальное значение в процентах от максимального")]
-        [SerializeField, Range(0f, 1f)] private float startNormalized = 1f;
+        [SerializeField, Range(0f, 1f)] private float startNormalized = 0.5f;
 
 
         private List<ActiveModifier> _modifiers;

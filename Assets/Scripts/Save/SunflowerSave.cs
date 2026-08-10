@@ -17,7 +17,7 @@ namespace Sunflower.SaveSystem
             List<float> needsValues = new();
 
             foreach (var need in _needs)
-                needsValues.Add(need.Value);
+                needsValues.Add(need.CurrentValue);
 
             return new SunflowerSaveData(
                 _growth.Height,
@@ -34,7 +34,7 @@ namespace Sunflower.SaveSystem
 
             for (int i = 0; i < _needs.Count && i < data.NeedsValues.Count; i++)
             {
-                _needs[i].Value = data.NeedsValues[i];
+                _needs[i].CurrentValue = data.NeedsValues[i];
             }
         }
     }

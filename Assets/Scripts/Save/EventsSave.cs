@@ -33,8 +33,8 @@ namespace Sunflower.SaveSystem
 
             foreach (var eventData in data.Events)
             {
-                GameEventDefinition definition =
-                    _gameEventSystem.GetEventDefinition(eventData.EventId);
+                GameEventData definition =
+                    _gameEventSystem.GetEventData(eventData.EventId);
 
                 if (definition == null)
                 {
