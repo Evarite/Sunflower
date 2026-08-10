@@ -1026,6 +1026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665b8ac735c1f564d9d09fb2dff47553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.MineralsSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: ae46f6b1fab5d93468d83aaa70b0661a, type: 2}
 --- !u!114 &272348395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,6 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e84858dc196f9f40b52f7e570cc4388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.LightSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: d88be3d7e4cb8fd40986ce274c0ff5a5, type: 2}
 --- !u!114 &272348396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,6 +1054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3ef843b74924a4480854fc33871adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.WaterSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: a88cef5dd1762c94b888b6bc25bea58c, type: 2}
 --- !u!114 &272348397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58b6996486977b43b968f6826770ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.BaseSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: 147a050e7d4e54e4187049b89481cef9, type: 2}
 --- !u!4 &272348398
 Transform:
   m_ObjectHideFlags: 0
@@ -2415,7 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a56f4f058071804d99424e383ba6f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Growth.SunflowerGrowth
-  _growthSpeed: 0.8
+  _growthSpeed: 0.2
   _scaleRatio: 0.1
   _stop: {fileID: 519420034}
 --- !u!212 &943639401
@@ -3731,6 +3739,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 764033745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1596021066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596021068}
+  - component: {fileID: 1596021067}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1596021067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7011ed0dc1c144e86e8be56e791804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Event.GameEventSystem
+  _targetNeedSystem: {fileID: 744718081}
+--- !u!4 &1596021068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596021066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.39275, y: 1.20732, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603027798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4413,3 +4466,4 @@ SceneRoots:
   - {fileID: 764033745}
   - {fileID: 1176103528}
   - {fileID: 744718082}
+  - {fileID: 1596021068}
