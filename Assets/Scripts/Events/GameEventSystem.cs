@@ -7,17 +7,36 @@ namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
+        [SerializeField] private NeedSystem _targetNeedSystem;
 
-        public event System.Action<GameEventDefinition> EventStarted;
-        public event System.Action<GameEventDefinition> EventEnded;
+        public event System.Action<GameEventData> OnEventStarted;
+        public event System.Action<GameEventData> OnEventEnded;
 
         private class ActiveGameEvent
         {
-            public GameEventDefinition Data;
+            public GameEventData Data;
             public float remainingTime;
         }
 
         private readonly List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+
+        public void StartEvent(GameEventData eventData)
+        {
+            if (eventData == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = eventData,
+                remainingTime = eventData.duration
+            });
+
+            foreach (ModifierData modifierData in eventData.modifiers)
+            {
+                _targetNeedSystem.ApplyModifier(modifierData,this);
+            }
+            OnEventStarted?.Invoke(eventData);
+        }
 
         private void Update()
         {
@@ -32,51 +51,14 @@ namespace Sunflower.Event
 
                 if (activeEvent.remainingTime <= 0f)
                 {
-                    GameEventDefinition Data = activeEvent.Data;
+                    GameEventData Data = activeEvent.Data;
 
                     _activeEvents.RemoveAt(i);
 
-                    EventEnded?.Invoke(Data);
+                    OnEventEnded?.Invoke(Data);
                 }
             }
         }
 
-        public void StartEvent(GameEventDefinition Data)
-        {
-            if (Data == null)
-                return;
-
-            _activeEvents.Add(new ActiveGameEvent
-            {
-                Data = Data,
-                remainingTime = Data.duration
-            });
-
-            EventStarted?.Invoke(Data);
-        }
-
-        public float ApplyModifiers(NeedId need, float baseValue)
-        {
-            float additive = 0f;
-            float multiplier = 1f;
-
-            foreach (ActiveGameEvent activeEvent in _activeEvents)
-            {
-                foreach (StatModifier modifier in activeEvent.Data.modifiers)
-                {
-                    if (modifier.need != need)
-                        continue;
-
-                    if (modifier.type == ModifierType.AddValue)
-                        additive += modifier.value;
-                    else
-                        multiplier *= modifier.value;
-                }
-            }
-
-            multiplier = Mathf.Max(0f, multiplier);
-
-            return (baseValue + additive) * multiplier;
-        }
     }
 }

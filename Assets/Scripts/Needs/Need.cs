@@ -13,7 +13,7 @@ namespace Sunflower.Needs
         [SerializeField, Range(0f, 1f)] private float startNormalized = 1f;
 
 
-        private List<ModifierData> _modifiers;
+        private List<ActiveModifier> _modifiers;
         private float _currentValue;
         private float _maxValue;
 
@@ -63,7 +63,7 @@ namespace Sunflower.Needs
 
         private void Awake()
         {
-            _modifiers = new List<ModifierData>();
+            _modifiers = new List<ActiveModifier>();
 
             _maxValue = needData.baseCapacity;
             CurrentValue = _maxValue * startNormalized;
@@ -177,7 +177,7 @@ namespace Sunflower.Needs
                 _modifiers.RemoveAll(m => m.source == source && m.type == modifier.type);
             }
 
-            _modifiers.Add(new ModifierData
+            _modifiers.Add(new ActiveModifier
             {
                 type = modifier.type,
                 value = modifier.value,
@@ -192,7 +192,7 @@ namespace Sunflower.Needs
 
             for (int i = _modifiers.Count - 1; i >= 0; i--)
             {
-                ModifierData modifier = _modifiers[i];
+                ActiveModifier modifier = _modifiers[i];
 
                 if (!ReferenceEquals(modifier.source, null) && modifier.source == null)
                 {
@@ -225,7 +225,7 @@ namespace Sunflower.Needs
             float multiplicative = 1f;
             float addCapacity = 0f;
 
-            foreach (ModifierData modifier in _modifiers)
+            foreach (ActiveModifier modifier in _modifiers)
             {
                 switch (modifier.type)
                 {
