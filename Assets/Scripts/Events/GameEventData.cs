@@ -10,14 +10,14 @@ namespace Sunflower.Event
         [Header("ID")]
         [SerializeField] private string _eventId;
 
-        [Header("�������� ������")]
+        [Header("Имя ивента")]
         public string eventName;
 
-        [Header("������� ������ ����� (������)")]
+        [Header("Длительность ивента (в секундах)")]
         public float duration = 10f;
 
         [SerializeField]
-        [Header("������ ������������� � ��������")]
+        [Header("Список модификаторов ивента")]
         public List<ModifierData> modifiers = new List<ModifierData>();
   
 
