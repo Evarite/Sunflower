@@ -7,6 +7,19 @@ namespace Sunflower.Needs
     [AddComponentMenu("Sunflower/Needs/Need System")]
     public class NeedSystem : MonoBehaviour
     {
+        public static NeedSystem Instance { get; private set; }
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
+
         [SerializeField] private List<Need> needs;
         public IReadOnlyList<Need> Needs => needs;
 
