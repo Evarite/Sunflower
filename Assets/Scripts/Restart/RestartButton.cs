@@ -29,6 +29,9 @@ namespace Sunflower.Restart
             SeedsCounter.Value = points;
             EvoPointsCounter.Value += PlayerStateManager.Instance.PointsEarned;
 
+            if (PlayerStateManager.Instance.CanIncreaseRun)
+                PlayerStateManager.Instance.IncreaseRun();
+
             LoadingScreen.LoadScene("SkillTree");
         }
     }

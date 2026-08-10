@@ -43,6 +43,8 @@ namespace Sunflower.SaveSystem
 
             _zoom.Load(data.CameraSize);
 
+            PlayerStateManager.Instance.InitializeRunNumber(data.CurrentRun);
+
             SaveManager.Instance.HasLoadedGame = true;
         }
     }

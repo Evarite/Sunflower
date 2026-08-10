@@ -11,14 +11,14 @@ namespace Sunflower.Needs
 
         private List<Need> _emptyNeeds = new();
 
-        public IReadOnlyList<Need> EmptyNeeds { get => _emptyNeeds; }
+        public IReadOnlyList<Need> EmptyNeeds => _emptyNeeds;
 
         public event System.Action OnEmptyAdded;
         public event System.Action OnEmptyRemoved;
 
         private void OnEnable()
         {
-            foreach (var need in _needs)
+            foreach (Need need in _needs)
             {
                 need.OnValueChanged += OnValueChanged;
                 need.OnNeedEmpty += OnEmpty;
@@ -27,7 +27,7 @@ namespace Sunflower.Needs
 
         private void OnDisable()
         {
-            foreach (var need in _needs)
+            foreach (Need need in _needs)
             {
                 need.OnValueChanged -= OnValueChanged;
                 need.OnNeedEmpty -= OnEmpty;
@@ -36,16 +36,16 @@ namespace Sunflower.Needs
 
         private void OnEmpty(Need sender)
         {
-            if (!_emptyNeeds.Contains(sender))
-            {
-                _emptyNeeds.Add(sender);
-                OnEmptyAdded?.Invoke();
-            }
+            if (_emptyNeeds.Contains(sender))
+                return;
+
+            _emptyNeeds.Add(sender);
+            OnEmptyAdded?.Invoke();
         }
 
         private void OnValueChanged(Need sender, float value)
         {
-            if (_emptyNeeds.Contains(sender) && value != 0f)
+            if (_emptyNeeds.Contains(sender) && value > 0f)
             {
                 _emptyNeeds.Remove(sender);
                 OnEmptyRemoved?.Invoke();
