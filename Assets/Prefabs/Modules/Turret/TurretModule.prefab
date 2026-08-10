@@ -146,7 +146,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.81, y: 11.81}
+    oldSize: {x: 5.905, y: 5.905}
     newSize: {x: 4.99, y: 5.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -183,3 +183,4 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: dc44919f4f12720499e870440109a3ee, type: 2}
   _shootCooldown: 1
   _bulletPrefab: {fileID: 2875999952804482512, guid: e03b2c12afe099f48bc34ba9705cf39b, type: 3}
+  _maxDistance: 800
