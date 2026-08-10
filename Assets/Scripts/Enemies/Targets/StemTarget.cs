@@ -13,30 +13,21 @@ namespace Sunflower.Enemies
         [SerializeField] private float _resourceDamageMultiplier = 10f;
         [SerializeField] private List<Need> _needs = new List<Need>();
 
-        private NeedComponent _needComponent;
-
         public float Priority => _priority;
         public bool IsAlive => _needs.Count > 0;
         public Transform TargetTransform => transform;
 
-        private void Awake()
-        {
-            _needComponent = GetComponent<NeedComponent>();
-        }
-
         public void ReceiveAttack(ModifierData damageModifier, Enemy attacker)
         {
-            if (_needComponent == null)
+            if (NeedSystem.Instance == null)
                 return;
             if (damageModifier == null)
                 return;
 
-            
+            NeedSystem.Instance.ApplyModifier(damageModifier, attacker);
 
-            _needComponent.ApplyModifier(
-                ModifierData.CreateMultipliedModifierData(damageModifier,_resourceDamageMultiplier),
-                this
-             );
+
+
         }
     }
 }

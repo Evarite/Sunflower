@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FlyDamageModifier
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modifiers.ModifierData
   need: {fileID: 0}
-  type: 0
+  type: 1
   value: -10
   duration: -1
