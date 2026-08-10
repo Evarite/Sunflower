@@ -199,6 +199,7 @@ MonoBehaviour:
   _sunflowerSave: {fileID: 36098}
   _eventsSave: {fileID: 36097}
   _slotManager: {fileID: 1603027800}
+  _zoom: {fileID: 519420033}
 --- !u!114 &36100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   _sunflowerSave: {fileID: 36098}
   _eventsSave: {fileID: 36097}
   _slotManager: {fileID: 1603027800}
+  _zoom: {fileID: 519420033}
 --- !u!1 &27960119
 GameObject:
   m_ObjectHideFlags: 0
