@@ -1,4 +1,5 @@
-﻿using Sunflower.Input;
+﻿using Sunflower.CameraSystem;
+using Sunflower.Input;
 using Sunflower.Loading;
 using Sunflower.Managers;
 using Sunflower.Managers.Spawn;
@@ -17,6 +18,7 @@ namespace Sunflower.SaveSystem
         [SerializeField] private SunflowerSave _sunflowerSave;
         [SerializeField] private EventsSave _eventsSave;
         [SerializeField] private ModuleSlotSpawnManager _slotManager;
+        [SerializeField] private CameraZoomOut _zoom;
 
         private ExitToMenu _exit;
 
@@ -44,7 +46,8 @@ namespace Sunflower.SaveSystem
                 ),
                 _eventsSave.GetSaveData(),
                 _slotManager.GetSaveData(),
-                PlayerStateManager.Instance.OwnedSkills
+                PlayerStateManager.Instance.OwnedSkills,
+                _zoom.Save()
             );
 
             SaveManager.Instance.SaveGame(data);

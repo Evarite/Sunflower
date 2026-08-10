@@ -1,4 +1,5 @@
-﻿using Sunflower.Managers;
+﻿using Sunflower.CameraSystem;
+using Sunflower.Managers;
 using Sunflower.Managers.Spawn;
 using Sunflower.SaveSystem.Data;
 using Sunflower.Seeds;
@@ -13,6 +14,7 @@ namespace Sunflower.SaveSystem
         [SerializeField] private SunflowerSave _sunflowerSave;
         [SerializeField] private EventsSave _eventsSave;
         [SerializeField] private ModuleSlotSpawnManager _slotManager;
+        [SerializeField] private CameraZoomOut _zoom;
 
         private void Start()
         {
@@ -38,6 +40,8 @@ namespace Sunflower.SaveSystem
             EvoPointsCounter.Value = data.WealthSaveData.EvoPoints;
 
             PlayerStateManager.Instance.InitializeSkills(data.OwnedSkills);
+
+            _zoom.Load(data.CameraSize);
 
             SaveManager.Instance.HasLoadedGame = true;
         }
