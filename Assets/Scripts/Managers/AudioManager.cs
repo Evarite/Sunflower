@@ -20,6 +20,8 @@ namespace Sunflower.Managers
             Instance = this;
 
             _source = GetComponent<AudioSource>();
+
+            DontDestroyOnLoad(gameObject);
         }
 
         public void PlaySound(AudioClip clip) => _source.PlayOneShot(clip);

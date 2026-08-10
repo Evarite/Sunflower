@@ -1,4 +1,5 @@
-﻿using Sunflower.Modules;
+﻿using Sunflower.Managers;
+using Sunflower.Modules;
 using Sunflower.ModuleSlot;
 using Sunflower.Seeds;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Sunflower.Shop
         [Header("Shop Panels")]
         [SerializeField] private GameObject _stemShopPanel;
         [SerializeField] private GameObject _environmentShopPanel;
+
+        [SerializeField] private AudioClip _success;
+        [SerializeField] private AudioClip _denied;
 
         private Slot _targetSlot;
 
@@ -103,7 +107,10 @@ namespace Sunflower.Shop
         public bool TryInstall(ModuleData moduleData, int cost)
         {
             if (SeedsCounter.Value < cost)
+            {
+                AudioManager.Instance.PlaySound(_denied);
                 return false;
+            }
 
             if (_targetSlot == null)
                 return false;
@@ -120,6 +127,8 @@ namespace Sunflower.Shop
             Close();
 
             SeedsCounter.Value -= cost;
+
+            AudioManager.Instance.PlaySound(_success);
 
             return true;
         }

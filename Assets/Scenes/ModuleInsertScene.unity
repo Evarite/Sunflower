@@ -564,7 +564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Shop.ModuleShopItemUI
   _moduleData: {fileID: 11400000, guid: b69255b819230da4a8e61524d8e600a9, type: 2}
   _button: {fileID: 126288929}
-  _cost: 0
+  _costText: {fileID: 2014723794}
+  _cost: 20
 --- !u!114 &126288929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,7 +1783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Shop.ModuleShopItemUI
   _moduleData: {fileID: 11400000, guid: f774eed80f3d50743bf1c3c595907f32, type: 2}
   _button: {fileID: 728404382}
-  _cost: 0
+  _costText: {fileID: 885614985}
+  _cost: 50
 --- !u!114 &728404382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,7 +1956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Shop.ModuleShopItemUI
   _moduleData: {fileID: 11400000, guid: 56684223b7437364b878eb058604defe, type: 2}
   _button: {fileID: 835530313}
-  _cost: 0
+  _costText: {fileID: 989507039}
+  _cost: 35
 --- !u!114 &835530313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2982,6 +2985,148 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24719befde317e4f8bcfc10caca9692, type: 3}
+--- !u!1 &1176103525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176103528}
+  - component: {fileID: 1176103527}
+  - component: {fileID: 1176103526}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1176103526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176103525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec8e6260144dd74c8177089ece8b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Managers.AudioManager
+--- !u!82 &1176103527
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176103525}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1176103528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176103525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180296226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,6 +3179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Shop.ModuleShopUI
   _stemShopPanel: {fileID: 966073908}
   _environmentShopPanel: {fileID: 209428953}
+  _success: {fileID: 8300000, guid: 4da6f1fb01b5f074eadc2fc037b2e196, type: 3}
+  _denied: {fileID: 8300000, guid: 2acda6c2282502d41847cc0ff689b968, type: 3}
 --- !u!1 &1240653179
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,7 +4406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Shop.ModuleShopItemUI
   _moduleData: {fileID: 11400000, guid: afd66f10c0b44d443ba9851487717589, type: 2}
   _button: {fileID: 2108221735}
-  _cost: 50
+  _costText: {fileID: 136360819}
+  _cost: 20
 --- !u!114 &2108221735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4319,3 +4467,4 @@ SceneRoots:
   - {fileID: 2005027111}
   - {fileID: 1773737451}
   - {fileID: 764033745}
+  - {fileID: 1176103528}
