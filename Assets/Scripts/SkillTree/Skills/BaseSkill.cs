@@ -15,9 +15,6 @@ namespace Sunflower.SkillTree.Skills
 
         private void Start() => Ability();
 
-        protected override void Ability()
-        {
-            _needs.ApplyModifier(_modifierData);
-        }
+        protected override void Ability() => _needs.ApplyModifier(_modifierData);
     }
 }

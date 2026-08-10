@@ -1050,6 +1050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3ef843b74924a4480854fc33871adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.WaterSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 0}
 --- !u!114 &272348397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,8 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58b6996486977b43b968f6826770ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.BaseSkill
-  _needs: {fileID: 0}
-  _modifierData: {fileID: 0}
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: 147a050e7d4e54e4187049b89481cef9, type: 2}
 --- !u!4 &272348398
 Transform:
   m_ObjectHideFlags: 0
