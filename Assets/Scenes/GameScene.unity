@@ -13756,13 +13756,14 @@ MonoBehaviour:
   _enemies:
     _collection:
     - _value: {fileID: 6722148804365895954, guid: dee428f97b8c8404090e046ec69733a6, type: 3}
-      _probability: 20
+      _probability: 30
     - _value: {fileID: 7005481627475043410, guid: d119a1cf5dcb62d4fad9f509d8a080d1, type: 3}
       _probability: 0
     - _value: {fileID: 6060953728082126174, guid: 46c4394f83e6be5468f2f36aaca5c984, type: 3}
       _probability: 0
     _emptyProbability: 50000
   _spawnDistance: 10
+  _startSpawnHeight: 10
 --- !u!1 &1915438451
 GameObject:
   m_ObjectHideFlags: 0
