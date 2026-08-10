@@ -10,7 +10,8 @@ namespace Sunflower.Needs.Timer
     {
         [Header("Lose Time")]
         [SerializeField] private float _loseTime = 24f;
-        [Tooltip("С каждым дополнительным пустым ресурсом оставшееся время делится на это значение.")]
+
+        [Tooltip("С каждым дополнительным пустым ресурсом время делится на это значение.")]
         [SerializeField] private float _additiveDivisor = 2f;
 
         private EmptyNeedsController _controller;
@@ -22,7 +23,10 @@ namespace Sunflower.Needs.Timer
         public event System.Action OnTimerEnded;
         public event System.Action<int> OnTimerUpdated;
 
-        private void Awake() => _controller = GetComponent<EmptyNeedsController>();
+        private void Awake()
+        {
+            _controller = GetComponent<EmptyNeedsController>();
+        }
 
         private void OnEnable()
         {
@@ -38,56 +42,68 @@ namespace Sunflower.Needs.Timer
 
         private IEnumerator Timer()
         {
-            _time = _loseTime;
-            int displayedTime = (int)_time;
-
-            OnTimerUpdated?.Invoke(displayedTime);
-
-            //Ждём секунду, чтобы значение не изменилось мгновенно
-            yield return new WaitForSeconds(1f);
-
-            while (_time > 0f)
+            while (_controller.EmptyNeeds.Count > 0)
             {
                 _time -= Time.deltaTime;
 
                 if (_time <= 0f)
-                    break;
-
-                if (_time <= displayedTime)
                 {
-                    displayedTime = (int)_time;
-                    OnTimerUpdated?.Invoke(displayedTime);
+                    _time = 0f;
+                    OnTimerUpdated?.Invoke(0);
+
+                    LoseManager.Lose();
+                    yield break;
                 }
-                else
-                    displayedTime = (int)_time;
+
+                OnTimerUpdated?.Invoke(Mathf.CeilToInt(_time));
 
                 yield return null;
             }
 
-            LoseManager.Lose();
+            _timerCoroutine = null;
+            OnTimerEnded?.Invoke();
         }
 
         private void EmptyAdded()
         {
-            //Если 1, то просто запустить таймер
-            if (_controller.EmptyNeeds.Count > 1)
-                _time /= _additiveDivisor;
-            else
+            int emptyCount = _controller.EmptyNeeds.Count;
+
+            _time = _loseTime /
+                    Mathf.Pow(_additiveDivisor, emptyCount - 1);
+
+            if (_timerCoroutine == null)
             {
                 _timerCoroutine = StartCoroutine(Timer());
                 OnTimerStarted?.Invoke();
             }
+
+            OnTimerUpdated?.Invoke(Mathf.CeilToInt(_time));
         }
 
         private void EmptyRemoved()
         {
-            if (_controller.EmptyNeeds.Count > 0)
-                _time *= _additiveDivisor;
-            else if (_timerCoroutine != null)
+            int emptyCount = _controller.EmptyNeeds.Count;
+
+            if (emptyCount <= 0)
             {
-                StopCoroutine(_timerCoroutine);
+                if (_timerCoroutine != null)
+                {
+                    StopCoroutine(_timerCoroutine);
+                    _timerCoroutine = null;
+                }
+
+                _time = 0f;
+
                 OnTimerEnded?.Invoke();
+                OnTimerUpdated?.Invoke(0);
+
+                return;
             }
+
+            _time = _loseTime /
+                    Mathf.Pow(_additiveDivisor, emptyCount - 1);
+
+            OnTimerUpdated?.Invoke(Mathf.CeilToInt(_time));
         }
     }
 }

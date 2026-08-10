@@ -1,17 +1,16 @@
+using Sunflower.Modifiers;
 using System;
 using System.Collections.Generic;
-using Sunflower.Modifiers;
 using UnityEngine;
 
 namespace Sunflower.Needs
 {
-    public class Need: MonoBehaviour
+    public class Need : MonoBehaviour
     {
         [SerializeField] private NeedData needData;
 
         [Tooltip("Начальное значение в процентах от максимального")]
         [SerializeField, Range(0f, 1f)] private float startNormalized = 0.5f;
-
 
         private List<ActiveModifier> _modifiers;
         private float _currentValue;
@@ -22,19 +21,21 @@ namespace Sunflower.Needs
         public event Action<Need> OnNeedEmpty;
 
         public NeedData NeedData => needData;
+
         public float CurrentValue
         {
-            get
-            {
-                return _currentValue;
-            }
+            get => _currentValue;
             set
             {
-                float clamped = Mathf.Clamp(value, 0, MaxValue);
-                if (Mathf.Approximately(clamped, _currentValue)) return;
+                float clamped = Mathf.Clamp(value, 0f, MaxValue);
+
+                if (Mathf.Approximately(clamped, _currentValue))
+                    return;
 
                 bool wasEmpty = Mathf.Approximately(_currentValue, 0f);
+
                 _currentValue = clamped;
+
                 OnValueChanged?.Invoke(this, _currentValue);
 
                 if (!wasEmpty && Mathf.Approximately(_currentValue, 0f))
@@ -47,10 +48,11 @@ namespace Sunflower.Needs
             get => _maxValue;
             set
             {
-                if (value < 0f || Mathf.Approximately(_maxValue, value)) 
+                if (value < 0f || Mathf.Approximately(_maxValue, value))
                     return;
 
                 _maxValue = value;
+
                 OnMaxValueChanged?.Invoke(_maxValue);
 
                 CurrentValue = _currentValue;
@@ -59,6 +61,7 @@ namespace Sunflower.Needs
 
         public float BaseFillRate => needData != null ? needData.baseFillRate : 0f;
         public float BaseCapacity => needData != null ? needData.baseCapacity : 0f;
+
         public float FillRate { get; private set; }
 
         private void Awake()
@@ -68,14 +71,13 @@ namespace Sunflower.Needs
             _maxValue = needData.baseCapacity;
             CurrentValue = _maxValue * startNormalized;
 
-            
             RecalculateStats();
         }
 
         private void Start()
         {
             OnMaxValueChanged?.Invoke(_maxValue);
-            OnValueChanged?.Invoke(this,_maxValue);
+            OnValueChanged?.Invoke(this, _currentValue);
         }
 
         private void Update()
@@ -86,20 +88,25 @@ namespace Sunflower.Needs
             if (UpdateModifierDurations(Time.deltaTime))
                 RecalculateStats();
 
-            AddValue(FillRate * Time.deltaTime);
+            // An empty need stays empty until it is explicitly restored.
+            if (!Mathf.Approximately(CurrentValue, 0f))
+                AddValue(FillRate * Time.deltaTime);
         }
-
 
         public void AddValue(float amount)
         {
-            float newValue = Mathf.Clamp(CurrentValue + amount, 0f, MaxValue);
+            float newValue = Mathf.Clamp(
+                CurrentValue + amount,
+                0f,
+                MaxValue
+            );
 
             if (Mathf.Approximately(newValue, CurrentValue))
                 return;
 
-
             CurrentValue = newValue;
         }
+
         public void AddCapacity(float amount)
         {
             MaxValue += amount;
@@ -113,7 +120,9 @@ namespace Sunflower.Needs
             ApplyModifier(modifier, modifier.source);
         }
 
-        public void ApplyModifier(ModifierData modifier, UnityEngine.Object source)
+        public void ApplyModifier(
+            ModifierData modifier,
+            UnityEngine.Object source)
         {
             if (modifier == null || !IsTargetNeed(modifier.need))
                 return;
@@ -123,6 +132,7 @@ namespace Sunflower.Needs
                 case ModifierType.AddValue:
                     AddValue(modifier.value);
                     break;
+
                 case ModifierType.AddCapacity:
                     AddCapacity(modifier.value);
                     break;
@@ -165,16 +175,18 @@ namespace Sunflower.Needs
 
         private bool IsTargetNeed(NeedData target)
         {
-            // Если target == null, можно считать модификатор глобальным
-            // и применять его ко всем потребностям.
             return target == null || target == needData;
         }
 
-        private void AddModifier(ModifierData modifier, UnityEngine.Object source)
+        private void AddModifier(
+            ModifierData modifier,
+            UnityEngine.Object source)
         {
             if (source != null)
             {
-                _modifiers.RemoveAll(m => m.source == source && m.type == modifier.type);
+                _modifiers.RemoveAll(
+                    m => m.source == source && m.type == modifier.type
+                );
             }
 
             _modifiers.Add(new ActiveModifier
@@ -194,18 +206,17 @@ namespace Sunflower.Needs
             {
                 ActiveModifier modifier = _modifiers[i];
 
-                if (!ReferenceEquals(modifier.source, null) && modifier.source == null)
+                if (!ReferenceEquals(modifier.source, null) &&
+                    modifier.source == null)
                 {
                     _modifiers.RemoveAt(i);
                     changed = true;
                     continue;
                 }
 
-                // <= 0 считаем бесконечным модификатором.
+                // <= 0 means infinite duration.
                 if (modifier.duration <= 0f)
-                {
                     continue;
-                }
 
                 modifier.duration -= deltaTime;
 
@@ -246,7 +257,5 @@ namespace Sunflower.Needs
             FillRate = (BaseFillRate + additive) * multiplicative;
             MaxValue = BaseCapacity + addCapacity;
         }
-
-    
     }
 }

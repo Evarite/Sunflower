@@ -5678,6 +5678,8 @@ GameObject:
   m_Component:
   - component: {fileID: 744718082}
   - component: {fileID: 744718081}
+  - component: {fileID: 744718083}
+  - component: {fileID: 744718084}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -5720,6 +5722,36 @@ Transform:
   - {fileID: 398701289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744718083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744718080}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
+  _offset: 0
+  _step: 0.05
+  _need: {fileID: 2064235101}
+--- !u!114 &744718084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744718080}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc23c31914dcc9b4ab4ca341b0e67e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Debugging.TimerDebugUtility
+  _offset: 0
+  _step: 0.05
+  _need: {fileID: 544166555}
 --- !u!1 &764033744
 GameObject:
   m_ObjectHideFlags: 0
@@ -9528,6 +9560,65 @@ MonoBehaviour:
   _environmentShopPanel: {fileID: 209428953}
   _success: {fileID: 8300000, guid: 4da6f1fb01b5f074eadc2fc037b2e196, type: 3}
   _denied: {fileID: 8300000, guid: 2acda6c2282502d41847cc0ff689b968, type: 3}
+--- !u!1 &1196640196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196640197}
+  - component: {fileID: 1196640199}
+  - component: {fileID: 1196640198}
+  m_Layer: 0
+  m_Name: Lose Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1196640197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196640196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196640198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196640196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424097906b363504c8577c1f617ac0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.MetaProgression.Death
+  _loseScreen: {fileID: 1262513259}
+  _growth: {fileID: 943639400}
+--- !u!114 &1196640199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196640196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d389249bb8e8a6498d9eda5bb278025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Managers.LoseManager
 --- !u!1 &1230227911
 GameObject:
   m_ObjectHideFlags: 0
@@ -15439,3 +15530,4 @@ SceneRoots:
   - {fileID: 1277683923}
   - {fileID: 2129980569}
   - {fileID: 249672654}
+  - {fileID: 1196640197}
