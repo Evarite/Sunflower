@@ -1,29 +1,37 @@
-using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.ModuleSlot;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.Modules
 {
-    [CreateAssetMenu(fileName = "New Module", menuName = "Sunflower/Modules/Module Data")]
+    [CreateAssetMenu(
+        fileName = "New Module",
+        menuName = "Sunflower/Modules/Module Data"
+    )]
     public class ModuleData : ScriptableObject
     {
+        [SerializeField] private string _id;
         [SerializeField] private string _moduleName;
-        [SerializeField] private SlotType _allowedSlot;     // Stem / Environment
+
+        [SerializeField] private SlotType _allowedSlot;
+
         [SerializeField] private int _cost;
         [SerializeField] private float _maxHealth;
+
         [SerializeField] private GameObject _alivePrefab;
         [SerializeField] private GameObject _deadPrefab;
 
         [SerializeField, Header("Модификаторы что применяются пока модуль на растении")]
-        private List<ModifierData> activeModifiers = new List<ModifierData>();
+        private List<ModifierData> _activeModifiers = new();
 
-        public SlotType AllowedSlot { get => _allowedSlot; }
-        public int Cost { get => _cost; }
-        public float MaxHealth { get => _maxHealth; }
-        public GameObject AlivePrefab { get => _alivePrefab; }
-        public GameObject DeadPrefab { get => _deadPrefab; }
-        public string ModuleName { get => _moduleName; set => _moduleName = value; }
-        public List<ModifierData> ActiveModifiers { get => activeModifiers; set => activeModifiers = value; }
+        public string Id => _id;
+        public string ModuleName => _moduleName;
+        public SlotType AllowedSlot => _allowedSlot;
+        public int Cost => _cost;
+        public float MaxHealth => _maxHealth;
+        public GameObject AlivePrefab => _alivePrefab;
+        public GameObject DeadPrefab => _deadPrefab;
+        public List<ModifierData> ActiveModifiers => _activeModifiers;
     }
 }
