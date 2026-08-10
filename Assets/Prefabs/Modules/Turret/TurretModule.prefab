@@ -182,4 +182,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.TurretModule
   _data: {fileID: 11400000, guid: dc44919f4f12720499e870440109a3ee, type: 2}
   _shootCooldown: 1
-  _bulletPrefab: {fileID: 0}
+  _bulletPrefab: {fileID: 2875999952804482512, guid: e03b2c12afe099f48bc34ba9705cf39b, type: 3}
