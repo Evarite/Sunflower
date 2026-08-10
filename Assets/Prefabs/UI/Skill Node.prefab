@@ -114,21 +114,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341845334827032509}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf956516038bd994a98b82029d750ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.SkillNode
   _data:
     _id: 0
-    _skillPicture: {fileID: 6790694145713858578, guid: f4342ec8cd76d904d8f74bda2327da9e, type: 3}
     _name: "\u041D\u043E\u0432\u044B\u0439 \u041D\u0430\u0432\u044B\u043A"
     _description: "\u041D\u043E\u0432\u043E\u0435 \u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
     _cost: 0
   _name: {fileID: 1615732324171284855}
   _description: {fileID: 4680746399612223736}
   _cost: {fileID: 6708117256665304973}
-  _skillPicture: {fileID: 6713933862710816209}
 --- !u!114 &2346538492820017914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6790694145713858578, guid: f4342ec8cd76d904d8f74bda2327da9e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

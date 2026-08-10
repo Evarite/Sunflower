@@ -50,10 +50,7 @@ namespace Sunflower.Managers.Spawn
                           targetHeight
                 );
 
-                int count = Random.Range(
-                    _data.MinSpawnCount,
-                    _data.MaxSpawnCount
-                );
+                int count = Random.Range(_data.MinSpawnCount, _data.MaxSpawnCount);
 
                 for (int i = 0; i < count; i++)
                 {
