@@ -51,6 +51,8 @@ namespace Sunflower.ModuleSlot
 
         public bool TryInstall(ModuleData moduleData)
         {
+            Debug.Log("Trying to install");
+
             if (!CanInstall(moduleData))
                 return false;
 
