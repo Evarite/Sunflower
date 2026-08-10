@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3099739719619271087}
   - component: {fileID: 4490660397433602334}
-  - component: {fileID: 5412085499123429883}
   m_Layer: 0
   m_Name: Dead Module
   m_TagString: Untagged
@@ -93,16 +92,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &5412085499123429883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60050707732133789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d41b177edf83674e932bd9603a794c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.NeedComponent
-  _needSystem: {fileID: 0}
