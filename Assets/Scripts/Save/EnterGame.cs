@@ -1,5 +1,4 @@
 using Sunflower.Loading;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +8,6 @@ namespace Sunflower.SaveSystem
     [AddComponentMenu("Sunflower/Save/Enter Game")]
     public class EnterGame : MonoBehaviour
     {
-        [SerializeField] private SceneAsset _scene;
-
         private Button _button;
 
         private void Awake() => _button = GetComponent<Button>();
@@ -23,7 +20,7 @@ namespace Sunflower.SaveSystem
         {
             SaveManager.Instance.LoadGame();
 
-            LoadingScreen.LoadScene(_scene.name);
+            LoadingScreen.LoadScene("GameScene");
         }
     }
 }
