@@ -2,22 +2,47 @@ using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Sunflower.Event
 {
     public class GameEventSystem : MonoBehaviour
     {
+        [SerializeField] private List<GameEventData> _eventDatas = new();
 
-        public event System.Action<GameEventDefinition> EventStarted;
-        public event System.Action<GameEventDefinition> EventEnded;
+        [SerializeField] private NeedSystem _targetNeedSystem;
+
+        public event System.Action<GameEventData> OnEventStarted;
+        public event System.Action<GameEventData> OnEventEnded;
 
         private class ActiveGameEvent
         {
-            public GameEventDefinition Data;
-            public float remainingTime;
+            private GameEventData _data;
+            private float _remainingTime;
+
+            public GameEventData Data { get => _data; set => _data = value; }
+            public float RemainingTime { get => _remainingTime; set => _remainingTime = value; }
         }
 
-        private readonly List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+        private List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+
+        public void StartEvent(GameEventData eventData)
+        {
+            if (eventData == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = eventData,
+                RemainingTime = eventData.duration
+            });
+
+            foreach (ModifierData modifierData in eventData.modifiers)
+            {
+                _targetNeedSystem.ApplyModifier(modifierData, this);
+            }
+            OnEventStarted?.Invoke(eventData);
+        }
 
         private void Update()
         {
@@ -28,46 +53,34 @@ namespace Sunflower.Event
                 if (activeEvent.Data.duration <= 0f)
                     continue;
 
-                activeEvent.remainingTime -= Time.deltaTime;
+                activeEvent.RemainingTime -= Time.deltaTime;
 
-                if (activeEvent.remainingTime <= 0f)
+                if (activeEvent.RemainingTime <= 0f)
                 {
-                    GameEventDefinition Data = activeEvent.Data;
+                    GameEventData Data = activeEvent.Data;
 
                     _activeEvents.RemoveAt(i);
 
-                    EventEnded?.Invoke(Data);
+                    OnEventEnded?.Invoke(Data);
                 }
             }
         }
 
-        public void StartEvent(GameEventDefinition Data)
-        {
-            if (Data == null)
-                return;
+        
 
-            _activeEvents.Add(new ActiveGameEvent
-            {
-                Data = Data,
-                remainingTime = Data.duration
-            });
-
-            EventStarted?.Invoke(Data);
-        }
-
-        public float ApplyModifiers(NeedId need, float baseValue)
+        public float ApplyModifiers(NeedData need, float baseValue)
         {
             float additive = 0f;
             float multiplier = 1f;
 
             foreach (ActiveGameEvent activeEvent in _activeEvents)
             {
-                foreach (StatModifier modifier in activeEvent.Data.modifiers)
+                foreach (ModifierData modifier in activeEvent.Data.modifiers)
                 {
                     if (modifier.need != need)
                         continue;
 
-                    if (modifier.type == ModifierType.Add)
+                    if (modifier.type == ModifierType.AddValue)
                         additive += modifier.value;
                     else
                         multiplier *= modifier.value;
@@ -77,6 +90,27 @@ namespace Sunflower.Event
             multiplier = Mathf.Max(0f, multiplier);
 
             return (baseValue + additive) * multiplier;
+        }
+
+        public GameEventData GetEventData(string eventId)
+        {
+            return _eventDatas.Find(
+                x => x.EventId == eventId
+            );
+        }
+
+        public void RestoreEvent(GameEventData data, float remainingTime)
+        {
+            if (data == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = data,
+                RemainingTime = remainingTime
+            });
+
+            OnEventStarted?.Invoke(data);
         }
     }
 }

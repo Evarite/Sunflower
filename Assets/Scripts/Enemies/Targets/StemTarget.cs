@@ -30,7 +30,7 @@ namespace Sunflower.Enemies
                 if (need == null)
                     continue;
 
-                need.Value -= loss;
+                need.CurrentValue -= loss;
             }
         }
     }

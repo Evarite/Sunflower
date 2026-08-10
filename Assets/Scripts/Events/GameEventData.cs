@@ -5,8 +5,11 @@ using Sunflower.Modifiers;
 namespace Sunflower.Event
 {
     [CreateAssetMenu(fileName = "GameEvent", menuName = "Sunflower/Game Event")]
-    public class GameEventDefinition : ScriptableObject
+    public class GameEventData : ScriptableObject
     {
+        [Header("ID")]
+        [SerializeField] private string _eventId;
+
         [Header("Название ивента")]
         public string eventName;
 
@@ -15,7 +18,9 @@ namespace Sunflower.Event
 
         [SerializeField]
         [Header("Список модификаторов к ресурсам")]
-        public List<StatModifier> modifiers = new List<StatModifier>();
+        public List<ModifierData> modifiers = new List<ModifierData>();
+
+        public string EventId => _eventId;
     }
 }
 

@@ -13,10 +13,20 @@ namespace Sunflower.Needs
 
         private void Awake() => _slider = GetComponent<Slider>();
 
-        private void OnEnable() => _need.OnValueChanged += OnValueChanged;
+        private void OnEnable()
+        {
+            _need.OnValueChanged += OnValueChanged;
+            _need.OnMaxValueChanged += OnMaxValueChanged;
+        }
 
-        private void OnDisable() => _need.OnValueChanged -= OnValueChanged;
+        private void OnDisable()
+        {
+            _need.OnValueChanged -= OnValueChanged;
+            _need.OnMaxValueChanged -= OnMaxValueChanged;
+        }
 
         private void OnValueChanged(Need sender, float value) => _slider.value = value;
+
+        private void OnMaxValueChanged(float maxValue) => _slider.maxValue = maxValue;
     }
 }
