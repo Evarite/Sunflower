@@ -13,8 +13,6 @@ namespace Sunflower.SkillTree.Skills
 
         private void Awake() => Id = SkillId.BaseSkill;
 
-        private void Start() => Ability();
-
         protected override void Ability() => _needs.ApplyModifier(_modifierData);
     }
 }

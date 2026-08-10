@@ -1,6 +1,5 @@
 ﻿using Sunflower.ModuleSlot;
 using Sunflower.SkillTree.Data;
-using System;
 using UnityEngine;
 
 namespace Sunflower.SkillTree.Skills
@@ -23,7 +22,6 @@ namespace Sunflower.SkillTree.Skills
             Id = SkillId.PrunerSkill;
         }
 
-        [Obsolete("Use Prune instead.")]
         protected override void Ability()
         {
 
