@@ -1,5 +1,4 @@
 ﻿using Sunflower.Loading;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +8,6 @@ namespace Sunflower.SkillTree
     [AddComponentMenu("Sunflower/Skill Tree/Game Start Button")]
     public class GameStartButton : MonoBehaviour
     {
-        [SerializeField] private SceneAsset _targetScene;
-
         private Button _button;
 
         private void Awake() => _button = GetComponent<Button>();
@@ -19,6 +16,6 @@ namespace Sunflower.SkillTree
 
         private void OnDisable() => _button.onClick.RemoveListener(StartGame);
 
-        private void StartGame() => LoadingScreen.LoadScene(_targetScene.name);
+        private void StartGame() => LoadingScreen.LoadScene("GameScene");
     }
 }
