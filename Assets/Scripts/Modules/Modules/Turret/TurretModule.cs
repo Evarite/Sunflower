@@ -8,6 +8,7 @@ namespace Sunflower.Modules
     {
         [SerializeField] private float _shootCooldown = 1f;
         [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private float _maxDistance = 6f;
 
         protected override void Start() => StartCoroutine(Shoot());
 
@@ -35,7 +36,7 @@ namespace Sunflower.Modules
                 }
             }
 
-            return nearestEnemy;
+            return minDist <= _maxDistance ? nearestEnemy : null;
         }
 
         private Quaternion GetRotation(Vector3 direction)
@@ -56,9 +57,9 @@ namespace Sunflower.Modules
                     Quaternion rotation = GetRotation(direction);
 
                     Instantiate(_bulletPrefab, transform.position, rotation);
-                }
 
-                ApplyActiveModifiers();
+                    ApplyActiveModifiers();
+                }
 
                 yield return new WaitForSeconds(_shootCooldown);
             }
