@@ -13,8 +13,12 @@ namespace Sunflower.Managers
 
         private int _pointsEarned;
 
+        private int _currentRun = 0;
+
         public List<SkillId> OwnedSkills { get => _ownedSkills.PurchasedSkills; }
         public int PointsEarned { get => _pointsEarned; set => _pointsEarned = value; }
+        public int CurrentRun => _currentRun;
+        public bool CanIncreaseRun { get; set; } = false;
 
         private void Awake()
         {
@@ -29,6 +33,14 @@ namespace Sunflower.Managers
             DontDestroyOnLoad(gameObject);
         }
 
+        public void IncreaseRun()
+        {
+            _currentRun++;
+            CanIncreaseRun = false;
+        }
+
         public void InitializeSkills(List<SkillId> skills) => _ownedSkills.Initialize(skills);
+
+        public void InitializeRunNumber(int num) => _currentRun = num;
     }
 }

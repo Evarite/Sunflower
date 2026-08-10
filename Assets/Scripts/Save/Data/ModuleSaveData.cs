@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sunflower.SaveSystem
+namespace Sunflower.SaveSystem.Data
 {
     [Serializable]
     public class ModuleSaveData
     {
-        [SerializeField] private List<Vector3> _slotPositions = new();
+        [SerializeField] private List<ModuleSlotSaveData> _slots = new();
         [SerializeField] private float _currentHeight;
 
-        public List<Vector3> SlotPositions => _slotPositions;
+        public IReadOnlyList<ModuleSlotSaveData> Slots => _slots;
         public float CurrentHeight => _currentHeight;
 
         public ModuleSaveData()
@@ -18,10 +18,10 @@ namespace Sunflower.SaveSystem
         }
 
         public ModuleSaveData(
-            List<Vector3> slotPositions,
+            List<ModuleSlotSaveData> slots,
             float currentHeight)
         {
-            _slotPositions = slotPositions;
+            _slots = slots;
             _currentHeight = currentHeight;
         }
     }
