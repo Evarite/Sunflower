@@ -9,6 +9,8 @@ namespace Sunflower.Growth
         [SerializeField] private float _growthSpeed = 1f;
         [SerializeField] private float _scaleRatio = 0.1f;
 
+        [SerializeField] private StopOnEnemy _stop;
+
         private List<float> _modifiers = new();
 
         private float _height = 0f;
@@ -29,6 +31,9 @@ namespace Sunflower.Growth
 
         private void Update()
         {
+            if (_stop.HasEnemiesInView())
+                return;
+
             float modifier = 1f;
             foreach (var mod in Modifiers)
                 modifier *= mod;
