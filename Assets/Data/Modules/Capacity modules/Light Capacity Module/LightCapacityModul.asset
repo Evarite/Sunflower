@@ -19,4 +19,5 @@ MonoBehaviour:
   _maxHealth: 200
   _alivePrefab: {fileID: 6139876184035061252, guid: e0e0d37d817c2884f8c3ec549f18b2ed, type: 3}
   _deadPrefab: {fileID: 60050707732133789, guid: 2c6f2b0b18242224ebbb4376df355e6f, type: 3}
-  _activeModifiers: []
+  _activeModifiers:
+  - {fileID: 11400000, guid: 84ec0ab9e2bea1a47acd633bb179208a, type: 2}

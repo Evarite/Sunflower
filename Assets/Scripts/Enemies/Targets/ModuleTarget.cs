@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Sunflower.Modifiers;
+using System;
 using UnityEngine;
 
 namespace Sunflower.Enemies
 {
-    [RequireComponent (typeof (BoxCollider2D) )]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class ModuleTarget : MonoBehaviour, ITargetable
     {
         [SerializeField] private float _priority = 10f;

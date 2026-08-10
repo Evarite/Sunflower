@@ -1,5 +1,5 @@
+using Assets.Scripts.Enemies;
 using System;
-using Sunflower.Enemies;
 using UnityEngine;
 
 namespace Sunflower.Enemies
@@ -55,7 +55,7 @@ namespace Sunflower.Enemies
 
             if (IsProvoked)
                 return;
-            
+
             _despawnTimer -= Time.deltaTime;
 
             if (_despawnTimer <= 0f)
@@ -112,7 +112,7 @@ namespace Sunflower.Enemies
         private void TryAttack()
         {
 
-            
+
 
             _attackTimer -= Time.deltaTime;
 
@@ -166,6 +166,7 @@ namespace Sunflower.Enemies
 
         protected void Die()
         {
+            EnemiesSpawnManager.Instance.ActiveEnemies.Remove(gameObject);
             OnDied?.Invoke(this);
             Destroy(gameObject);
         }
