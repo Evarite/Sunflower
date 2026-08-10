@@ -18,32 +18,6 @@ namespace Sunflower.Modules
             NeedSystem.Instance.ApplyModifier(modifier, moduleRuntime);
         }
 
-        public void ApplyModifiers(List<ModifierData> modifiers, UnityEngine.Object source)
-        {
-
-            if (_needSystem == null)
-                return;
-
-            foreach (ModifierData modifier in modifiers)
-            {
-                _needSystem.ApplyModifier(modifier, source);
-            }
-        }
-
-
-        public void ApplyModifiers(List<ModifierData> modifiers, UnityEngine.Object source)
-        {
-
-            if (_needSystem == null)
-                return;
-
-            foreach (ModifierData modifier in modifiers)
-            {
-                _needSystem.ApplyModifier(modifier, source);
-            }
-        }
-
-
         public void RemoveModifiersBySource(ModuleRuntime moduleRuntime)
         {
             if (NeedSystem.Instance == null)
