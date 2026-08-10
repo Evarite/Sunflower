@@ -12,13 +12,18 @@ namespace Assets.Scripts.Enemies
 
         [SerializeField] private float _spawnDistance = 10f;
 
+        [SerializeField] private float _startSpawnHeight = 10f;
+
         private void Update()
         {
+            if (_growth.Height < _startSpawnHeight)
+                return;
+
             var enemy = _enemies.GetRandomItem();
             if (enemy == null)
                 return;
 
-            Vector2 spawn = new Vector2(Random.Range(-1, 1), Random.Range(0, 1));
+            Vector2 spawn = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f));
             spawn = spawn.normalized * _spawnDistance;
 
             Instantiate(enemy, new Vector2(0, _growth.Height) + spawn, Quaternion.identity);
