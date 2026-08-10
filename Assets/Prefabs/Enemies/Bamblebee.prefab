@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1868869812647889287}
   - component: {fileID: 5813204962691099221}
   - component: {fileID: 8957051703544517685}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Bamblebee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
