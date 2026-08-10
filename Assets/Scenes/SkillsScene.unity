@@ -1026,6 +1026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665b8ac735c1f564d9d09fb2dff47553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.MineralsSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: ae46f6b1fab5d93468d83aaa70b0661a, type: 2}
 --- !u!114 &272348395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,6 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e84858dc196f9f40b52f7e570cc4388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.LightSkill
+  _needs: {fileID: 744718081}
+  _modifierData: {fileID: 11400000, guid: d88be3d7e4cb8fd40986ce274c0ff5a5, type: 2}
 --- !u!114 &272348396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.SkillTree.Skills.WaterSkill
   _needs: {fileID: 744718081}
-  _modifierData: {fileID: 0}
+  _modifierData: {fileID: 11400000, guid: a88cef5dd1762c94b888b6bc25bea58c, type: 2}
 --- !u!114 &272348397
 MonoBehaviour:
   m_ObjectHideFlags: 0
