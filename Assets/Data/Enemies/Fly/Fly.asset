@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Enemies.AgressiveEnemyData
   enemyName: Fly
   maxHp: 10
-  damage: 1
+  damageModifier: {fileID: 11400000, guid: f33946729bb4f244f9bf03c85c4b7973, type: 2}
   attackInterval: 1
   detectionRadius: 20
   attackRange: 1.2

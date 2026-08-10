@@ -92,6 +92,7 @@ namespace Sunflower.Needs
 
         public void AddValue(float amount)
         {
+            
             float newValue = Mathf.Clamp(CurrentValue + amount, 0f, MaxValue);
 
             if (Mathf.Approximately(newValue, CurrentValue))
