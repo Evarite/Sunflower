@@ -9,11 +9,13 @@ namespace Sunflower.ModuleSlot
         [SerializeField] private float _minHeight;
         [SerializeField] private float _maxHeight;
 
-        public SlotType SlotType { get => _slotType; }
+        public SlotType SlotType => _slotType;
         public float MinHeight => _minHeight;
         public float MaxHeight => _maxHeight;
-        public bool IsOccupied { get; set; }
-        public ModuleRuntime InstalledModule { get; set; }
+
+        public ModuleRuntime InstalledModule { get; private set; }
+
+        public bool IsOccupied => InstalledModule != null;
 
         public void Initialize(float minHeight, float maxHeight)
         {
@@ -21,6 +23,27 @@ namespace Sunflower.ModuleSlot
             _maxHeight = maxHeight;
         }
 
-        public bool IsAvailable() => !IsOccupied;
+        public bool IsAvailable()
+        {
+            return InstalledModule == null;
+        }
+
+        public void Install(ModuleRuntime module)
+        {
+            if (module == null)
+                return;
+
+            if (IsOccupied)
+                return;
+
+            InstalledModule = module;
+        }
+
+        public ModuleRuntime RemoveModule()
+        {
+            ModuleRuntime module = InstalledModule;
+            InstalledModule = null;
+            return module;
+        }
     }
 }
