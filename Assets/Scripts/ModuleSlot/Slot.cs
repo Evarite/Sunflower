@@ -16,9 +16,12 @@ namespace Sunflower.ModuleSlot
 
         public ModuleRuntime InstalledModule { get; private set; }
 
-        public bool IsOccupied => InstalledModule != null;
+        public bool IsOccupied =>
+            InstalledModule != null;
 
-        public void Initialize(float minHeight, float maxHeight)
+        public void Initialize(
+            float minHeight,
+            float maxHeight)
         {
             _minHeight = minHeight;
             _maxHeight = maxHeight;
@@ -65,7 +68,7 @@ namespace Sunflower.ModuleSlot
             {
                 Debug.LogError(
                     $"Module prefab '{moduleData.AlivePrefab.name}' " +
-                    $"does not contain a {nameof(ModuleRuntime)} component.",
+                    $"does not contain a {nameof(ModuleRuntime)}.",
                     moduleObject
                 );
 
@@ -74,6 +77,7 @@ namespace Sunflower.ModuleSlot
             }
 
             moduleRuntime.Data = moduleData;
+
             InstalledModule = moduleRuntime;
 
             return true;
@@ -85,6 +89,7 @@ namespace Sunflower.ModuleSlot
                 return null;
 
             ModuleRuntime module = InstalledModule;
+
             InstalledModule = null;
 
             Destroy(module.gameObject);

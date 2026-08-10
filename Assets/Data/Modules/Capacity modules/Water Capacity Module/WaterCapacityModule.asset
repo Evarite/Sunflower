@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfe765fc41a73344b7b71aafac78e57, type: 3}
   m_Name: WaterCapacityModule
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleData
+  _id: water
   _moduleName: Water Capacity Module
   _allowedSlot: 0
   _cost: 200
   _maxHealth: 200
   _alivePrefab: {fileID: 0}
   _deadPrefab: {fileID: 0}
-  activeModifiers:
-  - {fileID: 11400000, guid: fe4199687053d9f4abd26e618aa8a878, type: 2}
+  _activeModifiers: []

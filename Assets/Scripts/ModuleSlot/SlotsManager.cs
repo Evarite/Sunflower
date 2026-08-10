@@ -1,4 +1,5 @@
-﻿using Sunflower.SaveSystem;
+﻿using Sunflower.Modules;
+using Sunflower.SaveSystem.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Sunflower.ModuleSlot
     [AddComponentMenu("Sunflower/Module Slot/Slots Manager")]
     public class SlotsManager : MonoBehaviour
     {
+        [SerializeField] private ModuleDatabase _moduleDatabase;
+
         private readonly List<Slot> _slots = new();
 
         public IReadOnlyList<Slot> AllSlots => _slots;
@@ -32,16 +35,32 @@ namespace Sunflower.ModuleSlot
 
         public ModuleSaveData GetSaveData(float currentHeight)
         {
-            List<Vector3> positions = new(_slots.Count);
+            List<ModuleSlotSaveData> slots =
+                new(_slots.Count);
 
             foreach (Slot slot in _slots)
             {
-                if (slot != null)
-                    positions.Add(slot.transform.position);
+                if (slot == null)
+                    continue;
+
+                string moduleId = null;
+
+                if (slot.InstalledModule != null &&
+                    slot.InstalledModule.Data != null)
+                {
+                    moduleId = slot.InstalledModule.Data.Id;
+                }
+
+                slots.Add(
+                    new ModuleSlotSaveData(
+                        slot.transform.position,
+                        moduleId
+                    )
+                );
             }
 
             return new ModuleSaveData(
-                positions,
+                slots,
                 currentHeight
             );
         }
@@ -55,11 +74,14 @@ namespace Sunflower.ModuleSlot
 
             Clear();
 
-            foreach (Vector3 position in data.SlotPositions)
+            foreach (ModuleSlotSaveData slotData in data.Slots)
             {
+                if (slotData == null)
+                    continue;
+
                 GameObject slotObject = Instantiate(
                     slotPrefab,
-                    position,
+                    slotData.Position,
                     Quaternion.identity,
                     transform
                 );
@@ -69,7 +91,8 @@ namespace Sunflower.ModuleSlot
                 if (slot == null)
                 {
                     Debug.LogError(
-                        $"Slot prefab '{slotPrefab.name}' does not contain a {nameof(Slot)} component.",
+                        $"Slot prefab '{slotPrefab.name}' " +
+                        $"does not contain a {nameof(Slot)} component.",
                         slotObject
                     );
 
@@ -78,6 +101,33 @@ namespace Sunflower.ModuleSlot
                 }
 
                 AddSlot(slot);
+
+                if (string.IsNullOrEmpty(slotData.ModuleId))
+                    continue;
+
+                ModuleData module =
+                    _moduleDatabase.GetById(
+                        slotData.ModuleId
+                    );
+
+                if (module == null)
+                {
+                    Debug.LogError(
+                        $"Could not find module with ID " +
+                        $"'{slotData.ModuleId}'."
+                    );
+
+                    continue;
+                }
+
+                if (!slot.TryInstall(module))
+                {
+                    Debug.LogError(
+                        $"Failed to install module " +
+                        $"'{module.ModuleName}' " +
+                        $"into loaded slot."
+                    );
+                }
             }
         }
 

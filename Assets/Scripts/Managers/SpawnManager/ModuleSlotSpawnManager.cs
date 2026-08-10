@@ -1,5 +1,5 @@
 using Sunflower.ModuleSlot;
-using Sunflower.SaveSystem;
+using Sunflower.SaveSystem.Data;
 using System.Collections;
 using UnityEngine;
 
@@ -20,8 +20,11 @@ namespace Sunflower.Managers.Spawn
 
         private void Awake()
         {
-            _minSpawnValue = -_data.SpawnDistanceMagnitude;
-            _maxSpawnValue = _data.SpawnDistanceMagnitude;
+            _minSpawnValue =
+                -_data.SpawnDistanceMagnitude;
+
+            _maxSpawnValue =
+                _data.SpawnDistanceMagnitude;
         }
 
         private void OnEnable()
@@ -39,10 +42,12 @@ namespace Sunflower.Managers.Spawn
             while (true)
             {
                 float targetHeight =
-                    _currentHeight + _data.SpawnInterval;
+                    _currentHeight +
+                    _data.SpawnInterval;
 
                 yield return new WaitUntil(
-                    () => _data.SunflowerGrowth.Height >= targetHeight
+                    () => _data.SunflowerGrowth.Height >=
+                          targetHeight
                 );
 
                 int count = Random.Range(
@@ -52,13 +57,13 @@ namespace Sunflower.Managers.Spawn
 
                 for (int i = 0; i < count; i++)
                 {
-                    Vector3 spawnPosition =
-                        GetRandomSpawnPosition();
-
-                    SpawnSlot(spawnPosition);
+                    SpawnSlot(
+                        GetRandomSpawnPosition()
+                    );
                 }
 
-                float randomValue = Random.Range(0f, 1f);
+                float randomValue =
+                    Random.Range(0f, 1f);
 
                 if (randomValue <= _data.EnvSlotChance)
                 {
@@ -70,7 +75,8 @@ namespace Sunflower.Managers.Spawn
                     );
                 }
 
-                _currentHeight += _data.SpawnInterval;
+                _currentHeight +=
+                    _data.SpawnInterval;
             }
         }
 
@@ -86,7 +92,8 @@ namespace Sunflower.Managers.Spawn
                 _maxSpawnValue
             );
 
-            Vector3 position = new Vector2(x, y);
+            Vector3 position =
+                new Vector2(x, y);
 
             position = Vector3.ClampMagnitude(
                 position,
@@ -107,12 +114,14 @@ namespace Sunflower.Managers.Spawn
                 _slotsManager.transform
             );
 
-            Slot slot = slotObject.GetComponent<Slot>();
+            Slot slot =
+                slotObject.GetComponent<Slot>();
 
             if (slot == null)
             {
                 Debug.LogError(
-                    $"Slot prefab '{_data.SlotPrefab.name}' does not contain a {nameof(Slot)} component.",
+                    $"Slot prefab '{_data.SlotPrefab.name}' " +
+                    $"does not contain a {nameof(Slot)} component.",
                     slotObject
                 );
 
@@ -135,7 +144,8 @@ namespace Sunflower.Managers.Spawn
             if (data == null)
                 return;
 
-            _currentHeight = data.CurrentHeight;
+            _currentHeight =
+                data.CurrentHeight;
 
             _slotsManager.Load(
                 data,

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfe765fc41a73344b7b71aafac78e57, type: 3}
   m_Name: LightCapacityModul
   m_EditorClassIdentifier: Assembly-CSharp::Sunflower.Modules.ModuleData
+  _id: light
   _moduleName: Light Capacity Module
   _allowedSlot: 0
   _cost: 200
   _maxHealth: 200
   _alivePrefab: {fileID: 0}
   _deadPrefab: {fileID: 0}
-  activeModifiers:
-  - {fileID: 11400000, guid: 84ec0ab9e2bea1a47acd633bb179208a, type: 2}
+  _activeModifiers: []
