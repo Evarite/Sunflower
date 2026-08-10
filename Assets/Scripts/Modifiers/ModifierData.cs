@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Sunflower.Modifiers
 {
-   public class ModifierData: ScriptableObject
+    [CreateAssetMenu(fileName = "New Modifier", menuName = "Sunflower/Modifiers/Modifier Data")]
+    public class ModifierData: ScriptableObject
    {
         public NeedData need;
         public ModifierType type;
