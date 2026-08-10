@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sunflower.SkillTree
 {
@@ -12,6 +13,7 @@ namespace Sunflower.SkillTree
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private TextMeshProUGUI _cost;
+        [SerializeField] private Image _skillPicture;
 
         public SkillNodeData Data { get => _data; set => _data = value; }
 
@@ -26,6 +28,7 @@ namespace Sunflower.SkillTree
             _name.text = _data.Name;
             _description.text = _data.Description;
             _cost.text = _data.Cost.ToString();
+            _skillPicture.sprite = _data.SkillPicture;
         }
     }
 }

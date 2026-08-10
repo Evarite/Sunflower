@@ -1,67 +1,129 @@
 using Sunflower.ModuleSlot;
+using Sunflower.SaveSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.Managers.Spawn
 {
     [AddComponentMenu("Sunflower/Modules/Slot Spawn Manager")]
-    public class SlotManager : MonoBehaviour
+    public class ModuleSlotSpawnManager : MonoBehaviour
     {
         [SerializeField] private SpawnManagerData _data;
+        [SerializeField] private SlotsManager _slotsManager;
 
-
-
-        private float _currentHeight = 0f;
+        private float _currentHeight;
 
         private float _minSpawnValue;
         private float _maxSpawnValue;
 
-        public IReadOnlyList<Slot> AllSlots => _data.AllSlots;
+        public float CurrentHeight => _currentHeight;
 
         private void Awake()
         {
             _minSpawnValue = -_data.SpawnDistanceMagnitude;
-            _minSpawnValue = _data.SpawnDistanceMagnitude;
+            _maxSpawnValue = _data.SpawnDistanceMagnitude;
         }
 
-        private void OnEnable() => StartCoroutine(SpawnSlots());
+        private void OnEnable()
+        {
+            StartCoroutine(SpawnSlots());
+        }
 
-        private void OnDisable() => StopAllCoroutines();
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
 
         private IEnumerator SpawnSlots()
         {
             while (true)
             {
-                float targetHeight = _currentHeight + _data.SpawnInterval;
+                float targetHeight =
+                    _currentHeight + _data.SpawnInterval;
 
-                yield return new WaitUntil(() => _data.SunflowerGrowth.Height >= targetHeight);
+                yield return new WaitUntil(
+                    () => _data.SunflowerGrowth.Height >= targetHeight
+                );
 
-                Debug.Log("Something worked");
-
-                int count = Random.Range(_data.MinSpawnCount, _data.MaxSpawnCount);
+                int count = Random.Range(
+                    _data.MinSpawnCount,
+                    _data.MaxSpawnCount
+                );
 
                 for (int i = 0; i < count; i++)
                 {
-                    float x = Random.Range(_minSpawnValue, _maxSpawnValue);
-                    float y = Random.Range(_minSpawnValue, _maxSpawnValue);
+                    Vector3 spawnPosition = GetRandomSpawnPosition();
 
-                    Vector3 spawnPos = new Vector2(x, y);
-                    spawnPos = Vector3.ClampMagnitude(spawnPos, _data.SpawnDistanceMagnitude);
-                    spawnPos.y += _currentHeight;
-
-                    Instantiate(_data.SlotPrefab, spawnPos, Quaternion.identity);
+                    SpawnSlot(spawnPosition);
                 }
 
-                float randVal = Random.Range(0f, 1f);
-                if (randVal <= _data.EnvSlotChance)
+                float randomValue = Random.Range(0f, 1f);
+
+                if (randomValue <= _data.EnvSlotChance)
                 {
-                    Instantiate(_data.EnvSlotPrefab, new Vector2(_data.EnvSlotX, _currentHeight),
-                        Quaternion.identity);
+                    SpawnSlot(
+                        new Vector2(
+                            _data.EnvSlotX,
+                            _currentHeight
+                        )
+                    );
                 }
 
                 _currentHeight += _data.SpawnInterval;
             }
+        }
+
+        private Vector3 GetRandomSpawnPosition()
+        {
+            float x = Random.Range(
+                _minSpawnValue,
+                _maxSpawnValue
+            );
+
+            float y = Random.Range(
+                _minSpawnValue,
+                _maxSpawnValue
+            );
+
+            Vector3 position = new Vector2(x, y);
+
+            position = Vector3.ClampMagnitude(
+                position,
+                _data.SpawnDistanceMagnitude
+            );
+
+            position.y += _currentHeight;
+
+            return position;
+        }
+
+        private void SpawnSlot(Vector3 position)
+        {
+            GameObject slot = Instantiate(
+                _data.SlotPrefab,
+                position,
+                Quaternion.identity
+            );
+
+            _slotsManager.AddSlot(slot);
+        }
+
+        public ModuleSaveData GetSaveData()
+        {
+            return _slotsManager.GetSaveData(_currentHeight);
+        }
+
+        public void Load(ModuleSaveData data)
+        {
+            if (data == null)
+                return;
+
+            _currentHeight = data.CurrentHeight;
+
+            _slotsManager.Load(
+                data,
+                _data.SlotPrefab
+            );
         }
     }
 }

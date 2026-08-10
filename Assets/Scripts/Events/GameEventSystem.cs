@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Sunflower.Modifiers;
 using Sunflower.Needs;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunflower.Event
@@ -12,13 +12,15 @@ namespace Sunflower.Event
         public event System.Action<GameEventData> OnEventStarted;
         public event System.Action<GameEventData> OnEventEnded;
 
-        private class ActiveGameEvent
+        public class ActiveGameEvent
         {
             public GameEventData Data;
             public float remainingTime;
         }
 
-        private readonly List<ActiveGameEvent> _activeEvents = new List<ActiveGameEvent>();
+        private List<ActiveGameEvent> _activeEvents = new();
+
+        public List<ActiveGameEvent> ActiveEvents { get => _activeEvents; set => _activeEvents = value; }
 
         public void StartEvent(GameEventData eventData)
         {
@@ -47,9 +49,9 @@ namespace Sunflower.Event
                 if (activeEvent.Data.duration <= 0f)
                     continue;
 
-                activeEvent.remainingTime -= Time.deltaTime;
+                activeEvent.RemainingTime -= Time.deltaTime;
 
-                if (activeEvent.remainingTime <= 0f)
+                if (activeEvent.RemainingTime <= 0f)
                 {
                     GameEventData Data = activeEvent.Data;
 
@@ -60,5 +62,25 @@ namespace Sunflower.Event
             }
         }
 
+        public GameEventData GetEventData(string eventId)
+        {
+            return _eventDefinitions.Find(
+                x => x.EventId == eventId
+            );
+        }
+
+        public void RestoreEvent(GameEventData data, float remainingTime)
+        {
+            if (data == null)
+                return;
+
+            _activeEvents.Add(new ActiveGameEvent
+            {
+                Data = data,
+                RemainingTime = remainingTime
+            });
+
+            EventStarted?.Invoke(data);
+        }
     }
 }
